@@ -8,7 +8,7 @@ package BE;
  *
  * @author Chris
  */
-public class NewClass
+public class Team
 {
     
 }

@@ -11,4 +11,11 @@ package BE;
 public class Team
 {
     
+    private final int id;
+    private String school;
+    private String teamCaptain;
+    private String email;
+    private int groupId;
+    
+    
 }

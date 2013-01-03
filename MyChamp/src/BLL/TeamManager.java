@@ -8,7 +8,7 @@ package BLL;
  *
  * @author Chris
  */
-public class NewClass
+public class TeamManager
 {
     
 }

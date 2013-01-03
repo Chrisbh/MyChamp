@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package BLL;
 
 /**
  *
- * @author Chris
+ * @author Rasmus
  */
-public class NewClass
+public class MatchManager
 {
     
 }

@@ -8,11 +8,11 @@ package UI;
  *
  * @author Rasmus, Chris, Lasse, Dennis.
  */
-public class MyChampMenu extends Menu
+public class MainMenu extends Menu
 {
     private static final int EXIT_VALUE = 0;
 
-    public MyChampMenu()
+    public MainMenu()
     {
         super("MyChamp Menu", "TeamMenu", "MatchMenu");
         EXIT_OPTION = EXIT_VALUE;

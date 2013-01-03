@@ -17,5 +17,8 @@ public class Team
     private String email;
     private int groupId;
     
-    
+    public Team(String school, String teamCaptain, String email, String groupId)
+    {
+        
+    }
 }

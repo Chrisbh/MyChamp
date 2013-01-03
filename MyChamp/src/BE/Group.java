@@ -58,6 +58,6 @@ public class Group
     @Override
     public String toString()
     {
-        return String.format("%-6s %-30s ", ID, GroupName);
+        return String.format(" %3d %-6d %-30s %3d ", ID, GroupName);
     }
 }

@@ -56,7 +56,7 @@ public class MainMenu extends Menu
 
     private void RankingUIMenu()
     {
-        new RankingUIMenu().run();
+        new RankingMenu().run();
     }
 
     private void doActionExit()

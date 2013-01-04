@@ -33,14 +33,14 @@ public class MainMenu extends Menu
         }
     }
     /**
-     * Option for Opening the Song Menu.
+     * Option for Opening the Team UI Menu
      */
     private void TeamUIMenu()
     {
         new TeamUIMenu().run();
     }
     /**
-     * Option for Opening the PlayList Menu.
+     * Option for Opening the Match UI Menu.
      */
     private void MatchUIMenu()
     {

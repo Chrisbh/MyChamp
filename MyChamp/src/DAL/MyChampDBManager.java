@@ -7,7 +7,6 @@ package DAL;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import java.io.FileReader;
 import java.util.Properties;
-import javax.activation.DataSource;
 
 /**
  *

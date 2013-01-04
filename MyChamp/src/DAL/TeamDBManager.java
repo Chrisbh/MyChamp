@@ -94,4 +94,31 @@ public class TeamDBManager extends MyChampDBManager
             return new Team(id, team);
         }
     }
+    
+    public void delete(int id) throws SQLException
+    {
+        String sql = "DELETE TEAM WHERE TEAM.ID = ?";
+        Connection con = ds.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows == 0)
+        {
+            throw new SQLException("Unable to delete Team");
+        }
+    }
+
+    public Team assign(Team t) throws SQLException
+    {
+        Connection con = ds.getConnection();
+        String sql = "INSERT INTO TEAM VALUES (setGroupID)";
+        PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+        ps.setInt(1, t.getGroupId());
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows == 0)
+        {
+            throw new SQLException("Unable to add Team to Group");
+        }
+        return t;
+    }
 }

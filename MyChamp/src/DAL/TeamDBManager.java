@@ -22,7 +22,7 @@ public class TeamDBManager extends MyChampDBManager
     public TeamDBManager() throws Exception
     {
         super();
-    }
+    }  
 
     public ArrayList<Team> ListAll() throws SQLException
     {

@@ -149,10 +149,11 @@ class TeamUIMenu extends Menu
      */
     private void AssignToGroups()
     {
-        System.out.println("X");
-        System.out.println();
+        clear();
+        System.out.println("Assign Team To Group");
         try
         {
+            teammgr.AssignGroups(null);
         }
         catch (Exception e)
         {

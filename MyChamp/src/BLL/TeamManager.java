@@ -15,14 +15,15 @@ import java.util.ArrayList;
  */
 public class TeamManager
 {
+
     private TeamDBManager db = null;
     private static TeamManager instance = null;
-    
+
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
     }
-    
+
     public static TeamManager getInstance() throws Exception
     {
         if (instance == null)
@@ -31,27 +32,27 @@ public class TeamManager
         }
         return instance;
     }
-    
+
     public ArrayList<Team> listAll() throws SQLException
     {
         return db.ListAll();
     }
-    
+
     public void update(Team team) throws SQLException
     {
         db.update(team);
     }
-    
+
     public void delete(int ID) throws SQLException
     {
         db.delete(ID);
     }
-    
+
     public void add(Team team) throws SQLException
     {
         db.addTeam(team);
     }
-    
+
     public void AssignGroups(Team team) throws SQLException
     {
         db.assign(team);

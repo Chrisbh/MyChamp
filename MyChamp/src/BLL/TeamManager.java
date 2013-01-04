@@ -4,6 +4,7 @@
  */
 package BLL;
 
+import BE.Counter;
 import BE.Team;
 import DAL.TeamDBManager;
 import java.sql.SQLException;
@@ -71,5 +72,10 @@ public class TeamManager
 //            }
         }
         db.assign(team);
+    }
+    
+    public Counter showNumber() throws SQLException
+    {
+        return db.Count();
     }
 }

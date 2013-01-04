@@ -106,6 +106,8 @@ class TeamUIMenu extends Menu
         System.out.println();
         try
         {
+            System.out.println(teammgr.showNumber());
+            
         }
         catch (Exception e)
         {

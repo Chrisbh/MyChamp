@@ -10,11 +10,12 @@ package UI;
  */
 public class MainMenu extends Menu
 {
+
     private static final int EXIT_VALUE = 0;
 
     public MainMenu()
     {
-        super("MyChamp Menu", "TeamMenu", "MatchMenu");
+        super("MyChamp Menu", "Team Menu", "Match Menu", "Ranking Menu");
         EXIT_OPTION = EXIT_VALUE;
     }
 
@@ -29,9 +30,14 @@ public class MainMenu extends Menu
             case 2:
                 MatchUIMenu();
                 break;
-            case EXIT_VALUE: doActionExit();
+            case 3:
+                RankingUIMenu();
+                break;
+            case EXIT_VALUE:
+                doActionExit();
         }
     }
+
     /**
      * Option for Opening the Team UI Menu
      */
@@ -39,12 +45,18 @@ public class MainMenu extends Menu
     {
         new TeamUIMenu().run();
     }
+
     /**
      * Option for Opening the Match UI Menu.
      */
     private void MatchUIMenu()
     {
         new MatchUIMenu().run();
+    }
+
+    private void RankingUIMenu()
+    {
+        new RankingUIMenu().run();
     }
 
     private void doActionExit()

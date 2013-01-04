@@ -11,7 +11,7 @@ import BLL.TeamManager;
  *
  * @author Rasmus, Chris, Lasse, Dennis.
  */
-class MatchUIMenu extends Menu
+class RankingUIMenu extends Menu
 {
 
     private static final int EXIT_VALUE = 0;
@@ -19,13 +19,13 @@ class MatchUIMenu extends Menu
     private MatchManager matchmgr;
 
     /**
-     * Lists the different Menu options in MatchUI Menu
+     * Lists the different Menu options in Ranking UI Menu
      *
-     * @param Match menu
+     * @param Team UI menu
      */
-    public MatchUIMenu()
+    public RankingUIMenu()
     {
-        super("Match UI Menu", "View Schedule", "Match Results", "Schedule Matchs");
+        super("Ranking UI Menu", "Group Ranking", "Final Ranking");
         try
         {
             teammgr = new TeamManager();
@@ -50,13 +50,10 @@ class MatchUIMenu extends Menu
         switch (option)
         {
             case 1:
-                ViewSchedule();
+                GroupRanking();
                 break;
             case 2:
-                MatchResults();
-                break;
-            case 3:
-                ScheduleMatch();
+                FinalRanking();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -66,7 +63,7 @@ class MatchUIMenu extends Menu
     /**
      * X
      */
-    private void ViewSchedule()
+    private void GroupRanking()
     {
         System.out.println("X");
         System.out.println();
@@ -80,21 +77,7 @@ class MatchUIMenu extends Menu
         pause();
     }
 
-    private void MatchResults()
-    {
-        System.out.println("X");
-        System.out.println();
-        try
-        {
-        }
-        catch (Exception e)
-        {
-            System.out.println(" ERROR - " + e.getMessage());
-        }
-        pause();
-    }
-
-    private void ScheduleMatch()
+    private void FinalRanking()
     {
         System.out.println("X");
         System.out.println();

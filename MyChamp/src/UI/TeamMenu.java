@@ -88,22 +88,58 @@ class TeamUIMenu extends Menu
 
     private void AddTeam()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        System.out.println("X");
+        System.out.println();
+        try
+        {
+        }
+        catch (Exception e)
+        {
+            System.out.println(" ERROR - " + e.getMessage());
+        }
+        pause();
     }
 
     private void UpdateTeam()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        System.out.println("X");
+        System.out.println();
+        try
+        {
+        }
+        catch (Exception e)
+        {
+            System.out.println(" ERROR - " + e.getMessage());
+        }
+        pause();
     }
 
     private void DeleteTeam()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        System.out.println("X");
+        System.out.println();
+        try
+        {
+        }
+        catch (Exception e)
+        {
+            System.out.println(" ERROR - " + e.getMessage());
+        }
+        pause();
     }
 
     private void AssignToGroups()
     {
-        throw new UnsupportedOperationException("Not yet implemented");
+        System.out.println("X");
+        System.out.println();
+        try
+        {
+        }
+        catch (Exception e)
+        {
+            System.out.println(" ERROR - " + e.getMessage());
+        }
+        pause();
     }
 
     /**

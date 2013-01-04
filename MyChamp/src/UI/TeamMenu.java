@@ -82,6 +82,7 @@ class TeamUIMenu extends Menu
         
         try
         {
+            printshowHeader();
             ArrayList<Team> teams = teammgr.listAll();
             
         for(Team t : teams)

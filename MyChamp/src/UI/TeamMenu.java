@@ -8,6 +8,7 @@ import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -149,6 +150,13 @@ class TeamUIMenu extends Menu
      */
     private void AssignToGroups()
     {
+        Random rand;
+        rand = new Random();
+        int min = 1;
+        int max = 4;
+        
+        int randomNum = rand.nextInt(max - min + 1) + min;  
+        
         clear();
         System.out.println("Assign Team To Group");
         try

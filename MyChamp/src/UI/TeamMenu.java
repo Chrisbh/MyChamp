@@ -4,8 +4,10 @@
  */
 package UI;
 
+import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.util.ArrayList;
 
 /**
  *
@@ -74,10 +76,18 @@ class TeamUIMenu extends Menu
      */
     private void ListAllTeams()
     {
-        System.out.println("X");
+        clear();
+        System.out.println("Show all teams");
         System.out.println();
+        
         try
         {
+            ArrayList<Team> teams = teammgr.listAll();
+            
+        for(Team t : teams)
+            {
+                System.out.println(t);
+            }
         }
         catch (Exception e)
         {

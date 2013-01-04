@@ -28,7 +28,7 @@ public class TeamDBManager extends MyChampDBManager
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT * FROM Team, Group WHERE Group.ID = GroupID";
+            String query = "SELECT * FROM Team";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);

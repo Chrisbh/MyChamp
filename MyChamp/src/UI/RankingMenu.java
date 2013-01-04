@@ -76,7 +76,9 @@ class RankingMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void FinalRanking()
     {
         System.out.println("X");

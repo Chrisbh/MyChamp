@@ -64,7 +64,7 @@ class MatchUIMenu extends Menu
     }
 
     /**
-     * X
+     * 
      */
     private void ViewSchedule()
     {
@@ -93,7 +93,9 @@ class MatchUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void ScheduleMatch()
     {
         System.out.println("X");

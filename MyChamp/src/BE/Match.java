@@ -14,7 +14,7 @@ public class Match
     private int MatchRound;
     private int HomeTeamID;
     private int GuestTeamID;
-    private int IsPlayed;
+    private int IsPlayed = 0;
     private int HomeGoals;
     private int GuestGoals;
     

@@ -20,6 +20,8 @@ public class TeamManager
     private TeamDBManager db = null;
     private static TeamManager instance = null;
     private Team team;
+    private Counter count;
+    private int counter = count.getNumberOfTeams();
 
     public TeamManager() throws Exception
     {
@@ -70,6 +72,11 @@ public class TeamManager
 //            {
 //                System.out.println("16");
 //            }
+        
+        if(counter == 16)
+        {
+            
+        }
         }
         db.assign(team);
     }

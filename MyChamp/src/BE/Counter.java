@@ -36,6 +36,6 @@ public class Counter
     @Override
     public String toString()
     {
-        return String.format(" %3d", numberOfTeams);
+        return String.format("%3d", numberOfTeams);
     }
 }

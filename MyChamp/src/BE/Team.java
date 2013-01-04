@@ -111,6 +111,6 @@ public class Team
     @Override
     public String toString()
     {
-        return String.format("%6d %-3d %-3d %-3d %3d", id, school, teamCaptain, email, groupId);
+        return String.format("%3s %-6d %-25s %-25s %-30s %-6d","",id, school, teamCaptain, email, groupId);
     }
 }

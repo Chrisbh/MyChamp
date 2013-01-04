@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import BE.Counter;
 import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,13 +23,13 @@ public class TeamDBManager extends MyChampDBManager
     public TeamDBManager() throws Exception
     {
         super();
-    }
+    }  
 
     public ArrayList<Team> ListAll() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT * FROM Team, Group WHERE Group.ID = GroupID";
+            String query = "SELECT * FROM Team";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -38,9 +39,9 @@ public class TeamDBManager extends MyChampDBManager
             {
                 int ID = rs.getInt("ID");
                 String School = rs.getString("School");
-                String TeamCaptain = rs.getString("Team Captain");
+                String TeamCaptain = rs.getString("TeamCaptain");
                 String Email = rs.getString("Email");
-                int GroupID = rs.getInt("Group ID");
+                int GroupID = rs.getInt("GroupID");
 
                 Team team = new Team(ID, School, TeamCaptain, Email, GroupID);
                 allTeams.add(team);
@@ -119,5 +120,25 @@ public class TeamDBManager extends MyChampDBManager
             throw new SQLException("Unable to add Team to Group");
         }
         return t;
+    }
+    
+    public Counter Count() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT COUNT(*) as NumberOfTeams FROM Team";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int count = rs.getInt("NumberOfTeams");
+                
+                Counter number = new Counter(count);
+                return number;
+            }
+            return null;
+        }
     }
 }

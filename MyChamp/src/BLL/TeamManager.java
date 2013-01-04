@@ -4,6 +4,7 @@
  */
 package BLL;
 
+import BE.Counter;
 import BE.Team;
 import DAL.TeamDBManager;
 import java.sql.SQLException;
@@ -15,14 +16,18 @@ import java.util.ArrayList;
  */
 public class TeamManager
 {
+
     private TeamDBManager db = null;
     private static TeamManager instance = null;
-    
+    private Team team;
+    private Counter count;
+    private int counter = count.getNumberOfTeams();
+
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
     }
-    
+
     public static TeamManager getInstance() throws Exception
     {
         if (instance == null)
@@ -31,29 +36,53 @@ public class TeamManager
         }
         return instance;
     }
-    
+
     public ArrayList<Team> listAll() throws SQLException
     {
         return db.ListAll();
     }
-    
+
     public void update(Team team) throws SQLException
     {
         db.update(team);
     }
-    
+
     public void delete(int ID) throws SQLException
     {
         db.delete(ID);
     }
-    
+
     public void add(Team team) throws SQLException
     {
         db.addTeam(team);
     }
-    
+
     public void AssignGroups(Team team) throws SQLException
     {
+//        ArrayList<id> teamid :int id = team.getId();
+//        
+//        for (Array<id> teamid : id)
+        {
+//            if (id == 12)
+//            {
+//                System.out.println("12");
+//            }
+//
+//            if (id == 16)
+//            {
+//                System.out.println("16");
+//            }
+        
+        if(counter == 16)
+        {
+            
+        }
+        }
         db.assign(team);
+    }
+    
+    public Counter showNumber() throws SQLException
+    {
+        return db.Count();
     }
 }

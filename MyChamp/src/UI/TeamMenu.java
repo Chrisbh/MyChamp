@@ -4,8 +4,11 @@
  */
 package UI;
 
+import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -70,14 +73,23 @@ class TeamUIMenu extends Menu
     }
 
     /**
-     * X
+     * 
      */
     private void ListAllTeams()
     {
-        System.out.println("X");
+        clear();
+        System.out.println("Show all teams");
         System.out.println();
+        
         try
         {
+            printshowHeader();
+            ArrayList<Team> teams = teammgr.listAll();
+            
+        for(Team t : teams)
+            {
+                System.out.println(t);
+            }
         }
         catch (Exception e)
         {
@@ -85,13 +97,17 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void AddTeam()
     {
         System.out.println("X");
         System.out.println();
         try
         {
+            System.out.println(teammgr.showNumber());
+            
         }
         catch (Exception e)
         {
@@ -99,7 +115,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void UpdateTeam()
     {
         System.out.println("X");
@@ -113,7 +131,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void DeleteTeam()
     {
         System.out.println("X");
@@ -127,13 +147,23 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void AssignToGroups()
     {
-        System.out.println("X");
-        System.out.println();
+        Random rand;
+        rand = new Random();
+        int min = 1;
+        int max = 4;
+        
+        int randomNum = rand.nextInt(max - min + 1) + min;  
+        
+        clear();
+        System.out.println("Assign Team To Group");
         try
         {
+            teammgr.AssignGroups(null);
         }
         catch (Exception e)
         {

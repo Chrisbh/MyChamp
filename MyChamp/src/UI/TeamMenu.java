@@ -70,7 +70,7 @@ class TeamUIMenu extends Menu
     }
 
     /**
-     * X
+     * 
      */
     private void ListAllTeams()
     {
@@ -85,7 +85,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void AddTeam()
     {
         System.out.println("X");
@@ -99,7 +101,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void UpdateTeam()
     {
         System.out.println("X");
@@ -113,7 +117,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void DeleteTeam()
     {
         System.out.println("X");
@@ -127,7 +133,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
-
+    /**
+     * 
+     */
     private void AssignToGroups()
     {
         System.out.println("X");

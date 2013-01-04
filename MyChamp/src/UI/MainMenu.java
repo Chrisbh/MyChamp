@@ -53,7 +53,9 @@ public class MainMenu extends Menu
     {
         new MatchUIMenu().run();
     }
-
+    /**
+     * Option for opening the Ranking UI Menu.
+     */
     private void RankingUIMenu()
     {
         new RankingMenu().run();

@@ -50,7 +50,19 @@ class TeamUIMenu extends Menu
         switch (option)
         {
             case 1:
-                X();
+                ListAllTeams();
+                break;
+            case 2:
+                AddTeam();
+                break;
+            case 3:
+                UpdateTeam();
+                break;
+            case 4:
+                DeleteTeam();
+                break;
+            case 5:
+                AssignToGroups();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -60,7 +72,7 @@ class TeamUIMenu extends Menu
     /**
      * X
      */
-    private void X()
+    private void ListAllTeams()
     {
         System.out.println("X");
         System.out.println();
@@ -72,6 +84,26 @@ class TeamUIMenu extends Menu
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();
+    }
+
+    private void AddTeam()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void UpdateTeam()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void DeleteTeam()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void AssignToGroups()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     /**

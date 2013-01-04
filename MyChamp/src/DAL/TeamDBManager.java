@@ -38,7 +38,7 @@ public class TeamDBManager extends MyChampDBManager
             {
                 int ID = rs.getInt("ID");
                 String School = rs.getString("School");
-                String TeamCaptain = rs.getString("Team Captain");
+                String TeamCaptain = rs.getString("TeamCaptain");
                 String Email = rs.getString("Email");
                 int GroupID = rs.getInt("Group ID");
 

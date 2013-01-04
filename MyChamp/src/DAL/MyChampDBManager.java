@@ -7,6 +7,7 @@ package DAL;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import java.io.FileReader;
 import java.util.Properties;
+import javax.activation.DataSource;
 
 /**
  *
@@ -15,7 +16,7 @@ import java.util.Properties;
 public class MyChampDBManager
 {
 
-    protected SQLServerDataSource dataSource;
+    protected SQLServerDataSource ds;
 
     /*
      * Contains the settings for the SQL server.
@@ -24,13 +25,14 @@ public class MyChampDBManager
     {
         Properties props = new Properties();
         props.load(new FileReader("MyChamp.cfg"));
+   
+        
+        ds = new SQLServerDataSource();
 
-        dataSource = new SQLServerDataSource();
-
-        dataSource.setServerName(props.getProperty("SERVER"));
-        dataSource.setPortNumber(Integer.parseInt(props.getProperty("PORT")));
-        dataSource.setDatabaseName(props.getProperty("DATABASE"));
-        dataSource.setUser(props.getProperty("USER"));
-        dataSource.setPassword(props.getProperty("PASSWORD"));
+        ds.setServerName(props.getProperty("SERVER"));
+        ds.setPortNumber(Integer.parseInt(props.getProperty("PORT")));
+        ds.setDatabaseName(props.getProperty("DATABASE"));
+        ds.setUser(props.getProperty("USER"));
+        ds.setPassword(props.getProperty("PASSWORD"));
     }
 }

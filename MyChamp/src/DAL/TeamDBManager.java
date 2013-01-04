@@ -10,5 +10,9 @@ package DAL;
  */
 public class TeamDBManager
 {
+    public TeamDBManager() throws Exception
+    {
+        super();
+    }
     
 }

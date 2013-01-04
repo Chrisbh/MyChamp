@@ -10,5 +10,9 @@ package DAL;
  */
 public class MatchDBManager
 {
-    
+    public MatchDBManager() throws Exception
+    {
+        super();
+    }
+        
 }

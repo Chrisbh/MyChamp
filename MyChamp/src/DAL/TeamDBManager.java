@@ -93,7 +93,7 @@ public class TeamDBManager extends MyChampDBManager
             return new Team(id, team);
         }
     }
-    
+
     public void delete(int id) throws SQLException
     {
         String sql = "DELETE TEAM WHERE TEAM.ID = ?";

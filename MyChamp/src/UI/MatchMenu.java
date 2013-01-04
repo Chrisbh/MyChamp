@@ -25,7 +25,7 @@ class MatchUIMenu extends Menu
      */
     public MatchUIMenu()
     {
-        super("Match UI Menu", "");
+        super("Match UI Menu", "View Schedule", "Match Results", "Schedule Matchs");
         try
         {
             teammgr = new TeamManager();
@@ -50,7 +50,13 @@ class MatchUIMenu extends Menu
         switch (option)
         {
             case 1:
-                X();
+                ViewSchedule();
+                break;
+            case 2:
+                MatchResults();
+                break;
+            case 3:
+                ScheduleMatch();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -60,7 +66,7 @@ class MatchUIMenu extends Menu
     /**
      * X
      */
-    private void X()
+    private void ViewSchedule()
     {
         System.out.println("X");
         System.out.println();
@@ -72,6 +78,16 @@ class MatchUIMenu extends Menu
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();
+    }
+
+    private void MatchResults()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void ScheduleMatch()
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
     /**

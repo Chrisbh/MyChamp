@@ -25,7 +25,7 @@ class TeamUIMenu extends Menu
      */
     public TeamUIMenu()
     {
-        super("Team UI Menu", "");
+        super("Team UI Menu", "List All Teams", "Add A Team", "Update A Team", "Delete A Team", "Assign Teams To A Group");
         try
         {
             teammgr = new TeamManager();

@@ -11,7 +11,7 @@ import BLL.TeamManager;
  *
  * @author Rasmus, Chris, Lasse, Dennis.
  */
-class RankingUIMenu extends Menu
+class RankingMenu extends Menu
 {
 
     private static final int EXIT_VALUE = 0;
@@ -23,7 +23,7 @@ class RankingUIMenu extends Menu
      *
      * @param Team UI menu
      */
-    public RankingUIMenu()
+    public RankingMenu()
     {
         super("Ranking UI Menu", "Group Ranking", "Final Ranking");
         try

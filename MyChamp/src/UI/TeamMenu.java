@@ -140,10 +140,24 @@ class TeamUIMenu extends Menu
      */
     private void DeleteTeam()
     {
-        System.out.println("X");
-        System.out.println();
+        clear();
+        System.out.println("Delete Team:");
+        System.out.println("");
         try
         {
+            TeamManager tManager = new TeamManager();
+            ArrayList<Team> teams = tManager.listAll();
+
+            printshowHeader();
+            for (Team t : teams)
+            {
+                System.out.println(t);
+            }
+
+            System.out.print("Select Team id: ");
+            int id = new Scanner(System.in).nextInt();
+
+            teammgr.delete(id);
         }
         catch (Exception e)
         {

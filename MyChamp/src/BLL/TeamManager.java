@@ -62,33 +62,6 @@ public class TeamManager
         db.addTeam(team);
     }
 
-    public void AssignGroups() throws SQLException
-    {
-        int counter = db.Count();
-
-
-        if (counter > 12 && counter <= 16)
-        {
-            while (i <= db.maxId() && given <= 16)
-            {
-            }
-        }
-        else if (counter == 12)
-        {
-            while (i <= db.maxId() && given <= 12)
-            {
-            }
-        }
-        else if (counter < 12)
-        {
-            System.out.println("Not enough teams.");
-        }
-        else
-        {
-            System.out.println("Too many teams.");
-        }
-    }
-
     public int showNumber() throws SQLException
     {
         return db.Count();
@@ -111,8 +84,8 @@ public class TeamManager
         for (Team t : temp)
         {
             db.assign(t, currentGroup++);
-            
-            if(currentGroup > MaxGroups)
+
+            if (currentGroup > MaxGroups)
             {
                 currentGroup = 1;
             }

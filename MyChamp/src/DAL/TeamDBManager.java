@@ -4,7 +4,6 @@
  */
 package DAL;
 
-import BE.Group;
 import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -169,49 +168,5 @@ public class TeamDBManager extends MyChampDBManager
             }
         }
         return null;
-    }
-
-    public Team getBySchoolName(String School) throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String sql = "SELECT * FROM TEAM WHERE School Like ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, School);
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                int Id = rs.getInt("ID");
-                School = rs.getString("School");
-                String TeamCaptain = rs.getString("TeamCaptain");
-                String Email = rs.getString("Email");
-                int GroupId = rs.getInt("GroupId");
-
-
-                Team gid = new Team(Id, School, TeamCaptain, Email, GroupId);
-                return gid;
-            }
-            return null;
-        }
-    }
-
-    public int maxId() throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String query = "SELECT Max(ID) as HighestID FROM Team";
-
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next())
-            {
-                int maxID = rs.getInt("HighestID");
-
-                return maxID;
-            }
-            return 0;
-        }
     }
 }

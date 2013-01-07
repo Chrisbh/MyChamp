@@ -4,9 +4,9 @@
  */
 package BLL;
 
-import BE.Group;
 import BE.Team;
 import DAL.TeamDBManager;
+import java.security.acl.Group;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,15 +22,12 @@ public class TeamManager
     private static TeamManager instance = null;
     private Team team;
     private Group group;
-    private GroupManager grpmngr;
     private int i = 1;
     private int given = 1;
 
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
-        grpmngr = new GroupManager();
-
     }
 
     public static TeamManager getInstance() throws Exception
@@ -45,11 +42,6 @@ public class TeamManager
     public Team getByID(int id) throws SQLException
     {
         return db.getID(id);
-    }
-    
-    public Team getSchoolName(String School) throws SQLException
-    {
-        return db.getBySchoolName(School);
     }
 
     public ArrayList<Team> listAll() throws SQLException

@@ -4,7 +4,6 @@
  */
 package DAL;
 
-import BE.Counter;
 import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -122,7 +121,7 @@ public class TeamDBManager extends MyChampDBManager
         return t;
     }
     
-    public Counter Count() throws SQLException
+    public int Count() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
@@ -135,10 +134,9 @@ public class TeamDBManager extends MyChampDBManager
             {
                 int count = rs.getInt("NumberOfTeams");
                 
-                Counter number = new Counter(count);
-                return number;
+                return count;
             }
-            return null;
+            return 0;
         }
     }
 }

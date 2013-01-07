@@ -108,7 +108,7 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public void assign(Group g, Team t) throws SQLException
+    public void assign(Team t, int g) throws SQLException
     {
         String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
 
@@ -118,7 +118,7 @@ public class TeamDBManager extends MyChampDBManager
         ps.setString(1, t.getSchool());
         ps.setString(2, t.getTeamCaptain());
         ps.setString(3, t.getEmail());
-        ps.setInt(4, t.getGroupId());
+        ps.setInt(4, g);
         ps.setInt(5, t.getId());
 
         int affectedRows = ps.executeUpdate();

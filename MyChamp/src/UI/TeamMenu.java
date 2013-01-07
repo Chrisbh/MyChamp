@@ -159,12 +159,10 @@ class TeamUIMenu extends Menu
     {
         clear();
         System.out.println("Assign Team To Group");
-        System.out.println("How many groups is necesary?:");
-        int grpNum = new Scanner(System.in, "iso-8859-1").nextInt();
         
         try
         {
-            teammgr.AssignGroups();
+            teammgr.getgroupRandomizer();
         }
         catch (Exception e)
         {

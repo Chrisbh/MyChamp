@@ -94,11 +94,12 @@ public class TeamManager
         return db.Count();
     }
 
-    private void groupRandomizer() throws SQLException
+    public void getgroupRandomizer() throws SQLException
     {
         int x = 4;
-        int currentGroup = 0;
-        
+        int MaxGroups = 4;
+        int currentGroup = 1;
+
         ArrayList<Team> temp = listAll();
         Collections.shuffle(temp);
         ArrayList<ArrayList<Team>> Groups = new ArrayList();
@@ -109,18 +110,25 @@ public class TeamManager
 
         for (Team t : temp)
         {
-            Groups.get(currentGroup).add(t);
+            db.assign(t, currentGroup++);
             
-            currentGroup ++;
-            
-            if (currentGroup == x)
+            if(currentGroup >= MaxGroups)
             {
-                currentGroup = 0;
+                currentGroup = 1;
             }
         }
-
-
-    }
+            //            Groups.get(currentGroup).add(t);
+            //            
+            //            currentGroup ++;
+            //            
+            //            if (currentGroup == x)
+            //            {
+            //                currentGroup = 0;
+            //            }
+//        }
+//
+//
+//    }
 //    private void countID() throws SQLException
 //    {
 //        Team tm = db.getID(i);
@@ -134,5 +142,5 @@ public class TeamManager
 //            given++;
 //            i++;
 //        }
-//    }
+    }
 }

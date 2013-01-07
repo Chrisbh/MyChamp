@@ -85,7 +85,7 @@ public class TeamDBManager extends MyChampDBManager
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
-                throw new SQLException("Unabe to add song.");
+                throw new SQLException("Unabe to add team.");
             }
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
@@ -107,10 +107,10 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public Team assign(Team t) throws SQLException
+    public void assign(Team t) throws SQLException
     {
         Connection con = ds.getConnection();
-        String sql = "INSERT INTO TEAM VALUES (setGroupID)";
+        String sql = "INSERT INTO TEAM VALUES (setGroupID) WHERE Id = ?";
         PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
         ps.setInt(1, t.getGroupId());
         int affectedRows = ps.executeUpdate();
@@ -118,7 +118,6 @@ public class TeamDBManager extends MyChampDBManager
         {
             throw new SQLException("Unable to add Team to Group");
         }
-        return t;
     }
     
     public int Count() throws SQLException
@@ -135,6 +134,50 @@ public class TeamDBManager extends MyChampDBManager
                 int count = rs.getInt("NumberOfTeams");
                 
                 return count;
+            }
+            return 0;
+        }
+    }
+    
+    public Team getID(int id) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            Statement st = con.createStatement();
+            String sql = "SELECT Team.* FROM Team WHERE Team.id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                String School = rs.getString("School");
+                String TeamCaptain = rs.getString("TeamCaptain");
+                String Email = rs.getString("Email");
+                int GroupId = rs.getInt("GroupId");
+
+
+                Team gid = new Team(id, School, TeamCaptain, Email, GroupId);
+                return gid;
+            }
+        }
+        return null;
+    }
+    
+    public int maxId() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT Max(ID) as HighestID FROM Team";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int maxID = rs.getInt("HighestID");
+                
+                return maxID;
             }
             return 0;
         }

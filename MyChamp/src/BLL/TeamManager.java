@@ -9,6 +9,7 @@ import BE.Team;
 import DAL.TeamDBManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
@@ -75,7 +76,12 @@ public class TeamManager
         
         if(counter == 16)
         {
-            
+            Random rand;
+        rand = new Random();
+        int min = 1;
+        int max = 4;
+        
+        int randomNum = rand.nextInt(max - min + 1) + min;
         }
         db.assign(team);
     }

@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Rasmus, Chris, Lasse, Dennis.
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 class TeamUIMenu extends Menu
 {

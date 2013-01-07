@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Chris
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class Match
 {

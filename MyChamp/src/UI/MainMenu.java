@@ -6,7 +6,7 @@ package UI;
 
 /**
  *
- * @author Rasmus, Chris, Lasse, Dennis.
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class MainMenu extends Menu
 {

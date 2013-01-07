@@ -13,7 +13,7 @@ import java.util.Collections;
 
 /**
  *
- * @author Chris
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class TeamManager
 {

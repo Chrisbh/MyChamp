@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Rasmus, Chris, Lasse, Dennis.
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public abstract class Menu
 {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Rasmus
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class TeamDBManager extends MyChampDBManager
 {

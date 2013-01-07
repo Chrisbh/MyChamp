@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Rasmus, Lasse, Chris, Dennis
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class UpdateTeamMenu extends Menu
 {

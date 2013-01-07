@@ -8,7 +8,7 @@ import UI.MainMenu;
 
 /**
  *
- * @author Chris
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class MyChamp
 {

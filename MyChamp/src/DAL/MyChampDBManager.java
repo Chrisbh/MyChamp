@@ -10,7 +10,7 @@ import java.util.Properties;
 
 /**
  *
- * @author Dennis
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class MyChampDBManager
 {

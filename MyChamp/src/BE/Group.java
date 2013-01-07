@@ -25,7 +25,7 @@ public class Group
      *
      * @return the id
      */
-    public int getGroupID()
+    public int getID()
     {
         return ID;
     }

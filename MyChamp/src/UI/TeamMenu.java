@@ -9,6 +9,7 @@ import BLL.MatchManager;
 import BLL.TeamManager;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -73,20 +74,20 @@ class TeamUIMenu extends Menu
     }
 
     /**
-     * 
+     *
      */
     private void ListAllTeams()
     {
         clear();
         System.out.println("Show all teams");
         System.out.println();
-        
+
         try
         {
             printshowHeader();
             ArrayList<Team> teams = teammgr.listAll();
-            
-        for(Team t : teams)
+
+            for (Team t : teams)
             {
                 System.out.println(t);
             }
@@ -97,8 +98,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
+
     /**
-     * 
+     *
      */
     private void AddTeam()
     {
@@ -107,7 +109,7 @@ class TeamUIMenu extends Menu
         try
         {
             System.out.println(teammgr.showNumber());
-            
+
         }
         catch (Exception e)
         {
@@ -115,8 +117,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
+
     /**
-     * 
+     *
      */
     private void UpdateTeam()
     {
@@ -131,8 +134,9 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
+
     /**
-     * 
+     *
      */
     private void DeleteTeam()
     {
@@ -147,21 +151,24 @@ class TeamUIMenu extends Menu
         }
         pause();
     }
+
     /**
-     * 
+     *
      */
     private void AssignToGroups()
-    {    
+    {
         clear();
         System.out.println("Assign Team To Group");
+        System.out.println("How many groups is necesary?:");
+        int grpNum = new Scanner(System.in, "iso-8859-1").nextInt();
+        
         try
         {
-            teammgr.AssignGroups(null);
+            teammgr.AssignGroups();
         }
         catch (Exception e)
         {
             System.out.println(" ERROR - " + e.getMessage());
-            e.printStackTrace();
         }
         pause();
     }

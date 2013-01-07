@@ -123,14 +123,30 @@ class TeamUIMenu extends Menu
      */
     private void UpdateTeam()
     {
-        System.out.println("X");
+        clear();
+        System.out.println("UPDATE TEAM INFORMATION:");
         System.out.println();
+
         try
         {
+            TeamManager tManager = new TeamManager();
+            ArrayList<Team> teams = tManager.listAll();
+
+            printshowHeader();
+            for (Team t : teams)
+            {
+                System.out.println(t);
+            }
+
+            System.out.println("Select Team id: ");
+            int id = new Scanner(System.in).nextInt();
+            Team team = teammgr.getByID(id);
+
+            new UpdateTeamMenu(team).run();
         }
         catch (Exception e)
         {
-            System.out.println(" ERROR - " + e.getMessage());
+            System.out.println("ERROR - " + e.getMessage());
         }
         pause();
     }

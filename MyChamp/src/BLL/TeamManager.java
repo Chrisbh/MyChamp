@@ -42,6 +42,16 @@ public class TeamManager
         return instance;
     }
 
+    public Team getByID(int id) throws SQLException
+    {
+        return db.getID(id);
+    }
+    
+    public Team getSchoolName(String School) throws SQLException
+    {
+        return db.getBySchoolName(School);
+    }
+
     public ArrayList<Team> listAll() throws SQLException
     {
         return db.ListAll();

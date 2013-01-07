@@ -4,6 +4,7 @@
  */
 package DAL;
 
+import BE.Group;
 import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -107,16 +108,23 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public void assign(Team t) throws SQLException
+    public void assign(Team t, int g) throws SQLException
     {
+        String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
+
         Connection con = ds.getConnection();
-        String sql = "INSERT INTO TEAM VALUES (setGroupID) WHERE Id = ?";
-        PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        ps.setInt(1, t.getGroupId());
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, t.getSchool());
+        ps.setString(2, t.getTeamCaptain());
+        ps.setString(3, t.getEmail());
+        ps.setInt(4, g);
+        ps.setInt(5, t.getId());
+
         int affectedRows = ps.executeUpdate();
         if (affectedRows == 0)
         {
-            throw new SQLException("Unable to add Team to Group");
+            throw new SQLException("Unable to insert Team into group");
         }
     }
     
@@ -144,7 +152,7 @@ public class TeamDBManager extends MyChampDBManager
         try (Connection con = ds.getConnection())
         {
             Statement st = con.createStatement();
-            String sql = "SELECT Team.* FROM Team WHERE Team.id = ?";
+            String sql = "SELECT * FROM Team WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
 

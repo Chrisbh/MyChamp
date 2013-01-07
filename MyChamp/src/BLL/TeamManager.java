@@ -4,11 +4,12 @@
  */
 package BLL;
 
+import BE.Group;
 import BE.Team;
 import DAL.TeamDBManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Collections;
 
 /**
  *
@@ -20,13 +21,15 @@ public class TeamManager
     private TeamDBManager db = null;
     private static TeamManager instance = null;
     private Team team;
-    private Random rand;
+    private Group group;
+    private GroupManager grpmngr;
     private int i = 1;
     private int given = 1;
 
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
+        grpmngr = new GroupManager();
 
     }
 
@@ -59,37 +62,21 @@ public class TeamManager
         db.addTeam(team);
     }
 
-    public void AssignGroups(Team team) throws SQLException
+    public void AssignGroups() throws SQLException
     {
         int counter = db.Count();
-        rand = new Random();
-        int min = 1;
-        int max = 4;
-        int randomNum = rand.nextInt(max - min + 1) + min;
+
 
         if (counter > 12 && counter <= 16)
         {
-
-            System.out.println(randomNum);
+            while (i <= db.maxId() && given <= 16)
+            {
+            }
         }
         else if (counter == 12)
         {
-            while (i <= db.maxId() && given <= counter)
+            while (i <= db.maxId() && given <= 12)
             {
-                Team tm = db.getID(i);
-                while (tm != null && i <= db.maxId())
-                {
-                    i++;
-                    if (tm.getGroupId() == 0)
-                {
-
-//                db.assign(tm);
-                    System.out.println(tm);
-                    given++;
-                }
-                }        
-                
-                i++;
             }
         }
         else if (counter < 12)
@@ -100,11 +87,35 @@ public class TeamManager
         {
             System.out.println("Too many teams.");
         }
-//        db.assign(team);
     }
 
     public int showNumber() throws SQLException
     {
         return db.Count();
+    }
+
+    public void getgroupRandomizer() throws SQLException
+    {
+        int x = 4;
+        int MaxGroups = 4;
+        int currentGroup = 1;
+
+        ArrayList<Team> temp = listAll();
+        Collections.shuffle(temp);
+        ArrayList<ArrayList<Team>> Groups = new ArrayList();
+        for (int i = 0; i < x; i++)
+        {
+            Groups.add(new ArrayList());
+        }
+
+        for (Team t : temp)
+        {
+            db.assign(t, currentGroup++);
+            
+            if(currentGroup > MaxGroups)
+            {
+                currentGroup = 1;
+            }
+        }
     }
 }

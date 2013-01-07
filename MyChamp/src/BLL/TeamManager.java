@@ -21,10 +21,13 @@ public class TeamManager
     private static TeamManager instance = null;
     private Team team;
     private Random rand;
+    private int i = 1;
+    private int given = 1;
 
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
+
     }
 
     public static TeamManager getInstance() throws Exception
@@ -63,15 +66,31 @@ public class TeamManager
         int min = 1;
         int max = 4;
         int randomNum = rand.nextInt(max - min + 1) + min;
-        
-        if(counter >12 && counter <= 16)
+
+        if (counter > 12 && counter <= 16)
         {
-        
+
             System.out.println(randomNum);
         }
         else if (counter == 12)
         {
-            
+            while (i <= db.maxId() && given <= counter)
+            {
+                Team tm = db.getID(i);
+                while (tm != null && i <= db.maxId())
+                {
+                    i++;
+                    if (tm.getGroupId() == 0)
+                {
+
+//                db.assign(tm);
+                    System.out.println(tm);
+                    given++;
+                }
+                }        
+                
+                i++;
+            }
         }
         else if (counter < 12)
         {
@@ -83,7 +102,7 @@ public class TeamManager
         }
 //        db.assign(team);
     }
-    
+
     public int showNumber() throws SQLException
     {
         return db.Count();

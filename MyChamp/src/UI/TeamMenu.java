@@ -158,6 +158,11 @@ class TeamUIMenu extends Menu
     private void AssignToGroups()
     {
         clear();
+        try
+        {
+            int counter = teammgr.showNumber();
+            if (counter >= 12 && counter >=16)
+        {
         System.out.println("Assign Team To Group");
         
         try
@@ -168,6 +173,22 @@ class TeamUIMenu extends Menu
         {
             System.out.println(" ERROR - " + e.getMessage());
         }
+        }
+        else if (counter <12)
+        {
+            System.out.println("Too few teams to organize.");
+        }
+        else
+        {
+            System.out.println("Too many teams to organize.");
+        }
+        }
+        catch(Exception e)
+        {
+            System.out.println("ERROR - " + e.getLocalizedMessage());
+        }
+        
+        
         pause();
     }
 

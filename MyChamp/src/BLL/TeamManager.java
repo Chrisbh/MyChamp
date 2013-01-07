@@ -67,9 +67,9 @@ public class TeamManager
         db.delete(ID);
     }
 
-    public void add(Team team) throws SQLException
+    public void add(Team t) throws SQLException
     {
-        db.addTeam(team);
+        db.addTeam(t);
     }
 
     public int showNumber() throws SQLException

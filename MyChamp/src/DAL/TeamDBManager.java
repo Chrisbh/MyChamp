@@ -70,18 +70,17 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public Team addTeam(Team team) throws SQLException
+    public Team addTeam(Team t) throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            String sql = "INSERT INTO Team(School, TeamCaptain, Email, GroupID)"
-                    + "VALUES(?, ?, ?, ?)";
+            String sql = "INSERT INTO Team(School, TeamCaptain, Email)"
+                    + "VALUES(?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, team.getSchool());
-            ps.setString(2, team.getTeamCaptain());
-            ps.setString(3, team.getEmail());
-            ps.setInt(4, team.getGroupId());
+            ps.setString(1, t.getSchool());
+            ps.setString(2, t.getTeamCaptain());
+            ps.setString(3, t.getEmail());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -91,7 +90,7 @@ public class TeamDBManager extends MyChampDBManager
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);
-            return new Team(id, team);
+            return new Team(id, t);
         }
     }
 

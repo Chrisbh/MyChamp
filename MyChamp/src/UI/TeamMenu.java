@@ -8,7 +8,6 @@ import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -79,7 +78,7 @@ class TeamUIMenu extends Menu
     private void ListAllTeams()
     {
         clear();
-        System.out.println("Show all teams");
+        System.out.println("SHOW ALL TEAMS");
         System.out.println();
 
         try
@@ -104,16 +103,33 @@ class TeamUIMenu extends Menu
      */
     private void AddTeam()
     {
-        System.out.println("X");
+        clear();
+        System.out.println("ADD NEW TEAM");
         System.out.println();
+
         try
         {
-            System.out.println(teammgr.showNumber());
+            Scanner sc = new Scanner(System.in, "iso-8859-1");
 
+            System.out.println("School: ");
+            String school = sc.nextLine();
+
+            System.out.println("Team Captain: ");
+            String teamcaptain = sc.nextLine();
+
+            System.out.println("Email: ");
+            String email = sc.nextLine();
+
+            Team team = new Team(-1, school, teamcaptain, email, -1);
+
+            teammgr.add(team);
+
+            System.out.println();
+            System.out.println("Team succesfully added");
         }
         catch (Exception e)
         {
-            System.out.println(" ERROR - " + e.getMessage());
+            System.out.println("ERROR - " + e.getMessage());
         }
         pause();
     }
@@ -157,7 +173,7 @@ class TeamUIMenu extends Menu
     private void DeleteTeam()
     {
         clear();
-        System.out.println("Delete Team:");
+        System.out.println("DELETE TEAM:");
         System.out.println("");
         try
         {
@@ -191,34 +207,34 @@ class TeamUIMenu extends Menu
         try
         {
             int counter = teammgr.showNumber();
-            if (counter >= 12 && counter >=16)
-        {
-        System.out.println("Assign Team To Group");
-        
-        try
-        {
-            teammgr.getgroupRandomizer();
+            if (counter >= 12 && counter <= 16)
+            {
+                System.out.println("Assign Team To Group");
+
+                try
+                {
+                    teammgr.getgroupRandomizer();
+                }
+                catch (Exception e)
+                {
+                    System.out.println(" ERROR - " + e.getMessage());
+                }
+            }
+            else if (counter < 12)
+            {
+                System.out.println("Too few teams to organize.");
+            }
+            else
+            {
+                System.out.println("Too many teams to organize.");
+            }
         }
         catch (Exception e)
         {
-            System.out.println(" ERROR - " + e.getMessage());
-        }
-        }
-        else if (counter <12)
-        {
-            System.out.println("Too few teams to organize.");
-        }
-        else
-        {
-            System.out.println("Too many teams to organize.");
-        }
-        }
-        catch(Exception e)
-        {
             System.out.println("ERROR - " + e.getLocalizedMessage());
         }
-        
-        
+
+
         pause();
     }
 

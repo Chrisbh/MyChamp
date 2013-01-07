@@ -73,7 +73,7 @@ public class UpdateTeamMenu extends Menu
     {
         System.out.println();
         System.out.println("Update School");
-        String School = new Scanner(System.in).nextLine();
+        String School = new Scanner(System.in, "iso-8859-1").nextLine();
 
         team.setSchool(School);
     }
@@ -86,7 +86,7 @@ public class UpdateTeamMenu extends Menu
     {
         System.out.println();
         System.out.println("Update Team Captain");
-        String teamcaptain = new Scanner(System.in).nextLine();
+        String teamcaptain = new Scanner(System.in, "iso-8859-1").nextLine();
 
         team.setTeamCaptain(teamcaptain);
     }
@@ -99,7 +99,7 @@ public class UpdateTeamMenu extends Menu
     {
         System.out.println();
         System.out.println("Update Email");
-        String email = new Scanner(System.in).nextLine();
+        String email = new Scanner(System.in, "iso-8859-1").nextLine();
 
         team.setEmail(email);
     }

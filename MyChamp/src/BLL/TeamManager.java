@@ -112,35 +112,10 @@ public class TeamManager
         {
             db.assign(t, currentGroup++);
             
-            if(currentGroup >= MaxGroups)
+            if(currentGroup > MaxGroups)
             {
                 currentGroup = 1;
             }
         }
-            //            Groups.get(currentGroup).add(t);
-            //            
-            //            currentGroup ++;
-            //            
-            //            if (currentGroup == x)
-            //            {
-            //                currentGroup = 0;
-            //            }
-//        }
-//
-//
-//    }
-//    private void countID() throws SQLException
-//    {
-//        Team tm = db.getID(i);
-//
-//        if (tm == null)
-//        {
-//            i++;
-//        }
-//        else if (tm.getGroupId() == 0)
-//        {
-//            given++;
-//            i++;
-//        }
     }
 }

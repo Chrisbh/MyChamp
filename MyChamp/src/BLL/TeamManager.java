@@ -21,7 +21,6 @@ public class TeamManager
     private static TeamManager instance = null;
     private Team team;
     private Counter count;
-    private int counter = count.getNumberOfTeams();
 
     public TeamManager() throws Exception
     {
@@ -59,10 +58,11 @@ public class TeamManager
 
     public void AssignGroups(Team team) throws SQLException
     {
+        int counter = count.getNumberOfTeams();
 //        ArrayList<id> teamid :int id = team.getId();
 //        
 //        for (Array<id> teamid : id)
-        {
+//        {
 //            if (id == 12)
 //            {
 //                System.out.println("12");
@@ -76,7 +76,6 @@ public class TeamManager
         if(counter == 16)
         {
             
-        }
         }
         db.assign(team);
     }

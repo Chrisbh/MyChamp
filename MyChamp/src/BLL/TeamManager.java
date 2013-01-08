@@ -69,7 +69,7 @@ public class TeamManager
         return db.Count();
     }
 
-    public void getGroupRandomizer() throws SQLException
+    public void assignRandomGroups() throws SQLException
     {
         int x = 4;
         int MaxGroups = 4;

@@ -222,7 +222,7 @@ class TeamUIMenu extends Menu
 
                 try
                 {
-                    teammgr.getGroupRandomizer();
+                    teammgr.assignRandomGroups();
                 }
                 catch (Exception e)
                 {

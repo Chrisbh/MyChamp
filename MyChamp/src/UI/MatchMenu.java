@@ -10,8 +10,11 @@ import BE.Team;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -128,31 +131,43 @@ class MatchUIMenu extends Menu
     /**
      * 
      */
-    private void ScheduleMatch()
+//    private void ScheduleMatch()
+//    {
+//        System.out.println("X");
+//        System.out.println();
+//        try
+//        {
+//            
+//            for(int i = 1; i < 5; i++)
+//            {
+//                ArrayList<Team> teams = teammgr.getByGroupID(i);
+//                Group grp = groupmgr.getById(i);
+//                
+//                ArrayList Groups = new ArrayList
+//            }
+//            
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(" ERROR - " + e.getMessage());
+//        }
+//        matchStarted = true;
+//        pause();
+//    }
+    
+    private void ScheduleMatch() 
     {
-        System.out.println("X");
-        System.out.println();
+        clear();
         try
         {
-            
-            for(int i = 1; i < 5; i++)
-            {
-                ArrayList<Team> teams = teammgr.getByGroupID(i);
-                Group grp = groupmgr.getById(i);
-                
-                ArrayList Groups = new ArrayList
-            }
-            
+            matchmgr.schedule(teammgr.listAll());
         }
-        catch (Exception e)
+        catch (SQLException ex)
         {
-            System.out.println(" ERROR - " + e.getMessage());
+            System.out.println("ERROR : " + ex.getMessage());
         }
-        matchStarted = true;
         pause();
     }
-    
-    
 
     /**
      *

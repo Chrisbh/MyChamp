@@ -123,12 +123,12 @@ class MatchUIMenu extends Menu
         System.out.println();
         try
         {
+            
         }
         catch (Exception e)
         {
             System.out.println(" ERROR - " + e.getMessage());
         }
-        matchStarted = true;
         pause();
     }
 

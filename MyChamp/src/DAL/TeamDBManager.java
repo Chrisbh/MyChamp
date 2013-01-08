@@ -169,4 +169,29 @@ public class TeamDBManager extends MyChampDBManager
         }
         return null;
     }
+    
+    public Team getByGroupID(int id) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            Statement st = con.createStatement();
+            String sql = "SELECT School, FROM Team WHERE groupID = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                String School = rs.getString("School");
+                String TeamCaptain = rs.getString("TeamCaptain");
+                String Email = rs.getString("Email");
+                int GroupId = rs.getInt("GroupId");
+
+
+                Team gid = new Team(id, School, TeamCaptain, Email, GroupId);
+                return gid;
+            }
+        }
+        return null;
+    }
 }

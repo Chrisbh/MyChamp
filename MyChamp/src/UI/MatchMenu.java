@@ -4,7 +4,9 @@
  */
 package UI;
 
+import BE.Group;
 import BE.Team;
+import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ class MatchUIMenu extends Menu
     private static final int EXIT_VALUE = 0;
     private TeamManager teammgr;
     private MatchManager matchmgr;
+    private GroupManager groupmgr;
 
     /**
      * Lists the different Menu options in MatchUI Menu
@@ -33,6 +36,7 @@ class MatchUIMenu extends Menu
         {
             teammgr = new TeamManager();
             matchmgr = new MatchManager();
+            groupmgr = new GroupManager();
 
         }
         catch (Exception e)
@@ -75,19 +79,27 @@ class MatchUIMenu extends Menu
         System.out.println();
         try
         {
-            System.out.println("Select Team id: ");
+            System.out.println("Select Group id: ");
             int id = new Scanner(System.in).nextInt();
-            Team team = teammgr.getByID(id);
             
+            Group group = groupmgr.getById(id);
+            ArrayList<Team> team = teammgr.listAll();
             
-            ArrayList teams = matchmgr.showGroups(team);
-            for (Object t : teams)
+            if (group != null)
             {
-                System.out.println(t);
+                System.out.println("Found Group: ");
+                System.out.println("GroupID      = " + group.getID());
+                System.out.println("Group Name   = " + group.getGroupName());
+                for
+            }
+            else
+            {
+                System.out.println("Group with id = " + id + " not found.");
             }
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();

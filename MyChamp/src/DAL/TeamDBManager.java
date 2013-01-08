@@ -149,7 +149,6 @@ public class TeamDBManager extends MyChampDBManager
     {
         try (Connection con = ds.getConnection())
         {
-            Statement st = con.createStatement();
             String sql = "SELECT * FROM Team WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -170,28 +169,30 @@ public class TeamDBManager extends MyChampDBManager
         return null;
     }
     
-    public Team getByGroupID(int id) throws SQLException
+    public ArrayList<Team> getByGroupID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            Statement st = con.createStatement();
-            String sql = "SELECT School, FROM Team WHERE groupID = ?";
+            String sql = "SELECT * FROM Team WHERE groupID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-
+             
+            ArrayList<Team> teams = new ArrayList();
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
+            while (rs.next())
             {
+                int tId = rs.getInt("Id");
                 String School = rs.getString("School");
                 String TeamCaptain = rs.getString("TeamCaptain");
                 String Email = rs.getString("Email");
                 int GroupId = rs.getInt("GroupId");
 
 
-                Team gid = new Team(id, School, TeamCaptain, Email, GroupId);
-                return gid;
+                Team gid = new Team(tId, School, TeamCaptain, Email, GroupId);
+                teams.add(gid);
+                
             }
+            return teams;
         }
-        return null;
     }
 }

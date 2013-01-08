@@ -82,20 +82,16 @@ class MatchUIMenu extends Menu
             System.out.println("Select Group id: ");
             int id = new Scanner(System.in).nextInt();
             
-            Group group = groupmgr.getById(id);
-            ArrayList<Team> team = teammgr.listAll();
+            ArrayList<Team> teams = teammgr.getByGroupID(id);
+            Group grp = groupmgr.getById(id);
             
-            if (group != null)
+            System.out.println(grp); 
+            
+            for(Team t : teams)
             {
-                System.out.println("Found Group: ");
-                System.out.println("GroupID      = " + group.getID());
-                System.out.println("Group Name   = " + group.getGroupName());
-                for
+                System.out.println(t);          
             }
-            else
-            {
-                System.out.println("Group with id = " + id + " not found.");
-            }
+            
         }
         catch (Exception e)
         {

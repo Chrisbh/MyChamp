@@ -94,4 +94,9 @@ public class TeamManager
         }
         System.out.println("Groups have been assigned !!");
     }
+    
+    public ArrayList getByGroupID(int id) throws SQLException
+    {
+        return db.getByGroupID(id);
+    }
 }

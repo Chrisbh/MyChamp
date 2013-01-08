@@ -23,30 +23,50 @@ public class GroupDBManager extends MyChampDBManager
         super();
     }
     
-     public ArrayList getByID(int grpid) throws SQLException
-    {
+//     public ArrayList<Group> getByID(int grpid) throws SQLException
+//     {
+//        try (Connection con = ds.getConnection())
+//        {
+//            String sql = "SELECT * FROM [Group], Team WHERE [Group].ID = Team.GroupID AND [Group].id = ?";
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setInt(1, grpid);
+//
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next())
+//            {
+//                int id = rs.getInt("Id");
+//                String name = rs.getString("GroupName");
+//                String school = rs.getString("School");
+//
+//                ArrayList list = new ArrayList();
+//
+//                list.add(id);
+//                list.add(name);
+//                list.add(school);
+//                return list;
+//            }
+//        }
+//        return null;
+//     }
+     
+     public Group getById(int id) throws SQLException
+     {
         try (Connection con = ds.getConnection())
         {
-            Statement st = con.createStatement();
-            String sql = "SELECT * FROM [Group], Team WHERE [Group].id = ?";
+            String sql = "SELECT * FROM [Group] WHERE id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, grpid);
+            ps.setInt(1, id);
 
             ResultSet rs = ps.executeQuery();
-            if (rs.next())
+            while (rs.next())
             {
-                int id = rs.getInt("Id");
+                id = rs.getInt("Id");
                 String name = rs.getString("GroupName");
-                String school = rs.getString("School");
-
-                ArrayList list = new ArrayList();
-
-                list.add(id);
-                list.add(name);
-                list.add(school);
-                return list;
+               
+                Group grp = new Group(id, name);
+                return grp;
             }
         }
         return null;
-    }
+     }
 }

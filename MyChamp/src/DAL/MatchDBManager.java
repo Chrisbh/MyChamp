@@ -28,7 +28,7 @@ public class MatchDBManager extends MyChampDBManager
         try(Connection con = ds.getConnection())
         {
             String query = "SELECT School, GroupID, GroupName FROM Team, "
-                    + "Group WHERE Team.GroupID = Group.ID AND GroupID = ?";
+                    + "[Group] WHERE Team.GroupID = [Group].ID AND GroupID = ?";
             
             PreparedStatement ps = con.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setInt(1, t.getGroupId());

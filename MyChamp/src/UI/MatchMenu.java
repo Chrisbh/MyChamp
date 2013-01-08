@@ -4,8 +4,11 @@
  */
 package UI;
 
+import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -72,6 +75,16 @@ class MatchUIMenu extends Menu
         System.out.println();
         try
         {
+            System.out.println("Select Team id: ");
+            int id = new Scanner(System.in).nextInt();
+            Team team = teammgr.getByID(id);
+            
+            
+            ArrayList teams = matchmgr.showGroups(team);
+            for (Object t : teams)
+            {
+                System.out.println(t);
+            }
         }
         catch (Exception e)
         {

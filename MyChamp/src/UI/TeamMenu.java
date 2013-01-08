@@ -213,7 +213,7 @@ class TeamUIMenu extends Menu
 
                 try
                 {
-                    teammgr.getgroupRandomizer();
+                    teammgr.getGroupRandomizer();
                 }
                 catch (Exception e)
                 {

@@ -5,6 +5,7 @@
 package UI;
 
 import BE.Group;
+import BE.Match;
 import BE.Team;
 import BLL.GroupManager;
 import BLL.MatchManager;
@@ -103,16 +104,26 @@ class MatchUIMenu extends Menu
 
     private void MatchResults()
     {
-        System.out.println("X");
+        clear();
+        System.out.println("SHOW ALL MATCHES");
         System.out.println();
+
         try
         {
+            printshowMatchHeader();
+            ArrayList<Match> matches = matchmgr.listAll();
+
+            for (Match m : matches)
+            {
+                System.out.println(m);
+            }
         }
         catch (Exception e)
         {
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();
+
     }
     /**
      * 

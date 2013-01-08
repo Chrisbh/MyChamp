@@ -56,10 +56,16 @@ public abstract class Menu
     protected void printshowHeader()
     {
         clear();
-        System.out.printf("%3s %-6s %-25s %-25s %-30s %-6s\n","", "Id", "School", "Team Captain", "Email", "Group Id");
+        System.out.printf("%3s %-6s %-25s %-25s %-30s %-6s\n", "", "Id", "School", "Team Captain", "Email", "Group Id");
         System.out.println("");
     }
 
+    protected void printshowMatchHeader()
+    {
+        clear();
+        System.out.printf("%6s %-15s %-15s %-15s %-10s %-15s %-15s", "Id", "MatchRound", "HomeTeamID", "GuestTeamID", "IsPlayed", "HomeGoals", "GuestGoals");
+        System.out.println("");
+    }
 
     /**
      *

@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,12 +23,12 @@ public class GroupDBManager extends MyChampDBManager
         super();
     }
     
-     public Group getByID(int grpid) throws SQLException
+     public ArrayList getByID(int grpid) throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
             Statement st = con.createStatement();
-            String sql = "SELECT * FROM [Group] WHERE id = ?";
+            String sql = "SELECT * FROM [Group], Team WHERE [Group].id = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, grpid);
 
@@ -36,11 +37,14 @@ public class GroupDBManager extends MyChampDBManager
             {
                 int id = rs.getInt("Id");
                 String name = rs.getString("GroupName");
+                String school = rs.getString("School");
 
+                ArrayList list = new ArrayList();
 
-
-                Group gid = new Group(id, name);
-                return gid;
+                list.add(id);
+                list.add(name);
+                list.add(school);
+                return list;
             }
         }
         return null;

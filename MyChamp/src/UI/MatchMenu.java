@@ -107,6 +107,7 @@ class MatchUIMenu extends Menu
         {
             System.out.println(" ERROR - " + e.getMessage());
         }
+        matchStarted = true;
         pause();
     }
 

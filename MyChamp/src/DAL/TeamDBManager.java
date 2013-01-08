@@ -145,7 +145,7 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public Team getID(int id) throws SQLException
+    public Team getByID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
         {

@@ -41,7 +41,7 @@ public class TeamManager
 
     public Team getByID(int id) throws SQLException
     {
-        return db.getID(id);
+        return db.getByID(id);
     }
 
     public ArrayList<Team> listAll() throws SQLException

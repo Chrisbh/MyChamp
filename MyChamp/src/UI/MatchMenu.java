@@ -9,7 +9,7 @@ import BLL.TeamManager;
 
 /**
  *
- * @author Rasmus, Chris, Lasse, Dennis.
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 class MatchUIMenu extends Menu
 {

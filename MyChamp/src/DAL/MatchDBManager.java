@@ -6,7 +6,7 @@ package DAL;
 
 /**
  *
- * @author Chris
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class MatchDBManager
 {

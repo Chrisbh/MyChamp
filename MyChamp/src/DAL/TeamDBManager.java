@@ -4,7 +4,6 @@
  */
 package DAL;
 
-import BE.Group;
 import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Rasmus
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class TeamDBManager extends MyChampDBManager
 {
@@ -23,7 +22,7 @@ public class TeamDBManager extends MyChampDBManager
     public TeamDBManager() throws Exception
     {
         super();
-    }  
+    }
 
     public ArrayList<Team> ListAll() throws SQLException
     {
@@ -70,18 +69,17 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public Team addTeam(Team team) throws SQLException
+    public Team addTeam(Team t) throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            String sql = "INSERT INTO Team(School, TeamCaptain, Email, GroupID)"
-                    + "VALUES(?, ?, ?, ?)";
+            String sql = "INSERT INTO Team(School, TeamCaptain, Email)"
+                    + "VALUES(?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setString(1, team.getSchool());
-            ps.setString(2, team.getTeamCaptain());
-            ps.setString(3, team.getEmail());
-            ps.setInt(4, team.getGroupId());
+            ps.setString(1, t.getSchool());
+            ps.setString(2, t.getTeamCaptain());
+            ps.setString(3, t.getEmail());
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
@@ -91,7 +89,7 @@ public class TeamDBManager extends MyChampDBManager
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();
             int id = keys.getInt(1);
-            return new Team(id, team);
+            return new Team(id, t);
         }
     }
 
@@ -127,7 +125,7 @@ public class TeamDBManager extends MyChampDBManager
             throw new SQLException("Unable to insert Team into group");
         }
     }
-    
+
     public int Count() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -140,13 +138,13 @@ public class TeamDBManager extends MyChampDBManager
             while (rs.next())
             {
                 int count = rs.getInt("NumberOfTeams");
-                
+
                 return count;
             }
             return 0;
         }
     }
-    
+
     public Team getID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -170,24 +168,5 @@ public class TeamDBManager extends MyChampDBManager
             }
         }
         return null;
-    }
-    
-    public int maxId() throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String query = "SELECT Max(ID) as HighestID FROM Team";
-
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next())
-            {
-                int maxID = rs.getInt("HighestID");
-                
-                return maxID;
-            }
-            return 0;
-        }
     }
 }

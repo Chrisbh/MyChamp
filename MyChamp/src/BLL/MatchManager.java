@@ -6,7 +6,7 @@ package BLL;
 
 /**
  *
- * @author Rasmus
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class MatchManager
 {

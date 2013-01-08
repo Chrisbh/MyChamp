@@ -4,16 +4,16 @@
  */
 package BLL;
 
-import BE.Group;
 import BE.Team;
 import DAL.TeamDBManager;
+import java.security.acl.Group;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  *
- * @author Chris
+ * @author Rasmus, Chris, Lasse, Dennis
  */
 public class TeamManager
 {
@@ -22,15 +22,12 @@ public class TeamManager
     private static TeamManager instance = null;
     private Team team;
     private Group group;
-    private GroupManager grpmngr;
     private int i = 1;
     private int given = 1;
 
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
-        grpmngr = new GroupManager();
-
     }
 
     public static TeamManager getInstance() throws Exception
@@ -40,6 +37,11 @@ public class TeamManager
             instance = new TeamManager();
         }
         return instance;
+    }
+
+    public Team getByID(int id) throws SQLException
+    {
+        return db.getID(id);
     }
 
     public ArrayList<Team> listAll() throws SQLException
@@ -57,36 +59,9 @@ public class TeamManager
         db.delete(ID);
     }
 
-    public void add(Team team) throws SQLException
+    public void add(Team t) throws SQLException
     {
-        db.addTeam(team);
-    }
-
-    public void AssignGroups() throws SQLException
-    {
-        int counter = db.Count();
-
-
-        if (counter > 12 && counter <= 16)
-        {
-            while (i <= db.maxId() && given <= 16)
-            {
-            }
-        }
-        else if (counter == 12)
-        {
-            while (i <= db.maxId() && given <= 12)
-            {
-            }
-        }
-        else if (counter < 12)
-        {
-            System.out.println("Not enough teams.");
-        }
-        else
-        {
-            System.out.println("Too many teams.");
-        }
+        db.addTeam(t);
     }
 
     public int showNumber() throws SQLException
@@ -111,8 +86,8 @@ public class TeamManager
         for (Team t : temp)
         {
             db.assign(t, currentGroup++);
-            
-            if(currentGroup > MaxGroups)
+
+            if (currentGroup > MaxGroups)
             {
                 currentGroup = 1;
             }

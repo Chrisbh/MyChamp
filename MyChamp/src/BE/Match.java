@@ -14,11 +14,11 @@ public class Match
     private int MatchRound;
     private int HomeTeamID;
     private int GuestTeamID;
-    private boolean IsPlayed = false;
+    private int IsPlayed;
     private int HomeGoals;
     private int GuestGoals;
     
-    public Match( int ID, int matchRound, int homeTeamID, int guestTeamID, boolean isPlayed, int homeGoals, int guestGoals)
+    public Match( int ID, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
     {
         this.ID = ID;
         this.MatchRound = matchRound;
@@ -28,7 +28,7 @@ public class Match
         this.HomeGoals = homeGoals;
         this.GuestGoals = guestGoals;
     }
-
+    
     /**
      * @return the ID
      */
@@ -72,7 +72,7 @@ public class Match
     /**
      * @return the isPlayed
      */
-    public boolean getIsPlayed()
+    public int getIsPlayed()
     {
         return IsPlayed;
     }
@@ -80,7 +80,7 @@ public class Match
     /**
      * @param isPlayed the isPlayed to set
      */
-    public void setIsPlayed(boolean isPlayed)
+    public void setIsPlayed(int isPlayed)
     {
         this.IsPlayed = isPlayed;
     }
@@ -120,6 +120,6 @@ public class Match
     @Override
     public String toString()
     {
-        return String.format("%3d, %-3d, %-3d, %-3d, %-3d, %-3d, %-3d, %-3d, %3d", ID, MatchRound, HomeTeamID, GuestTeamID, IsPlayed, HomeGoals, GuestGoals );
+        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", ID, MatchRound, HomeTeamID, GuestTeamID, IsPlayed, HomeGoals, GuestGoals );
     }
 }

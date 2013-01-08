@@ -4,9 +4,13 @@
  */
 package UI;
 
+import BE.Group;
+import BE.Match;
 import BE.Team;
+import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,6 +24,7 @@ class MatchUIMenu extends Menu
     private static final int EXIT_VALUE = 0;
     private TeamManager teammgr;
     private MatchManager matchmgr;
+    private GroupManager groupmgr;
 
     /**
      * Lists the different Menu options in MatchUI Menu
@@ -33,6 +38,7 @@ class MatchUIMenu extends Menu
         {
             teammgr = new TeamManager();
             matchmgr = new MatchManager();
+            groupmgr = new GroupManager();
 
         }
         catch (Exception e)
@@ -75,19 +81,23 @@ class MatchUIMenu extends Menu
         System.out.println();
         try
         {
-            System.out.println("Select Team id: ");
+            System.out.println("Select Group id: ");
             int id = new Scanner(System.in).nextInt();
-            Team team = teammgr.getByID(id);
             
+            ArrayList<Team> teams = teammgr.getByGroupID(id);
+            Group grp = groupmgr.getById(id);
             
-            ArrayList teams = matchmgr.showGroups(team);
-            for (Object t : teams)
+            System.out.println(grp); 
+            
+            for(Team t : teams)
             {
-                System.out.println(t);
+                System.out.println(t);          
             }
+            
         }
         catch (Exception e)
         {
+            e.printStackTrace();
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();
@@ -95,32 +105,65 @@ class MatchUIMenu extends Menu
 
     private void MatchResults()
     {
-        System.out.println("X");
+        clear();
+        System.out.println("SHOW ALL MATCHES");
         System.out.println();
+
         try
         {
+            printshowMatchHeader();
+            ArrayList<Match> matches = matchmgr.listAll();
+
+            for (Match m : matches)
+            {
+                System.out.println(m);
+            }
         }
         catch (Exception e)
         {
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();
+
     }
     /**
      * 
      */
-    private void ScheduleMatch()
+//    private void ScheduleMatch()
+//    {
+//        System.out.println("X");
+//        System.out.println();
+//        try
+//        {
+//            
+//            for(int i = 1; i < 5; i++)
+//            {
+//                ArrayList<Team> teams = teammgr.getByGroupID(i);
+//                Group grp = groupmgr.getById(i);
+//                
+//                ArrayList Groups = new ArrayList
+//            }
+//            
+//        }
+//        catch (Exception e)
+//        {
+//            System.out.println(" ERROR - " + e.getMessage());
+//        }
+//        matchStarted = true;
+//        pause();
+//    }
+    
+    private void ScheduleMatch() 
     {
-        System.out.println("X");
-        System.out.println();
+        clear();
         try
         {
+            matchmgr.schedule(teammgr.listAll());
         }
-        catch (Exception e)
+        catch (SQLException ex)
         {
-            System.out.println(" ERROR - " + e.getMessage());
+            System.out.println("ERROR : " + ex.getMessage());
         }
-        matchStarted = true;
         pause();
     }
 

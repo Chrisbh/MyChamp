@@ -14,11 +14,11 @@ public class Match
     private int MatchRound;
     private int HomeTeamID;
     private int GuestTeamID;
-    private int IsPlayed = 0;
+    private boolean IsPlayed = false;
     private int HomeGoals;
     private int GuestGoals;
     
-    public Match( int ID, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
+    public Match( int ID, int matchRound, int homeTeamID, int guestTeamID, boolean isPlayed, int homeGoals, int guestGoals)
     {
         this.ID = ID;
         this.MatchRound = matchRound;
@@ -72,7 +72,7 @@ public class Match
     /**
      * @return the isPlayed
      */
-    public int getIsPlayed()
+    public boolean getIsPlayed()
     {
         return IsPlayed;
     }
@@ -80,7 +80,7 @@ public class Match
     /**
      * @param isPlayed the isPlayed to set
      */
-    public void setIsPlayed(int isPlayed)
+    public void setIsPlayed(boolean isPlayed)
     {
         this.IsPlayed = isPlayed;
     }

@@ -92,5 +92,6 @@ public class TeamManager
                 currentGroup = 1;
             }
         }
+        System.out.println("Groups have been assigned !!");
     }
 }

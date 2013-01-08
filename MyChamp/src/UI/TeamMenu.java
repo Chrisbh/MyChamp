@@ -104,6 +104,8 @@ class TeamUIMenu extends Menu
     private void AddTeam()
     {
         clear();
+        if (matchStarted == false)
+        {
         System.out.println("ADD NEW TEAM");
         System.out.println();
 
@@ -130,6 +132,11 @@ class TeamUIMenu extends Menu
         catch (Exception e)
         {
             System.out.println("ERROR - " + e.getMessage());
+        }
+        }
+        else
+        {
+            System.out.println("Match has been started, too late for new teams!");
         }
         pause();
     }
@@ -204,6 +211,8 @@ class TeamUIMenu extends Menu
     private void AssignToGroups()
     {
         clear();
+        if (matchStarted == false)
+        {
         try
         {
             int counter = teammgr.showNumber();
@@ -233,7 +242,11 @@ class TeamUIMenu extends Menu
         {
             System.out.println("ERROR - " + e.getLocalizedMessage());
         }
-
+        }
+        else
+        {
+            System.out.println("Matches has been started, groups should be assigned!");
+        }
 
         pause();
     }

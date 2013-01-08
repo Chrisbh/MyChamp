@@ -17,6 +17,7 @@ public abstract class Menu
     protected int EXIT_OPTION = 0;
     private final String header;
     private final String[] menuItems;
+    protected boolean matchStarted = false;
 
     /**
      * Creater Menu, Header and Menu items.

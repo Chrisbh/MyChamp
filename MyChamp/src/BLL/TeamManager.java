@@ -41,7 +41,7 @@ public class TeamManager
 
     public Team getByID(int id) throws SQLException
     {
-        return db.getID(id);
+        return db.getByID(id);
     }
 
     public ArrayList<Team> listAll() throws SQLException
@@ -69,7 +69,7 @@ public class TeamManager
         return db.Count();
     }
 
-    public void getgroupRandomizer() throws SQLException
+    public void getGroupRandomizer() throws SQLException
     {
         int x = 4;
         int MaxGroups = 4;
@@ -92,5 +92,6 @@ public class TeamManager
                 currentGroup = 1;
             }
         }
+        System.out.println("Groups have been assigned !!");
     }
 }

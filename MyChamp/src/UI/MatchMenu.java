@@ -123,6 +123,15 @@ class MatchUIMenu extends Menu
         System.out.println();
         try
         {
+            
+            for(int i = 1; i < 5; i++)
+            {
+                ArrayList<Team> teams = teammgr.getByGroupID(i);
+                Group grp = groupmgr.getById(i);
+                
+                ArrayList Groups = new ArrayList
+            }
+            
         }
         catch (Exception e)
         {
@@ -131,6 +140,8 @@ class MatchUIMenu extends Menu
         matchStarted = true;
         pause();
     }
+    
+    
 
     /**
      *

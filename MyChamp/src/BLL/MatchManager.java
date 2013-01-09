@@ -146,6 +146,43 @@ public class MatchManager
         }
         return null;
     }
+    
+    public ArrayList<MatchScheduling> scheduleQuarterFinals(ArrayList<Team> teams) throws SQLException
+    {
+        ArrayList<MatchScheduling> matches = new ArrayList();
+        int i = 1;
+        int round = 7;
+
+
+        while (getGroup(i+1, teams) != null)
+        {
+            ArrayList<Team> group = getGroup(i, teams);
+            ArrayList<Team> group2 = getGroup(i+1, teams);
+            ArrayList<MatchScheduling> quarterFinalMatches = new ArrayList();
+       
+            /*
+             * Round 7
+             */
+            quarterFinalMatches.add(new MatchScheduling(round, group.get(0), group2.get(1)));
+            round++;
+            
+            /*
+             * Round 8
+             */
+            quarterFinalMatches.add(new MatchScheduling(round, group.get(1), group2.get(0)));
+            
+            matches.addAll(quarterFinalMatches);
+            System.out.println("Done!");
+            i+=2;
+            round++;
+            for (MatchScheduling matchScheduling : quarterFinalMatches)
+            {
+                db.addMatches(matchScheduling);
+            }
+
+        }
+        return null;
+    }
 
     public ArrayList<Match> listAll() throws SQLException
     {

@@ -4,9 +4,8 @@
  */
 package UI;
 
-import BE.Group;
+import BE.Match;
 import BE.MatchScheduling;
-import BE.Team;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
@@ -107,6 +106,9 @@ public class ViewScheduleMenu extends Menu
         {
             System.out.println("Select Group id: ");
             int id = new Scanner(System.in).nextInt();
+            Match gm = matchmgr.getByID(id);
+            if (gm != null)
+            {
             ArrayList<MatchScheduling> groupPlay = matchmgr.viewGroupSchedule(id);
             printShowGroupScheduleHeader();
             for(MatchScheduling g : groupPlay)
@@ -114,6 +116,11 @@ public class ViewScheduleMenu extends Menu
                 System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","",g.getMatchInt(), ":", teammgr.getByID
                         (g.getHomeTeam().getId()).getSchool(), " VS ", 
                         teammgr.getByID(g.getGuestTeam().getId()).getSchool());          
+            }
+            }
+            else
+            {
+                System.out.println("Group does not exist!");
             }
         }
         catch(Exception e)
@@ -130,6 +137,9 @@ public class ViewScheduleMenu extends Menu
         {
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
+            Match tm = matchmgr.getByID(id);
+            if(tm != null)
+            {
             ArrayList<MatchScheduling> teamPlay = matchmgr.viewTeamSchedule(id);
             printShowGroupScheduleHeader();
             for(MatchScheduling t : teamPlay)
@@ -137,6 +147,11 @@ public class ViewScheduleMenu extends Menu
                 System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","",t.getMatchInt(), ":", teammgr.getByID
                         (t.getHomeTeam().getId()).getSchool(), " VS ", 
                         teammgr.getByID(t.getGuestTeam().getId()).getSchool());          
+            }
+            }
+            else
+            {
+                System.out.println("Team does not exist!");
             }
         }
         catch(Exception e)

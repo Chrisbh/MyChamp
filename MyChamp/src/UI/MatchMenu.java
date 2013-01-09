@@ -166,6 +166,7 @@ class MatchUIMenu extends Menu
         {
 //            matchmgr.schedule(teammgr.listAll());
             matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+            
         }
         catch (SQLException ex)
         {

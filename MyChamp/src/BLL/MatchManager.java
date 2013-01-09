@@ -6,6 +6,7 @@ package BLL;
 
 import BE.Match;
 import BE.MatchScheduling;
+import BE.MatchWinner;
 import BE.Team;
 import DAL.MatchDBManager;
 import java.sql.SQLException;
@@ -194,4 +195,9 @@ public class MatchManager
     {
         return db.viewSchedule();
     }
+    
+//    public ArrayList<MatchWinner> semiFinalList() throws SQLException
+//            {
+//                return db.showWinner();
+//            }
 }

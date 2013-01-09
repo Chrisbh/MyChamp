@@ -164,7 +164,8 @@ class MatchUIMenu extends Menu
         clear();
         try
         {
-            matchmgr.schedule(teammgr.listAll());
+//            matchmgr.schedule(teammgr.listAll());
+            matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
         }
         catch (SQLException ex)
         {

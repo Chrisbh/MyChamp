@@ -108,7 +108,7 @@ public class MatchDBManager extends MyChampDBManager
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT match.*, team.* FROM Match, Team WHERE Team.id = GuestTeamID  ORDER BY match.id";
+            String query = "SELECT match.*, team.* FROM Match, Team WHERE Team.id = GuestTeamID AND IsPlayed = 0 ORDER BY match.id";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -137,22 +137,4 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
     
-    public int isPlayed() throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String query = "SELECT IsPlayed FROM Match";
-
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next())
-            {
-                int isPlayed = rs.getInt("IsPlayed");
-
-                return isPlayed;
-            }
-            return 0;
-        }
-    }
 }

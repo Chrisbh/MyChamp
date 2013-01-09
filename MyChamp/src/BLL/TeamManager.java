@@ -99,4 +99,9 @@ public class TeamManager
     {
         return db.getByGroupID(id);
     }
+    public ArrayList<Team> orderByPoints() throws SQLException
+    {
+        return db.orderedByPoints();
+    }
+    
 }

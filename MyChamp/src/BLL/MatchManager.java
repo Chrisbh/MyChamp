@@ -170,7 +170,7 @@ public class MatchManager
             /*
              * Round 8
              */
-            quarterFinalMatches.add(new MatchScheduling(round, group.get(1), group2.get(0)));
+            quarterFinalMatches.add(new MatchScheduling(round, group2.get(0), group.get(1)));
             
             matches.addAll(quarterFinalMatches);
             System.out.println("Done!");

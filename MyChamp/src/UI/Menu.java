@@ -76,7 +76,7 @@ public abstract class Menu
     {
         clear();
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
-        System.out.println("");
+        System.out.println("    _________________________________________________________");
     }
 
     /**

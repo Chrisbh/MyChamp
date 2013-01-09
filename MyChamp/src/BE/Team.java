@@ -16,24 +16,26 @@ public class Team
     private String teamCaptain;
     private String email;
     private int groupId;
+    private int points;
     
-    public Team(int id, String school, String teamCaptain, String email, int groupId)
+    public Team(int id, String school, String teamCaptain, String email, int groupId, int points)
     {
         this.id = id;
         this.school = school;
         this.teamCaptain = teamCaptain;
         this.email = email;
         this.groupId = groupId;
+        this.points = points;
     }
     
-    public Team(String school, String teamCaptain, String email, int groupId)
+    public Team(String school, String teamCaptain, String email, int groupId, int points)
     {
-        this(-1, school, teamCaptain, email, groupId);
+        this(-1, school, teamCaptain, email, groupId, points);
     }
     
     public Team(int id, Team t)
     {
-        this(id, t.school, t.teamCaptain, t.email, t.groupId);
+        this(id, t.school, t.teamCaptain, t.email, t.groupId, t.points);
     }
 
     /**
@@ -111,6 +113,22 @@ public class Team
     @Override
     public String toString()
     {
-        return String.format("%3s %-6d %-25s %-25s %-30s %-6d","",id, school, teamCaptain, email, groupId);
+        return String.format("%3s %-6d %-25s %-25s %-30s %-12d %-10d","",id, school, teamCaptain, email, groupId, points);
+    }
+
+    /**
+     * @return the points
+     */
+    public int getPoints()
+    {
+        return points;
+    }
+
+    /**
+     * @param points the points to set
+     */
+    public void setPoints(int points)
+    {
+        this.points = points;
     }
 }

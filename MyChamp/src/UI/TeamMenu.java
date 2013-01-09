@@ -120,7 +120,7 @@ class TeamUIMenu extends Menu
             System.out.println("Email: ");
             String email = sc.nextLine();
 
-            Team team = new Team(-1, school, teamcaptain, email, -1);
+            Team team = new Team(-1, school, teamcaptain, email, -1, -1);
 
             teammgr.add(team);
 

@@ -41,8 +41,9 @@ public class TeamDBManager extends MyChampDBManager
                 String TeamCaptain = rs.getString("TeamCaptain");
                 String Email = rs.getString("Email");
                 int GroupID = rs.getInt("GroupID");
+                int points = rs.getInt("points");
 
-                Team team = new Team(ID, School, TeamCaptain, Email, GroupID);
+                Team team = new Team(ID, School, TeamCaptain, Email, GroupID, points);
                 allTeams.add(team);
             }
             return allTeams;
@@ -160,9 +161,10 @@ public class TeamDBManager extends MyChampDBManager
                 String TeamCaptain = rs.getString("TeamCaptain");
                 String Email = rs.getString("Email");
                 int GroupId = rs.getInt("GroupId");
+                int points = rs.getInt("points");
 
 
-                Team gid = new Team(id, School, TeamCaptain, Email, GroupId);
+                Team gid = new Team(id, School, TeamCaptain, Email, GroupId, points);
                 return gid;
             }
         }
@@ -186,9 +188,10 @@ public class TeamDBManager extends MyChampDBManager
                 String TeamCaptain = rs.getString("TeamCaptain");
                 String Email = rs.getString("Email");
                 int GroupId = rs.getInt("GroupId");
+                int points = rs.getInt("points");
 
 
-                Team gid = new Team(tId, School, TeamCaptain, Email, GroupId);
+                Team gid = new Team(tId, School, TeamCaptain, Email, GroupId, points);
                 teams.add(gid);
                 
             }

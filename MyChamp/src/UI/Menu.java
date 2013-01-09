@@ -74,9 +74,30 @@ public abstract class Menu
      */
     protected void printShowScheduleHeader()
     {
+        System.out.println();
+        System.out.printf("%25s %-13s\n","","UPCOMING MATCHES!");
+        System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
+        System.out.println("    _________________________________________________________");
+    }
+    
+    /**
+     * 
+     */
+    protected void printShowGroupScheduleHeader()
+    {
         clear();
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
         System.out.println("    _________________________________________________________");
+    }
+    
+    /**
+     * 
+     */
+    protected void printShowIsPlayedHeader()
+    {
+        System.out.printf("%30s %-13s\n","","MATCHES ALREADY PLAYED!");
+        System.out.printf("%3s %-9s %-20s %-8s %-20s %-6s %-3s\n", "", "Id", "HomeTeam", "", "GuestTeam", "Home", "Guest");
+        System.out.println("    _________________________________________________________________________");
     }
 
     /**

@@ -75,38 +75,7 @@ class MatchUIMenu extends Menu
      */
     private void ViewSchedule()
     {
-        System.out.println("X");
-        System.out.println();
-        try
-        {
-//            System.out.println("Select Group id: ");
-//            int id = new Scanner(System.in).nextInt();
-//            
-//            ArrayList<Team> teams = teammgr.getByGroupID(id);
-//            Group grp = groupmgr.getById(id);
-//            
-//            System.out.println(grp); 
-//            
-//            for(Team t : teams)
-//            {
-//                System.out.println(t);          
-//            }
-            ArrayList<MatchScheduling> matches = matchmgr.viewSchedule();
-            
-            printShowScheduleHeader();
-            for (MatchScheduling m : matches)
-            {         
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","", m.getMatchInt(),":", teammgr.getByID
-                        (m.getHomeTeam().getId()).getSchool(), " VS ", 
-                        teammgr.getByID(m.getGuestTeam().getId()).getSchool());           
-            }
-            
-        }
-        catch (Exception e)
-        {
-            System.out.println(" ERROR - " + e.getMessage());
-        }
-        pause();
+        new ViewScheduleMenu().run();
     }
 
     private void MatchResults()
@@ -136,36 +105,13 @@ class MatchUIMenu extends Menu
     /**
      *
      */
-//    private void ScheduleMatch()
-//    {
-//        System.out.println("X");
-//        System.out.println();
-//        try
-//        {
-//            
-//            for(int i = 1; i < 5; i++)
-//            {
-//                ArrayList<Team> teams = teammgr.getByGroupID(i);
-//                Group grp = groupmgr.getById(i);
-//                
-//                ArrayList Groups = new ArrayList
-//            }
-//            
-//        }
-//        catch (Exception e)
-//        {
-//            System.out.println(" ERROR - " + e.getMessage());
-//        }
-//        matchStarted = true;
-//        pause();
-//    }
     private void ScheduleMatch()
     {
         clear();
         try
         {
-//            matchmgr.schedule(teammgr.listAll());
-            matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+            matchmgr.schedule(teammgr.listAll());
+//            matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
             
         }
         catch (SQLException ex)

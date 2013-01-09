@@ -196,6 +196,25 @@ public class MatchManager
         return db.viewSchedule();
     }
     
+     public ArrayList<MatchScheduling> viewSchedulePlayed() throws SQLException
+    {
+        return db.viewSchedulePlayed();
+    }
+     
+      public Match getByID(int id) throws SQLException
+    {
+        return db.getByID(id);
+    }
+      public ArrayList<MatchScheduling> viewGroupSchedule(int groupID) throws SQLException
+      {
+          return db.viewGroupSchedule(groupID);
+      }
+      
+       public ArrayList<MatchScheduling> viewTeamSchedule(int teamID) throws SQLException
+      {
+          return db.viewTeamSchedule(teamID);
+      }
+    
 //    public ArrayList<MatchWinner> semiFinalList() throws SQLException
 //            {
 //                return db.showWinner();

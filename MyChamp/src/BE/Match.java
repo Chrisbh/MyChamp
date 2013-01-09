@@ -10,23 +10,35 @@ package BE;
  */
 public class Match
 {
-    private int ID;
-    private int MatchRound;
-    private int HomeTeamID;
-    private int GuestTeamID;
-    private int IsPlayed;
-    private int HomeGoals;
-    private int GuestGoals;
+    private int id;
+    private int matchRound;
+    private int homeTeamID;
+    private int guestTeamID;
+    private int isPlayed;
+    private int homeGoals;
+    private int guestGoals;
     
-    public Match( int ID, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
+    public Match(int id, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
     {
-        this.ID = ID;
-        this.MatchRound = matchRound;
-        this.HomeTeamID = homeTeamID;
-        this.GuestTeamID = guestTeamID;
-        this.IsPlayed = isPlayed;
-        this.HomeGoals = homeGoals;
-        this.GuestGoals = guestGoals;
+        this.id = id;
+        this.matchRound = matchRound;
+        this.homeTeamID = homeTeamID;
+        this.guestTeamID = guestTeamID;
+        this.isPlayed = isPlayed;
+        this.homeGoals = homeGoals;
+        this.guestGoals = guestGoals;
+    }
+    
+    public Match (int id, Match m)
+    {
+        this(id, m.getMatchRound(), m.getHomeTeamID(), m.getGuestTeamID(), m.getIsPlayed(), m.getHomeGoals(), m.getGuestGoals());
+    }
+    
+    public Match (int id, int homeTeamID, int guestTeamID)
+    {
+        this.id = id;
+        this.homeTeamID = homeTeamID;
+        this.guestTeamID = guestTeamID;
     }
     
     /**
@@ -34,7 +46,7 @@ public class Match
      */
     public int getID()
     {
-        return ID;
+        return id;
     }
 
     /**
@@ -42,7 +54,7 @@ public class Match
      */
     public int getMatchRound()
     {
-        return MatchRound;
+        return matchRound;
     }
 
     /**
@@ -50,7 +62,7 @@ public class Match
      */
     public void setMatchRound(int matchRound)
     {
-        this.MatchRound = matchRound;
+        this.matchRound = matchRound;
     }
 
     /**
@@ -58,7 +70,7 @@ public class Match
      */
     public int getHomeTeamID()
     {
-        return HomeTeamID;
+        return homeTeamID;
     }
 
     /**
@@ -66,7 +78,7 @@ public class Match
      */
     public int getGuestTeamID()
     {
-        return GuestTeamID;
+        return guestTeamID;
     }
 
     /**
@@ -74,7 +86,7 @@ public class Match
      */
     public int getIsPlayed()
     {
-        return IsPlayed;
+        return isPlayed;
     }
 
     /**
@@ -82,7 +94,7 @@ public class Match
      */
     public void setIsPlayed(int isPlayed)
     {
-        this.IsPlayed = isPlayed;
+        this.isPlayed = isPlayed;
     }
 
     /**
@@ -90,7 +102,7 @@ public class Match
      */
     public int getHomeGoals()
     {
-        return HomeGoals;
+        return homeGoals;
     }
 
     /**
@@ -98,7 +110,7 @@ public class Match
      */
     public void setHomeGoals(int homeGoals)
     {
-        this.HomeGoals = homeGoals;
+        this.homeGoals = homeGoals;
     }
 
     /**
@@ -106,7 +118,7 @@ public class Match
      */
     public int getGuestGoals()
     {
-        return GuestGoals;
+        return guestGoals;
     }
 
     /**
@@ -114,12 +126,12 @@ public class Match
      */
     public void setGuestGoals(int guestGoals)
     {
-        this.GuestGoals = guestGoals;
+        this.guestGoals = guestGoals;
     }
     
     @Override
     public String toString()
     {
-        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", ID, MatchRound, HomeTeamID, GuestTeamID, IsPlayed, HomeGoals, GuestGoals );
+        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", id, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals );
     }
 }

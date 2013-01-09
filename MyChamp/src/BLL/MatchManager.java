@@ -20,7 +20,6 @@ public class MatchManager
 
     private MatchDBManager db = null;
     private static MatchManager instance = null;
-    
 
     public MatchManager() throws Exception
     {
@@ -54,18 +53,18 @@ public class MatchManager
         }
         return group.isEmpty() ? null : group;
     }
-    
+
     public ArrayList<MatchScheduling> schedule(ArrayList<Team> teams) throws SQLException
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
         int i = 1;
-        
-        
-        while(getGroup(i, teams) != null)
+
+
+        while (getGroup(i, teams) != null)
         {
             ArrayList<Team> group = getGroup(i, teams);
             ArrayList<MatchScheduling> groupMatches = new ArrayList();
-            
+
             if (group.size() == 4)
             {
                 /*
@@ -73,31 +72,31 @@ public class MatchManager
                  */
                 groupMatches.add(new MatchScheduling(1, group.get(0), group.get(1)));
                 groupMatches.add(new MatchScheduling(1, group.get(2), group.get(3)));
-                
+
                 /*
                  * Round 2
                  */
                 groupMatches.add(new MatchScheduling(2, group.get(0), group.get(2)));
                 groupMatches.add(new MatchScheduling(2, group.get(1), group.get(3)));
-                
+
                 /*
                  * Round 3
                  */
                 groupMatches.add(new MatchScheduling(3, group.get(0), group.get(3)));
                 groupMatches.add(new MatchScheduling(3, group.get(1), group.get(2)));
-                
+
                 /*
                  * Round 4
                  */
                 groupMatches.add(new MatchScheduling(4, group.get(1), group.get(0)));
                 groupMatches.add(new MatchScheduling(4, group.get(3), group.get(2)));
-                
+
                 /*
                  * Round 5
                  */
                 groupMatches.add(new MatchScheduling(5, group.get(2), group.get(0)));
                 groupMatches.add(new MatchScheduling(5, group.get(3), group.get(1)));
-                
+
                 /*
                  * Round 6
                  */
@@ -110,27 +109,27 @@ public class MatchManager
                  * Round 1
                  */
                 groupMatches.add(new MatchScheduling(1, group.get(0), group.get(1)));
-                
-                 /*
+
+                /*
                  * Round 2
                  */
                 groupMatches.add(new MatchScheduling(2, group.get(2), group.get(1)));
-                
+
                 /*
                  * Round 3
                  */
                 groupMatches.add(new MatchScheduling(3, group.get(0), group.get(2)));
-                        
+
                 /*
                  * Round 4
                  */
                 groupMatches.add(new MatchScheduling(4, group.get(1), group.get(2)));
-                
+
                 /*
                  * Round 5
                  */
                 groupMatches.add(new MatchScheduling(5, group.get(1), group.get(0)));
-                
+
                 /*
                  * Round 6
                  */
@@ -143,7 +142,7 @@ public class MatchManager
             {
                 db.addMatches(matchScheduling);
             }
-            
+
         }
         return null;
     }
@@ -151,5 +150,10 @@ public class MatchManager
     public ArrayList<Match> listAll() throws SQLException
     {
         return db.listAll();
+    }
+
+    public ArrayList<Match> viewSchedule() throws SQLException
+    {
+        return db.viewSchedule();
     }
 }

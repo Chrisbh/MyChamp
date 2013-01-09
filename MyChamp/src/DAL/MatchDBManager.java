@@ -103,4 +103,28 @@ public class MatchDBManager extends MyChampDBManager
             return allMatches;
         }
     }
+
+    public ArrayList viewSchedule() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT * FROM Match";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            ArrayList<Match> schedule = new ArrayList<>();
+            while (rs.next())
+            {
+                int id = rs.getInt("ID");
+                int homeTeamID = rs.getInt("HomeTeamID");
+                int guestTeamID = rs.getInt("GuestTeamID");
+                
+                Match match = new Match(id, homeTeamID, guestTeamID);
+                schedule.add(match);
+                
+            }
+            return schedule;
+        }
+    }
 }

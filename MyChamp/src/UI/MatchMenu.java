@@ -73,7 +73,7 @@ class MatchUIMenu extends Menu
     }
 
     /**
-     * 
+     *
      */
     private void ViewSchedule()
     {
@@ -81,23 +81,28 @@ class MatchUIMenu extends Menu
         System.out.println();
         try
         {
-            System.out.println("Select Group id: ");
-            int id = new Scanner(System.in).nextInt();
-            
-            ArrayList<Team> teams = teammgr.getByGroupID(id);
-            Group grp = groupmgr.getById(id);
-            
-            System.out.println(grp); 
-            
-            for(Team t : teams)
+//            System.out.println("Select Group id: ");
+//            int id = new Scanner(System.in).nextInt();
+//            
+//            ArrayList<Team> teams = teammgr.getByGroupID(id);
+//            Group grp = groupmgr.getById(id);
+//            
+//            System.out.println(grp); 
+//            
+//            for(Team t : teams)
+//            {
+//                System.out.println(t);          
+//            }
+            ArrayList<Match> matches = matchmgr.viewSchedule();
+
+            for (Match m : matches)
             {
-                System.out.println(t);          
+                System.out.println(m);
+                
             }
-            
         }
         catch (Exception e)
         {
-            e.printStackTrace();
             System.out.println(" ERROR - " + e.getMessage());
         }
         pause();
@@ -126,8 +131,9 @@ class MatchUIMenu extends Menu
         pause();
 
     }
+
     /**
-     * 
+     *
      */
 //    private void ScheduleMatch()
 //    {
@@ -152,8 +158,7 @@ class MatchUIMenu extends Menu
 //        matchStarted = true;
 //        pause();
 //    }
-    
-    private void ScheduleMatch() 
+    private void ScheduleMatch()
     {
         clear();
         try

@@ -29,18 +29,6 @@ public class Match
         this.guestGoals = guestGoals;
     }
     
-    public Match (int id, Match m)
-    {
-        this(id, m.getMatchRound(), m.getHomeTeamID(), m.getGuestTeamID(), m.getIsPlayed(), m.getHomeGoals(), m.getGuestGoals());
-    }
-    
-    public Match (int id, int homeTeamID, int guestTeamID)
-    {
-        this.id = id;
-        this.homeTeamID = homeTeamID;
-        this.guestTeamID = guestTeamID;
-    }
-    
     /**
      * @return the ID
      */

@@ -11,15 +11,15 @@ package BE;
 public class MatchScheduling
 {
 
-    private int matchRound;
-    private Team HomeTeam;
-    private Team GuestTeam;
+    private int matchInt;
+    private Team homeTeam;
+    private Team guestTeam;
 
-    public MatchScheduling(int matchRound, Team homeTeam, Team guestTeam)
+    public MatchScheduling(int matchInt, Team homeTeam, Team guestTeam)
     {
-        this.matchRound = matchRound;
-        this.HomeTeam = homeTeam;
-        this.GuestTeam = guestTeam;
+        this.matchInt = matchInt;
+        this.homeTeam = homeTeam;
+        this.guestTeam = guestTeam;
     }
 
     /**
@@ -27,7 +27,7 @@ public class MatchScheduling
      */
     public Team getHomeTeam()
     {
-        return HomeTeam;
+        return homeTeam;
     }
 
     /**
@@ -35,7 +35,7 @@ public class MatchScheduling
      */
     public void setHomeTeam(Team HomeTeam)
     {
-        this.HomeTeam = HomeTeam;
+        this.homeTeam = HomeTeam;
     }
 
     /**
@@ -43,7 +43,7 @@ public class MatchScheduling
      */
     public Team getGuestTeam()
     {
-        return GuestTeam;
+        return guestTeam;
     }
 
     /**
@@ -51,22 +51,28 @@ public class MatchScheduling
      */
     public void setGuestTeam(Team GuestTeam)
     {
-        this.GuestTeam = GuestTeam;
+        this.guestTeam = GuestTeam;
     }
 
     /**
-     * @return the matchRound
+     * @return the matchInt
      */
-    public int getMatchRound()
+    public int getMatchInt()
     {
-        return matchRound;
+        return matchInt;
     }
 
     /**
-     * @param matchRound the matchRound to set
+     * @param matchInt the matchInt to set
      */
-    public void setMatchRound(int matchRound)
+    public void setMatchInt(int matchInt)
     {
-        this.matchRound = matchRound;
+        this.matchInt = matchInt;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return String.format("%3s %-6d %-10s %-10s", "", matchInt, homeTeam.getId(), guestTeam.getId());
     }
 }

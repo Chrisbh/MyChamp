@@ -4,15 +4,13 @@
  */
 package UI;
 
-import BE.Group;
 import BE.Match;
-import BE.Team;
+import BE.MatchScheduling;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  *
@@ -93,13 +91,16 @@ class MatchUIMenu extends Menu
 //            {
 //                System.out.println(t);          
 //            }
-            ArrayList<Match> matches = matchmgr.viewSchedule();
-
-            for (Match m : matches)
-            {
-                System.out.println(m);
-                
+            ArrayList<MatchScheduling> matches = matchmgr.viewSchedule();
+            
+            printShowScheduleHeader();
+            for (MatchScheduling m : matches)
+            {         
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","", m.getMatchInt(),":", teammgr.getByID
+                        (m.getHomeTeam().getId()).getSchool(), " VS ", 
+                        teammgr.getByID(m.getGuestTeam().getId()).getSchool());           
             }
+            
         }
         catch (Exception e)
         {

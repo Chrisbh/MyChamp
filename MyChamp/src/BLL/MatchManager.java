@@ -152,7 +152,7 @@ public class MatchManager
         return db.listAll();
     }
 
-    public ArrayList<Match> viewSchedule() throws SQLException
+    public ArrayList<MatchScheduling> viewSchedule() throws SQLException
     {
         return db.viewSchedule();
     }

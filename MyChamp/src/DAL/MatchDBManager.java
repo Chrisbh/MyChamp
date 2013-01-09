@@ -61,7 +61,7 @@ public class MatchDBManager extends MyChampDBManager
             String sql = "INSERT INTO Match(MatchRound, HomeTeamID, GuestTeamID) VALUES(?, ?, ?)";
 
             PreparedStatement ps = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, m.getMatchRound());
+            ps.setInt(1, m.getMatchInt());
             ps.setInt(2, m.getHomeTeam().getId());
             ps.setInt(3, m.getGuestTeam().getId());
 
@@ -108,19 +108,28 @@ public class MatchDBManager extends MyChampDBManager
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT * FROM Match";
+            String query = "SELECT match.*, team.* FROM Match, Team WHERE Team.id = GuestTeamID  ORDER BY match.id";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
             
-            ArrayList<Match> schedule = new ArrayList<>();
+            ArrayList<MatchScheduling> schedule = new ArrayList<>();
             while (rs.next())
             {
-                int id = rs.getInt("ID");
-                int homeTeamID = rs.getInt("HomeTeamID");
-                int guestTeamID = rs.getInt("GuestTeamID");
+                int matchID = rs.getInt("ID");
+                int homeTeam = rs.getInt("HomeTeamID");
+                int guestTeam = rs.getInt("GuestTeamID");
+                String school = rs.getString("School");
+                String teamCaptain = rs.getString("TeamCaptain");
+                String email = rs.getString("Email");
+                int groupID = rs.getInt("GroupID");
+                int points = rs.getInt("points");
                 
-                Match match = new Match(id, homeTeamID, guestTeamID);
+                Team h = new Team(homeTeam, school, teamCaptain, email, groupID, points);
+                Team g = new Team(guestTeam, school, teamCaptain, email, groupID, points);
+                
+                MatchScheduling match = new MatchScheduling(matchID, h, g);
+                
                 schedule.add(match);
                 
             }

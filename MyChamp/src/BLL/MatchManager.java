@@ -58,7 +58,6 @@ public class MatchManager
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
         int i = 1;
-        int round = 1;
 
 
         while (getGroup(i, teams) != null)
@@ -72,70 +71,70 @@ public class MatchManager
                 /*
                  * Round 1
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(0), group.get(1)));
-                groupMatches.add(new MatchScheduling(round, group.get(2), group.get(3)));
-                round++;
+                groupMatches.add(new MatchScheduling(1, group.get(0), group.get(1)));
+                groupMatches.add(new MatchScheduling(1, group.get(2), group.get(3)));
+                
                 /*
                  * Round 2
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(0), group.get(2)));
-                groupMatches.add(new MatchScheduling(round, group.get(1), group.get(3)));
-                round++;
+                groupMatches.add(new MatchScheduling(2, group.get(0), group.get(2)));
+                groupMatches.add(new MatchScheduling(2, group.get(1), group.get(3)));
+              
                 /*
                  * Round 3
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(0), group.get(3)));
-                groupMatches.add(new MatchScheduling(round, group.get(1), group.get(2)));
-                round++;
+                groupMatches.add(new MatchScheduling(3, group.get(0), group.get(3)));
+                groupMatches.add(new MatchScheduling(3, group.get(1), group.get(2)));
+                
                 /*
                  * Round 4
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(1), group.get(0)));
-                groupMatches.add(new MatchScheduling(round, group.get(3), group.get(2)));
-                round++;
+                groupMatches.add(new MatchScheduling(4, group.get(1), group.get(0)));
+                groupMatches.add(new MatchScheduling(4, group.get(3), group.get(2)));
+                
                 /*
                  * Round 5
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(2), group.get(0)));
-                groupMatches.add(new MatchScheduling(round, group.get(3), group.get(1)));
-                round++;
+                groupMatches.add(new MatchScheduling(5, group.get(2), group.get(0)));
+                groupMatches.add(new MatchScheduling(5, group.get(3), group.get(1)));
+               
                 /*
                  * Round 6
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(3), group.get(0)));
-                groupMatches.add(new MatchScheduling(round, group.get(2), group.get(1)));
+                groupMatches.add(new MatchScheduling(6, group.get(3), group.get(0)));
+                groupMatches.add(new MatchScheduling(6, group.get(2), group.get(1)));
             }
             else
             {
                 /*
                  * Round 1
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(0), group.get(1)));
-                round++;
+                groupMatches.add(new MatchScheduling(1, group.get(0), group.get(1)));
+                
                 /*
                  * Round 2
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(2), group.get(1)));
-                round++;
+                groupMatches.add(new MatchScheduling(2, group.get(2), group.get(1)));
+                
                 /*
                  * Round 3
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(0), group.get(2)));
-                round++;
+                groupMatches.add(new MatchScheduling(3, group.get(0), group.get(2)));
+                
                 /*
                  * Round 4
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(1), group.get(2)));
-                round++;
+                groupMatches.add(new MatchScheduling(4, group.get(1), group.get(2)));
+               
                 /*  
                  * Round 5
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(1), group.get(0)));
-                round++;
+                groupMatches.add(new MatchScheduling(5, group.get(1), group.get(0)));
+               
                 /*
                  * Round 6
                  */
-                groupMatches.add(new MatchScheduling(round, group.get(2), group.get(0)));
+                groupMatches.add(new MatchScheduling(6, group.get(2), group.get(0)));
             }
             matches.addAll(groupMatches);
             System.out.println("Done!");

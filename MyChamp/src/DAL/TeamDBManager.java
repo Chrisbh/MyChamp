@@ -198,4 +198,30 @@ public class TeamDBManager extends MyChampDBManager
             return teams;
         }
     }
+    
+    public ArrayList<Team> orderedByPoints() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT * FROM Team";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            ArrayList<Team> allTeams = new ArrayList<>();
+            while (rs.next())
+            {
+                int ID = rs.getInt("ID");
+                String School = rs.getString("School");
+                String TeamCaptain = rs.getString("TeamCaptain");
+                String Email = rs.getString("Email");
+                int GroupID = rs.getInt("GroupID");
+                int points = rs.getInt("points");
+
+                Team team = new Team(ID, School, TeamCaptain, Email, GroupID, points);
+                allTeams.add(team);
+            }
+            return allTeams;
+        }
+    }
 }

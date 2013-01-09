@@ -136,4 +136,23 @@ public class MatchDBManager extends MyChampDBManager
             return schedule;
         }
     }
+    
+    public int isPlayed() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT IsPlayed FROM Match";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int isPlayed = rs.getInt("IsPlayed");
+
+                return isPlayed;
+            }
+            return 0;
+        }
+    }
 }

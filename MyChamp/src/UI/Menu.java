@@ -56,7 +56,7 @@ public abstract class Menu
     protected void printshowHeader()
     {
         clear();
-        System.out.printf("%3s %-6s %-25s %-25s %-30s %-12s &-10s\n", "", "Id", "School", "Team Captain", "Email", "Group Id", "Points");
+        System.out.printf("%3s %-6s %-25s %-25s %-30s %-12s %-10s \n", "", "Id", "School", "Team Captain", "Email", "Group Id", "Points");
         System.out.println("");
     }
 

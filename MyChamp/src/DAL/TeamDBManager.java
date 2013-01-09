@@ -203,7 +203,7 @@ public class TeamDBManager extends MyChampDBManager
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT * FROM Team";
+            String query = "SELECT team.* FROM Team ORDER BY GroupId, Points DESC";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);

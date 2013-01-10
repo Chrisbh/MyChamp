@@ -109,6 +109,9 @@ class TeamUIMenu extends Menu
 
         try
         {
+            int counter = teammgr.showNumber();
+            if (counter <= 16)
+            {
             Scanner sc = new Scanner(System.in, "iso-8859-1");
 
             System.out.println("School: ");
@@ -126,6 +129,11 @@ class TeamUIMenu extends Menu
 
             System.out.println();
             System.out.println("Team succesfully added");
+            }
+            else
+            {
+                System.out.println("Teams are limited to a total of 16 teams! Limit Reached!");
+            }
         }
         catch (Exception e)
         {

@@ -85,7 +85,7 @@ public class TeamDBManager extends MyChampDBManager
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0)
             {
-                throw new SQLException("Unabe to add team.");
+                throw new SQLException("Unable to add team.");
             }
             ResultSet keys = ps.getGeneratedKeys();
             keys.next();

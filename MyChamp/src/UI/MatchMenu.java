@@ -103,6 +103,8 @@ class MatchUIMenu extends Menu
             int id = new Scanner(System.in).nextInt();
             Match results = matchmgr.getByID(id);
             
+            if (matchmgr.isPlayed(id) == 0)
+            {
             /*
              * HomeTeam Goals
              */
@@ -120,6 +122,11 @@ class MatchUIMenu extends Menu
             MatchManager.getInstance().matchResults(results);
             
             System.out.println("Saved!!");
+            }
+            else
+            {
+                System.out.println("Match has already been played!");
+            }
 
         }
         catch (Exception e)

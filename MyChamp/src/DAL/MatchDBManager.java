@@ -228,6 +228,25 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
     
+    public int isPlayed(int id) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String sql = "SELECT IsPlayed FROM Match WHERE Id = ?";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                int isPlayed = rs.getInt("IsPlayed");
+                
+                return isPlayed;
+            }
+        }
+        return 0;
+    }
     
 //    public ArrayList showWinner() throws SQLException
 //    {

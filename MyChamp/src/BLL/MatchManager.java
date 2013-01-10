@@ -210,6 +210,11 @@ public class MatchManager
     {
         db.matchResults(m);
     }
+    
+    public int isPlayed(int id) throws SQLException
+    {
+        return db.isPlayed(id);
+    }
 //    public ArrayList<MatchWinner> semiFinalList() throws SQLException
 //            {
 //                return db.showWinner();

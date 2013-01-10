@@ -286,7 +286,7 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
     
-    public ArrayList<Match> ListQuarterFinals(int matchRound) throws SQLException
+    public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
@@ -313,47 +313,5 @@ public class MatchDBManager extends MyChampDBManager
             return quarterFinalMatches;
         }
     }
-//    public ArrayList showWinner() throws SQLException
-//    {
-//        try (Connection con = ds.getConnection())
-//        {
-//            String query = "SELECT MATCH.*, TEAM.*, match.Homegoals - match.guestgoals as difference "
-//                    + "FROM Match, Team WHERE GuestGoals > HomeGoals AND Team.id = GuestTeamID ORDER BY Match.id";
-//
-//            Statement st = con.createStatement();
-//            ResultSet rs = st.executeQuery(query);
-//            
-//            ArrayList<MatchWinner> schedule = new ArrayList<>();
-//            while (rs.next())
-//            {
-//                int matchID = rs.getInt("ID");
-//                int homeTeam = rs.getInt("HomeTeamID");
-//                int guestTeam = rs.getInt("GuestTeamID");
-//                String school = rs.getString("School");
-//                String teamCaptain = rs.getString("TeamCaptain");
-//                String email = rs.getString("Email");
-//                int groupID = rs.getInt("GroupID");
-//                int points = rs.getInt("points");
-//                int difference = rs.getInt("difference");
-//                
-//                Team h = new Team(homeTeam, school, teamCaptain, email, groupID, points);
-//                Team g = new Team(guestTeam, school, teamCaptain, email, groupID, points);
-//                
-//
-//                
-//                if(difference < 0)
-//                {
-//                    MatchWinner match = new MatchWinner(g);
-//                    schedule.add(match);
-//                }
-//                else
-//                {
-//                    MatchWinner match = new MatchWinner(h);
-//                    schedule.add(match);
-//                }       
-//            }
-//            return schedule;
-//        }
-//    }
-//    
+    
 }

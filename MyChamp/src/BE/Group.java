@@ -11,13 +11,13 @@ package BE;
 public class Group
 {
 
-    private final int ID;
-    private String GroupName;
+    private final int id;
+    private String groupName;
 
-    public Group(int ID, String GroupName)
+    public Group(int ID, String groupName)
     {
-        this.ID = ID;
-        this.GroupName = GroupName;
+        this.id = ID;
+        this.groupName = groupName;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Group
      */
     public int getID()
     {
-        return ID;
+        return id;
     }
 
     /**
@@ -37,7 +37,7 @@ public class Group
      */
     public String getGroupName()
     {
-        return GroupName;
+        return groupName;
     }
 
     /**
@@ -47,7 +47,7 @@ public class Group
      */
     public void setGroupName(String GroupName)
     {
-        this.GroupName = GroupName;
+        this.groupName = groupName;
     }
     
         /**
@@ -58,6 +58,6 @@ public class Group
     @Override
     public String toString()
     {
-        return String.format("%3s %-6d %-30s","", ID, GroupName);
+        return String.format("%3s %-6d %-30s","", id, groupName);
     }
 }

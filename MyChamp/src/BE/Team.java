@@ -10,14 +10,14 @@ package BE;
  */
 public class Team
 {
-    
+
     private final int id;
     private String school;
     private String teamCaptain;
     private String email;
     private int groupId;
     private int points;
-    
+
     public Team(int id, String school, String teamCaptain, String email, int groupId, int points)
     {
         this.id = id;
@@ -27,12 +27,12 @@ public class Team
         this.groupId = groupId;
         this.points = points;
     }
-    
+
     public Team(String school, String teamCaptain, String email, int groupId, int points)
     {
         this(-1, school, teamCaptain, email, groupId, points);
     }
-    
+
     public Team(int id, Team t)
     {
         this(id, t.school, t.teamCaptain, t.email, t.groupId, t.points);
@@ -109,12 +109,6 @@ public class Team
     {
         this.groupId = groupId;
     }
-    
-    @Override
-    public String toString()
-    {
-        return String.format("%3s %-6d %-25s %-25s %-30s %-12d %-10d","",id, school, teamCaptain, email, groupId, points);
-    }
 
     /**
      * @return the points
@@ -130,5 +124,11 @@ public class Team
     public void setPoints(int points)
     {
         this.points = points;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("%3s %-6d %-25s %-25s %-30s %-12d %-10d", "", id, school, teamCaptain, email, groupId, points);
     }
 }

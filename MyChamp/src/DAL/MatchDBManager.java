@@ -314,4 +314,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
     
+    public void delete(int id) throws SQLException
+    {
+        String sql = "SELECT * FROM Team, Match DELETE Match INNER JOIN Team ON Match.guestteamid = Team.id WHERE Team.id = GuestTeamID or Team.id = HomeTeamID AND Team.id = ?";
+        Connection con = ds.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        int affectedRows = ps.executeUpdate();
+    }
 }

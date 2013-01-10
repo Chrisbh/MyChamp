@@ -183,10 +183,15 @@ class MatchMenu extends Menu
         clear();
         try
         {
+            int matchCount = matchmgr.showCount();
             ArrayList tm = teammgr.getByGroupID(1);
             if (tm != null)
             {
-                doSchedule();
+                if (matchCount < 1)
+                {
+                    matchmgr.schedule(teammgr.listAll());
+                    System.out.println("Group Plays have been scheduled!");
+                }
             }
             else
             {
@@ -204,51 +209,6 @@ class MatchMenu extends Menu
     /**
      *
      */
-    private void doActionExit()
-    {
-        System.out.println("YOU SELECTED EXIT !!");
-    }
-
-    /**
-     *
-     */
-    private void doSchedule() throws SQLException
-    {
-        int matchCount = matchmgr.showCount();
-        int teamCount = teammgr.showCount();
-        int maxMatchID = matchmgr.maxMatchID();
-        int teams = 12;
-
-        if (matchCount < 1)
-        {
-            matchmgr.schedule(teammgr.listAll());
-            System.out.println("Group Plays have been scheduled!");
-        }
-        else
-        {
-            for (int i = 24; i <= 48; i += 6)
-            {
-                int isPlayed = matchmgr.isPlayed(maxMatchID);
-                if (matchCount == i && teamCount == teams && isPlayed == 1)
-                {
-                    matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
-                    System.out.println("Quarter Finals have been scheduled!");
-
-                }
-                else if (matchCount == i + 4 && teamCount == teams && isPlayed == 1)
-                {
-                    matchmgr.scheduleSemiFinals();
-                    System.out.println("Semi Finals have been scheduled!");
-                }
-                else if (i == 48 && isPlayed == 0)
-                {
-                    System.out.println("You need to play the remaining matches before scheduling again!");
-                }
-                teams++;
-            }
-        }
-    }
-
     private void givePoints(int homeGoals, int guestGoals, Match results) throws SQLException
     {
         /*
@@ -273,5 +233,13 @@ class MatchMenu extends Menu
             teammgr.givePoints(1, teammgr.getByID(results.getHomeTeamID()));
             teammgr.givePoints(1, teammgr.getByID(results.getGuestTeamID()));
         }
+    }
+
+    /**
+     *
+     */
+    private void doActionExit()
+    {
+        System.out.println("YOU SELECTED EXIT !!");
     }
 }

@@ -204,7 +204,8 @@ class TeamUIMenu extends Menu
 
             System.out.print("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
-
+            
+            matchmgr.delete(id);
             teammgr.delete(id);
         }
         catch (Exception e)

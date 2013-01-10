@@ -311,8 +311,8 @@ public class MatchManager
     {
         return db.maxID();
     }
-//    public ArrayList<MatchWinner> semiFinalList() throws SQLException
-//            {
-//                return db.showWinner();
-//            }
+    public void delete(int id) throws SQLException
+    {
+        db.delete(id);
+    }
 }

@@ -215,6 +215,11 @@ public class MatchManager
     {
         return db.isPlayed(id);
     }
+    
+     public int showCount() throws SQLException
+    {
+        return db.countMatches();
+    }
 //    public ArrayList<MatchWinner> semiFinalList() throws SQLException
 //            {
 //                return db.showWinner();

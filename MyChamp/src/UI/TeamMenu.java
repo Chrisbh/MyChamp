@@ -109,7 +109,7 @@ class TeamUIMenu extends Menu
 
         try
         {
-            int counter = teammgr.showNumber();
+            int counter = teammgr.showCount();
             ArrayList tm = teammgr.getByGroupID(1);
             if (tm == null)
             {
@@ -222,9 +222,9 @@ class TeamUIMenu extends Menu
         clear();
         try
         {
-            int counter = teammgr.showNumber();
-            ArrayList tm = teammgr.getByGroupID(1);
-            if (tm == null)
+            int counter = teammgr.showCount();
+            int tm = teammgr.getByID(1).getGroupId();
+            if (tm == 0)
             {
                 if (counter >= 12 && counter <= 16)
                 {

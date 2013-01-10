@@ -248,18 +248,18 @@ public class MatchDBManager extends MyChampDBManager
         return 0;
     }
     
-    public int Count() throws SQLException
+    public int countMatches() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT COUNT(*) as NumberOfTeams FROM Team";
+            String query = "SELECT COUNT(*) as NumberOfMatches FROM Match";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next())
             {
-                int count = rs.getInt("NumberOfTeams");
+                int count = rs.getInt("NumberOfMatches");
 
                 return count;
             }
@@ -267,6 +267,24 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
     
+    public int maxID() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT MAX(Match.id) as maxID FROM Match";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int count = rs.getInt("maxID");
+
+                return count;
+            }
+            return 0;
+        }
+    }
 //    public ArrayList showWinner() throws SQLException
 //    {
 //        try (Connection con = ds.getConnection())

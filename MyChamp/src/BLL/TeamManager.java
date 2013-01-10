@@ -64,7 +64,7 @@ public class TeamManager
         db.addTeam(t);
     }
 
-    public int showNumber() throws SQLException
+    public int showCount() throws SQLException
     {
         return db.Count();
     }

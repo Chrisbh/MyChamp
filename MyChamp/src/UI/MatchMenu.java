@@ -178,8 +178,7 @@ class MatchMenu extends Menu
             ArrayList tm = teammgr.getByGroupID(1);
             if (tm != null)
             {
-                matchmgr.schedule(teammgr.listAll());
-//            matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+                doSchedule();
             }
             else
             {
@@ -199,5 +198,42 @@ class MatchMenu extends Menu
     private void doActionExit()
     {
         System.out.println("YOU SELECTED EXIT !!");
+    }
+
+    /**
+     *
+     */
+    private void doSchedule()
+    {
+        try
+        {
+            int matchCount = matchmgr.showCount();
+            int teamCount = teammgr.showCount();
+            int teams = 12;
+            
+            if (matchCount < 1)
+            {
+                matchmgr.schedule(teammgr.listAll());
+            }
+
+            for (int i = 24; i <= 48; i += 6)
+            {
+                int isPlayed = matchmgr.isPlayed(i);
+                if (matchCount == i && teamCount == teams && isPlayed == 1)
+                {
+                    matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+                }
+                else if (i == 48)
+                {
+                    System.out.println("You need to play the group rounds before scheduling Quarter Finals!");
+                }
+                teams++;
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("ERROR - " + e.getMessage());
+        }
     }
 }

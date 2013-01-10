@@ -209,6 +209,7 @@ class MatchMenu extends Menu
         {
             int matchCount = matchmgr.showCount();
             int teamCount = teammgr.showCount();
+            int maxMatchID = matchmgr.maxMatchID();
             int teams = 12;
             
             if (matchCount < 1)
@@ -218,14 +219,14 @@ class MatchMenu extends Menu
 
             for (int i = 24; i <= 48; i += 6)
             {
-                int isPlayed = matchmgr.isPlayed(i);
+                int isPlayed = matchmgr.isPlayed(maxMatchID);
                 if (matchCount == i && teamCount == teams && isPlayed == 1)
                 {
                     matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
                 }
-                else if (i == 48)
+                else if (i == 48 && isPlayed == 0)
                 {
-                    System.out.println("You need to play the group rounds before scheduling Quarter Finals!");
+                    System.out.println("You need to play the remaining matches before scheduling again!");
                 }
                 teams++;
             }

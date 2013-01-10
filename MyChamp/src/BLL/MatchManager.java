@@ -205,20 +205,25 @@ public class MatchManager
     {
         return db.viewTeamSchedule(teamID);
     }
-    
+
     public void matchResults(Match m) throws SQLException
     {
         db.matchResults(m);
     }
-    
+
     public int isPlayed(int id) throws SQLException
     {
         return db.isPlayed(id);
     }
-    
-     public int showCount() throws SQLException
+
+    public int showCount() throws SQLException
     {
         return db.countMatches();
+    }
+
+    public int maxMatchID() throws SQLException
+    {
+        return db.maxID();
     }
 //    public ArrayList<MatchWinner> semiFinalList() throws SQLException
 //            {

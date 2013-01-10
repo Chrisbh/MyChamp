@@ -5,7 +5,6 @@
 package UI;
 
 import BE.Match;
-import BE.MatchScheduling;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
@@ -86,13 +85,7 @@ class MatchUIMenu extends Menu
 
         try
         {
-            printshowMatchHeader();
-            ArrayList<Match> matches = matchmgr.listAll();
-
-            for (Match m : matches)
-            {
-                System.out.println(m);
-            }
+            
         }
         catch (Exception e)
         {

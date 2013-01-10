@@ -181,11 +181,6 @@ public class MatchManager
         return null;
     }
 
-    public ArrayList<Match> listAll() throws SQLException
-    {
-        return db.listAll();
-    }
-
     public ArrayList<MatchScheduling> viewSchedule() throws SQLException
     {
         return db.viewSchedule();

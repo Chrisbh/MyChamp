@@ -6,7 +6,6 @@ package DAL;
 
 import BE.Match;
 import BE.MatchScheduling;
-import BE.MatchWinner;
 import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,33 +46,6 @@ public class MatchDBManager extends MyChampDBManager
             keys.next();
             int id = keys.getInt(1);
             return new MatchScheduling(id, m.getHomeTeam(), m.getGuestTeam());
-        }
-    }
-
-    public ArrayList listAll() throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String query = "SELECT * FROM Match";
-
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(query);
-
-            ArrayList<Match> allMatches = new ArrayList<>();
-            while (rs.next())
-            {
-                int id = rs.getInt("ID");
-                int matchRound = rs.getInt("MatchRound");
-                int homeTeamID = rs.getInt("HomeTeamID");
-                int guestTeamID = rs.getInt("GuestTeamID");
-                int isPlayed = rs.getInt("isPlayed");
-                int homeGoals = rs.getInt("HomeGoals");
-                int guestGoals = rs.getInt("GuestGoals");
-
-                Match match = new Match(id, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals);
-                allMatches.add(match);
-            }
-            return allMatches;
         }
     }
 

@@ -12,8 +12,6 @@ import BLL.TeamManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -181,8 +179,7 @@ class MatchMenu extends Menu
             ArrayList tm = teammgr.getByGroupID(1);
             if (tm != null)
             {
-//                doSchedule();
-                matchmgr.scheduleSemiFinals();
+                doSchedule();
             }
             else
             {
@@ -222,7 +219,8 @@ class MatchMenu extends Menu
                 matchmgr.schedule(teammgr.listAll());
                 System.out.println("Group Plays have been scheduled!");
             }
-
+            else
+            {
             for (int i = 24; i <= 48; i += 6)
             {
                 int isPlayed = matchmgr.isPlayed(maxMatchID);
@@ -230,12 +228,19 @@ class MatchMenu extends Menu
                 {
                     matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
                     System.out.println("Quarter Finals have been scheduled!");
+                    
+                }
+                else if (matchCount == i+4 && teamCount == teams && isPlayed == 1)
+                {
+                    matchmgr.scheduleSemiFinals();
+                    System.out.println("Semi Finals have been scheduled!");
                 }
                 else if (i == 48 && isPlayed == 0)
                 {
                     System.out.println("You need to play the remaining matches before scheduling again!");
                 }
                 teams++;
+            }
             }
 
         }

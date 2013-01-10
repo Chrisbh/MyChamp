@@ -181,8 +181,8 @@ class MatchMenu extends Menu
             ArrayList tm = teammgr.getByGroupID(1);
             if (tm != null)
             {
-//                doSchedule();
-                matchmgr.scheduleSemiFinals();
+                doSchedule();
+//                matchmgr.scheduleSemiFinals();
             }
             else
             {

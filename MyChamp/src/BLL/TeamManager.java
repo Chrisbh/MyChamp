@@ -127,7 +127,7 @@ public class TeamManager
     {
         return db.orderedByPoints();
     }
-    public void givePoints(int points ,Team team) throws SQLException
+    public void givePoints(int points, Team team) throws SQLException
     {
         db.givePoints(points, team);
     }

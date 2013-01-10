@@ -285,6 +285,34 @@ public class MatchDBManager extends MyChampDBManager
             return 0;
         }
     }
+    
+    public ArrayList<Match> ListQuarterFinals(int matchRound) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String sql = "SELECT * FROM Match WHERE matchRound = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, matchRound);
+
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Match> quarterFinalMatches = new ArrayList();
+            while (rs.next())
+            {
+                int id = rs.getInt("ID");
+                matchRound = rs.getInt("MatchRound");
+                int homeTeamID = rs.getInt("HomeTeamID");
+                int guestTeamID = rs.getInt("GuestTeamID");
+                int isPlayed = rs.getInt("IsPlayed");
+                int homeGoals = rs.getInt("HomeGoals");
+                int guestGoals = rs.getInt("GuestGoals");
+
+
+                Match m = new Match(id, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals);
+                quarterFinalMatches.add(m);
+            }
+            return quarterFinalMatches;
+        }
+    }
 //    public ArrayList showWinner() throws SQLException
 //    {
 //        try (Connection con = ds.getConnection())

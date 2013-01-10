@@ -6,7 +6,6 @@ package BLL;
 
 import BE.Match;
 import BE.MatchScheduling;
-import BE.MatchWinner;
 import BE.Team;
 import DAL.MatchDBManager;
 import java.sql.SQLException;
@@ -21,10 +20,12 @@ public class MatchManager
 
     private MatchDBManager db = null;
     private static MatchManager instance = null;
+    private TeamManager teammgr;
 
     public MatchManager() throws Exception
     {
         db = new MatchDBManager();
+        teammgr = new TeamManager();
     }
 
     public static MatchManager getInstance() throws Exception
@@ -147,7 +148,6 @@ public class MatchManager
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
         int i = 1;
-        int round = 7;
 
 
         while (getGroup(i + 1, teams) != null)
@@ -159,12 +159,8 @@ public class MatchManager
             /*
              * Round 7
              */
-            quarterFinalMatches.add(new MatchScheduling(round, group.get(0), group2.get(1)));
-
-            /*
-             * Round 8
-             */
-            quarterFinalMatches.add(new MatchScheduling(round, group2.get(0), group.get(1)));
+            quarterFinalMatches.add(new MatchScheduling(7, group.get(0), group2.get(1)));
+            quarterFinalMatches.add(new MatchScheduling(7, group2.get(0), group.get(1)));
 
             matches.addAll(quarterFinalMatches);
             i += 2;
@@ -173,6 +169,64 @@ public class MatchManager
                 db.addMatches(matchScheduling);
             }
 
+        }
+        return null;
+    }
+
+    public ArrayList<Match> listQuarterFinals(int matchRound) throws SQLException
+    {
+        return db.ListQuarterFinals(matchRound);
+    }
+
+    public ArrayList<MatchScheduling> scheduleSemiFinals() throws SQLException
+    {
+        ArrayList<MatchScheduling> matches = new ArrayList();
+
+        ArrayList<Team> s1Teams = new ArrayList();
+        ArrayList<Team> s2Teams = new ArrayList();
+
+
+        for (int k = 0; k <= 1; k++)
+        {
+            if (getByID(listQuarterFinals(7).get(k).getID()).getHomeGoals() > getByID(listQuarterFinals(7).get(k).getID()).getGuestGoals())
+            {
+                Team hw = teammgr.getByID(getByID(listQuarterFinals(7).get(k).getID()).getHomeTeamID());
+                s1Teams.add(hw);
+            }
+            else
+            {
+                Team gw = teammgr.getByID(getByID(listQuarterFinals(7).get(k).getID()).getGuestTeamID());
+                s1Teams.add(gw);
+            }
+        }
+
+        for (int k = 2; k <= 3; k++)
+        {
+            if (getByID(listQuarterFinals(7).get(k).getID()).getHomeGoals() > getByID(listQuarterFinals(7).get(k).getID()).getGuestGoals())
+            {
+                Team hw = teammgr.getByID(getByID(listQuarterFinals(7).get(k).getID()).getHomeTeamID());
+                s2Teams.add(hw);
+            }
+            else
+            {
+                Team gw = teammgr.getByID(getByID(listQuarterFinals(7).get(k).getID()).getGuestTeamID());
+                s2Teams.add(gw);
+            }
+        }
+
+        ArrayList<MatchScheduling> semiFinalMatches = new ArrayList();
+        
+        /*
+         * Round 8
+         */
+        semiFinalMatches.add(new MatchScheduling(8, s1Teams.get(0), s1Teams.get(1)));
+        semiFinalMatches.add(new MatchScheduling(8, s2Teams.get(0), s2Teams.get(1)));
+
+        matches.addAll(semiFinalMatches);
+        
+        for(MatchScheduling m : semiFinalMatches)
+        {
+            db.addMatches(m);
         }
         return null;
     }

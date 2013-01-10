@@ -12,6 +12,8 @@ import BLL.TeamManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -172,13 +174,15 @@ class MatchMenu extends Menu
      */
     private void ScheduleMatch()
     {
+
         clear();
         try
         {
             ArrayList tm = teammgr.getByGroupID(1);
             if (tm != null)
             {
-                doSchedule();
+//                doSchedule();
+                matchmgr.scheduleSemiFinals();
             }
             else
             {
@@ -190,6 +194,7 @@ class MatchMenu extends Menu
             System.out.println("ERROR : " + ex.getMessage());
         }
         pause();
+
     }
 
     /**
@@ -211,7 +216,7 @@ class MatchMenu extends Menu
             int teamCount = teammgr.showCount();
             int maxMatchID = matchmgr.maxMatchID();
             int teams = 12;
-            
+
             if (matchCount < 1)
             {
                 matchmgr.schedule(teammgr.listAll());

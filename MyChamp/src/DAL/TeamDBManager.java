@@ -224,4 +224,21 @@ public class TeamDBManager extends MyChampDBManager
             return allTeams;
         }
     }
+    
+    public void givePoints(int points, Team t) throws SQLException
+    {
+        String sql = "UPDATE Team SET Points = ? WHERE ID = ?";
+
+        Connection con = ds.getConnection();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, points);
+        ps.setInt(2, t.getId());
+
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows == 0)
+        {
+            throw new SQLException("WARNING - POINTS NOT INSERTED FOR MATCH!");
+        }
+    }
 }

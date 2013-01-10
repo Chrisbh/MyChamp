@@ -248,6 +248,25 @@ public class MatchDBManager extends MyChampDBManager
         return 0;
     }
     
+    public int Count() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT COUNT(*) as NumberOfTeams FROM Team";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int count = rs.getInt("NumberOfTeams");
+
+                return count;
+            }
+            return 0;
+        }
+    }
+    
 //    public ArrayList showWinner() throws SQLException
 //    {
 //        try (Connection con = ds.getConnection())

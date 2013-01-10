@@ -209,6 +209,26 @@ public class MatchDBManager extends MyChampDBManager
             return schedule;
         }
     }
+    
+    public void matchResults(Match m) throws SQLException
+    {
+        String sql = "UPDATE Match SET HomeGoals = ?, GuestGoals = ?, IsPlayed = 1 WHERE Id = ?";
+
+        Connection con = ds.getConnection();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, m.getHomeGoals());
+        ps.setInt(2, m.getGuestGoals());
+        ps.setInt(3, m.getID());
+
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows == 0)
+        {
+            throw new SQLException("Unable to update MatchResults");
+        }
+    }
+    
+    
 //    public ArrayList showWinner() throws SQLException
 //    {
 //        try (Connection con = ds.getConnection())

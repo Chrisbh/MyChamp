@@ -5,11 +5,13 @@
 package UI;
 
 import BE.Match;
+import BE.MatchScheduling;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -22,6 +24,8 @@ class MatchUIMenu extends Menu
     private TeamManager teammgr;
     private MatchManager matchmgr;
     private GroupManager groupmgr;
+    private Match match;
+    private MatchScheduling m;
 
     /**
      * Lists the different Menu options in MatchUI Menu
@@ -30,7 +34,7 @@ class MatchUIMenu extends Menu
      */
     public MatchUIMenu()
     {
-        super("Match UI Menu", "View Schedule", "Match Results", "Schedule Matchs");
+        super("Match UI Menu", "View Schedule", "Set Match Results", "Schedule Matches");
         try
         {
             teammgr = new TeamManager();
@@ -80,12 +84,43 @@ class MatchUIMenu extends Menu
     private void MatchResults()
     {
         clear();
-        System.out.println("SHOW ALL MATCHES");
+        System.out.println("Insert match results.");
         System.out.println();
 
         try
         {
+            ArrayList<MatchScheduling> matches = matchmgr.viewSchedule();
+            printShowScheduleHeader();
+            for (MatchScheduling m : matches)
+            { 
+                
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","", m.getMatchInt(),":", teammgr.getByID
+                        (m.getHomeTeam().getId()).getSchool(), " VS ", 
+                        teammgr.getByID(m.getGuestTeam().getId()).getSchool());           
+            }
+
+            System.out.println("Select Match id: ");
+            int id = new Scanner(System.in).nextInt();
+            Match results = matchmgr.getByID(id);
             
+            /*
+             * HomeTeam Goals
+             */
+            System.out.println("Enter Goals scored for: " + teammgr.getByID(results.getHomeTeamID()).getSchool());
+            int homeGoals = new Scanner(System.in).nextInt();
+            results.setHomeGoals(homeGoals);
+            
+            /*
+             * GuestTeam Goals
+             */
+            System.out.println("Enter Goals scored for: " + teammgr.getByID(results.getGuestTeamID()).getSchool());
+            int guestGoals = new Scanner(System.in).nextInt();
+            results.setGuestGoals(guestGoals);
+            
+            MatchManager.getInstance().matchResults(results);
+            
+            System.out.println("Saved!!");
+
         }
         catch (Exception e)
         {
@@ -105,7 +140,7 @@ class MatchUIMenu extends Menu
         {
             matchmgr.schedule(teammgr.listAll());
 //            matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
-            
+
         }
         catch (SQLException ex)
         {

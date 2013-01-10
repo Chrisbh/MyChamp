@@ -4,8 +4,9 @@
  */
 package UI;
 
-import BE.Match;
+import BE.Group;
 import BE.MatchScheduling;
+import BE.Team;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
@@ -106,7 +107,8 @@ public class ViewScheduleMenu extends Menu
         {
             System.out.println("Select Group id: ");
             int id = new Scanner(System.in).nextInt();
-            Match gm = matchmgr.getByID(id);
+            
+            Group gm = groupmgr.getById(id);
             if (gm != null)
             {
             ArrayList<MatchScheduling> groupPlay = matchmgr.viewGroupSchedule(id);
@@ -137,7 +139,7 @@ public class ViewScheduleMenu extends Menu
         {
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
-            Match tm = matchmgr.getByID(id);
+            Team tm = teammgr.getByID(id);
             if(tm != null)
             {
             ArrayList<MatchScheduling> teamPlay = matchmgr.viewTeamSchedule(id);

@@ -36,11 +36,6 @@ public class MatchManager
         return instance;
     }
 
-    public ArrayList showGroups(Team t) throws SQLException
-    {
-        return db.Scheduling(t);
-    }
-
     private ArrayList<Team> getGroup(int groupID, ArrayList<Team> teams)
     {
         ArrayList<Team> group = new ArrayList();

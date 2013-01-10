@@ -133,7 +133,6 @@ public class MatchManager
                 groupMatches.add(new MatchScheduling(6, group.get(2), group.get(0)));
             }
             matches.addAll(groupMatches);
-            System.out.println("Done!");
             i++;
             for (MatchScheduling matchScheduling : groupMatches)
             {
@@ -161,7 +160,6 @@ public class MatchManager
              * Round 7
              */
             quarterFinalMatches.add(new MatchScheduling(round, group.get(0), group2.get(1)));
-            round++;
 
             /*
              * Round 8
@@ -169,9 +167,7 @@ public class MatchManager
             quarterFinalMatches.add(new MatchScheduling(round, group2.get(0), group.get(1)));
 
             matches.addAll(quarterFinalMatches);
-            System.out.println("Done!");
             i += 2;
-            round++;
             for (MatchScheduling matchScheduling : quarterFinalMatches)
             {
                 db.addMatches(matchScheduling);

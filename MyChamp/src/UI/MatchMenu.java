@@ -182,7 +182,6 @@ class MatchMenu extends Menu
             if (tm != null)
             {
                 doSchedule();
-//                matchmgr.scheduleSemiFinals();
             }
             else
             {

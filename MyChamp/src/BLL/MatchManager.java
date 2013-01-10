@@ -161,7 +161,6 @@ public class MatchManager
              * Round 7
              */
             quarterFinalMatches.add(new MatchScheduling(round, group.get(0), group2.get(1)));
-            round++;
 
             /*
              * Round 8
@@ -171,7 +170,6 @@ public class MatchManager
             matches.addAll(quarterFinalMatches);
             System.out.println("Done!");
             i += 2;
-            round++;
             for (MatchScheduling matchScheduling : quarterFinalMatches)
             {
                 db.addMatches(matchScheduling);

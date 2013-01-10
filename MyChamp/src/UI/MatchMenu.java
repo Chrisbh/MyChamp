@@ -215,6 +215,7 @@ class MatchMenu extends Menu
             if (matchCount < 1)
             {
                 matchmgr.schedule(teammgr.listAll());
+                System.out.println("Group Plays have been scheduled!");
             }
 
             for (int i = 24; i <= 48; i += 6)
@@ -223,6 +224,7 @@ class MatchMenu extends Menu
                 if (matchCount == i && teamCount == teams && isPlayed == 1)
                 {
                     matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+                    System.out.println("Quarter Finals have been scheduled!");
                 }
                 else if (i == 48 && isPlayed == 0)
                 {

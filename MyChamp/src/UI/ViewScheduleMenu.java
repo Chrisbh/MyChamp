@@ -135,6 +135,15 @@ public class ViewScheduleMenu extends Menu
         clear();
         try
         {
+            TeamManager tManager = new TeamManager();
+            ArrayList<Team> teams = tManager.listAll();
+
+            printshowHeader();
+            for (Team t : teams)
+            {
+                System.out.println(t);
+            }
+            
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
 

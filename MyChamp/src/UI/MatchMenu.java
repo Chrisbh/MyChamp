@@ -129,34 +129,33 @@ class MatchMenu extends Menu
                 MatchManager.getInstance().matchResults(results);
 
                 System.out.println("Saved!!");
+                System.out.println();
 
                 if (results.getMatchRound() <= 6)
                 {
                     givePoints(homeGoals, guestGoals, results);
                 }
-                else
-                {
-                    for (int i = 24; i <= 48; i += 6)
-                    {
-                        int isPlayed = matchmgr.isPlayed(maxMatchID);
-                        if (matchCount == i && teamCount == teams && isPlayed == 1)
-                        {
-                            matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
-                            System.out.println("Quarter Finals have been scheduled!");
 
-                        }
-                        else if (matchCount == i + 4 && teamCount == teams && isPlayed == 1)
-                        {
-                            matchmgr.scheduleSemiFinals();
-                            System.out.println("Semi Finals have been scheduled!");
-                        }
-                        else if (matchCount == i + 6 && teamCount == teams && isPlayed == 1)
-                        {
-                            matchmgr.scheduleFinal();
-                            System.out.println("Final has been scheduled!");
-                        }
-                        teams++;
+                for (int i = 24; i <= 48; i += 6)
+                {
+                    int isPlayed = matchmgr.isPlayed(maxMatchID);
+                    if (matchCount == i && teamCount == teams && isPlayed == 1)
+                    {
+                        matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+                        System.out.println("Quarter Finals have been scheduled!");
+
                     }
+                    else if (matchCount == i + 4 && teamCount == teams && isPlayed == 1)
+                    {
+                        matchmgr.scheduleSemiFinals();
+                        System.out.println("Semi Finals have been scheduled!");
+                    }
+                    else if (matchCount == i + 6 && teamCount == teams && isPlayed == 1)
+                    {
+                        matchmgr.scheduleFinal();
+                        System.out.println("Final has been scheduled!");
+                    }
+                    teams++;
                 }
             }
             /*
@@ -213,48 +212,40 @@ class MatchMenu extends Menu
     /**
      *
      */
-    private void doSchedule()
+    private void doSchedule() throws SQLException
     {
-        try
+        int matchCount = matchmgr.showCount();
+        int teamCount = teammgr.showCount();
+        int maxMatchID = matchmgr.maxMatchID();
+        int teams = 12;
+
+        if (matchCount < 1)
         {
-            int matchCount = matchmgr.showCount();
-            int teamCount = teammgr.showCount();
-            int maxMatchID = matchmgr.maxMatchID();
-            int teams = 12;
-
-            if (matchCount < 1)
-            {
-                matchmgr.schedule(teammgr.listAll());
-                System.out.println("Group Plays have been scheduled!");
-            }
-            else
-            {
-                for (int i = 24; i <= 48; i += 6)
-                {
-                    int isPlayed = matchmgr.isPlayed(maxMatchID);
-                    if (matchCount == i && teamCount == teams && isPlayed == 1)
-                    {
-                        matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
-                        System.out.println("Quarter Finals have been scheduled!");
-
-                    }
-                    else if (matchCount == i + 4 && teamCount == teams && isPlayed == 1)
-                    {
-                        matchmgr.scheduleSemiFinals();
-                        System.out.println("Semi Finals have been scheduled!");
-                    }
-                    else if (i == 48 && isPlayed == 0)
-                    {
-                        System.out.println("You need to play the remaining matches before scheduling again!");
-                    }
-                    teams++;
-                }
-            }
-
+            matchmgr.schedule(teammgr.listAll());
+            System.out.println("Group Plays have been scheduled!");
         }
-        catch (Exception e)
+        else
         {
-            System.out.println("ERROR - " + e.getMessage());
+            for (int i = 24; i <= 48; i += 6)
+            {
+                int isPlayed = matchmgr.isPlayed(maxMatchID);
+                if (matchCount == i && teamCount == teams && isPlayed == 1)
+                {
+                    matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+                    System.out.println("Quarter Finals have been scheduled!");
+
+                }
+                else if (matchCount == i + 4 && teamCount == teams && isPlayed == 1)
+                {
+                    matchmgr.scheduleSemiFinals();
+                    System.out.println("Semi Finals have been scheduled!");
+                }
+                else if (i == 48 && isPlayed == 0)
+                {
+                    System.out.println("You need to play the remaining matches before scheduling again!");
+                }
+                teams++;
+            }
         }
     }
 

@@ -93,6 +93,30 @@ public class TeamManager
             }
         }
         System.out.println("Groups have been assigned !!");
+        
+        /*
+         * Quarter final dummy teams
+         */
+        Team q1 = new Team("Quarter Final 1 Winner", "", "", 0, 0);
+        Team q2 = new Team("Quarter Final 2 Winner", "", "", 0, 0);
+        Team q3 = new Team("Quarter Final 3 Winner", "", "", 0, 0);
+        Team q4 = new Team("Quarter Final 4 Winner", "", "", 0, 0);
+        
+        /*
+         * Semi final dummy teams
+         */
+        Team s1 = new Team("Semi Final 1 Winner", "", "", 0, 0);
+        Team s2 = new Team("Semi Final 2 Winner", "", "", 0, 0);
+        
+        /*
+         * Adding the dummy teams to the database
+         */
+        db.addTeam(q1);
+        db.addTeam(q2);
+        db.addTeam(q3);
+        db.addTeam(q4);
+        db.addTeam(s1);
+        db.addTeam(s2);
     }
     
     public ArrayList getByGroupID(int id) throws SQLException

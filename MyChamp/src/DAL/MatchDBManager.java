@@ -278,9 +278,9 @@ public class MatchDBManager extends MyChampDBManager
 
             while (rs.next())
             {
-                int count = rs.getInt("maxID");
+                int maxID = rs.getInt("maxID");
 
-                return count;
+                return maxID;
             }
             return 0;
         }

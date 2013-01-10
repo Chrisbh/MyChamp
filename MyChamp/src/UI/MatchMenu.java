@@ -122,11 +122,26 @@ class MatchUIMenu extends Menu
             MatchManager.getInstance().matchResults(results);
             
             System.out.println("Saved!!");
+            
+            if (homeGoals > guestGoals)
+            {
+                
+            }
+            else if (homeGoals < guestGoals)
+            {
+                
+            }
+            else
+            {
+                
+            }
             }
             else
             {
                 System.out.println("Match has already been played!");
             }
+            
+            
 
         }
         catch (Exception e)

@@ -29,14 +29,14 @@ public class ViewScheduleMenu extends Menu
     {
         super("Tournament Schedule", "Total Schedule", "Group Matches", "Team Matches", "Finals");
         EXIT_OPTION = EXIT_VALUE;
-        
+
         try
         {
             teammgr = new TeamManager();
             matchmgr = new MatchManager();
             groupmgr = new GroupManager();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println("ERROR - " + e.getMessage());
         }
@@ -70,28 +70,27 @@ public class ViewScheduleMenu extends Menu
         System.out.println();
         try
         {
-            
+
             ArrayList<MatchScheduling> matches = matchmgr.viewSchedule();
             ArrayList<MatchScheduling> matchesPlayed = matchmgr.viewSchedulePlayed();
             printShowIsPlayedHeader();
             for (MatchScheduling m : matchesPlayed)
             {
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-21s %-3d %-3s %-3d\n","", m.getMatchInt(), ":" ,
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-21s %-3d %-3s %-3d\n", "", m.getMatchInt(), ":",
                         teammgr.getByID(m.getHomeTeam().getId()).getSchool(),
                         " VS ", teammgr.getByID(m.getGuestTeam().getId()).getSchool(),
-                        matchmgr.getByID(m.getMatchInt()).getHomeGoals(),"-", 
+                        matchmgr.getByID(m.getMatchInt()).getHomeGoals(), "-",
                         matchmgr.getByID(m.getMatchInt()).getGuestGoals());
             }
-            
+
             printShowScheduleHeader();
             for (MatchScheduling m : matches)
-            { 
-                
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","", m.getMatchInt(),":", teammgr.getByID
-                        (m.getHomeTeam().getId()).getSchool(), " VS ", 
-                        teammgr.getByID(m.getGuestTeam().getId()).getSchool());           
+            {
+
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getMatchInt(), ":", teammgr.getByID(m.getHomeTeam().getId()).getSchool(), " VS ",
+                        teammgr.getByID(m.getGuestTeam().getId()).getSchool());
             }
-            
+
         }
         catch (Exception e)
         {
@@ -107,25 +106,24 @@ public class ViewScheduleMenu extends Menu
         {
             System.out.println("Select Group id: ");
             int id = new Scanner(System.in).nextInt();
-            
+
             Group gm = groupmgr.getById(id);
             if (gm != null)
             {
-            ArrayList<MatchScheduling> groupPlay = matchmgr.viewGroupSchedule(id);
-            printShowGroupScheduleHeader();
-            for(MatchScheduling g : groupPlay)
-            {
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","",g.getMatchInt(), ":", teammgr.getByID
-                        (g.getHomeTeam().getId()).getSchool(), " VS ", 
-                        teammgr.getByID(g.getGuestTeam().getId()).getSchool());          
-            }
+                ArrayList<MatchScheduling> groupPlay = matchmgr.viewGroupSchedule(id);
+                printShowGroupScheduleHeader();
+                for (MatchScheduling g : groupPlay)
+                {
+                    System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", g.getMatchInt(), ":", teammgr.getByID(g.getHomeTeam().getId()).getSchool(), " VS ",
+                            teammgr.getByID(g.getGuestTeam().getId()).getSchool());
+                }
             }
             else
             {
                 System.out.println("Group does not exist!");
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println("ERROR - " + e.getMessage());
         }
@@ -139,24 +137,24 @@ public class ViewScheduleMenu extends Menu
         {
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
+
             Team tm = teammgr.getByID(id);
-            if(tm != null)
+            if (tm != null)
             {
-            ArrayList<MatchScheduling> teamPlay = matchmgr.viewTeamSchedule(id);
-            printShowGroupScheduleHeader();
-            for(MatchScheduling t : teamPlay)
-            {
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n","",t.getMatchInt(), ":", teammgr.getByID
-                        (t.getHomeTeam().getId()).getSchool(), " VS ", 
-                        teammgr.getByID(t.getGuestTeam().getId()).getSchool());          
-            }
+                ArrayList<MatchScheduling> teamPlay = matchmgr.viewTeamSchedule(id);
+                printShowGroupScheduleHeader();
+                for (MatchScheduling t : teamPlay)
+                {
+                    System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", t.getMatchInt(), ":", teammgr.getByID(t.getHomeTeam().getId()).getSchool(), " VS ",
+                            teammgr.getByID(t.getGuestTeam().getId()).getSchool());
+                }
             }
             else
             {
                 System.out.println("Team does not exist!");
             }
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println("ERROR - " + e.getMessage());
         }
@@ -166,7 +164,7 @@ public class ViewScheduleMenu extends Menu
     private void finals()
     {
         clear();
-        
+
         pause();
     }
 

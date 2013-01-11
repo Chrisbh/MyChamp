@@ -299,7 +299,8 @@ class TeamUIMenu extends Menu
     private void removePoints(int id) throws SQLException
     {
         /*
-         * Gets the number of group matches where the team id is playing or has played.
+         * Gets the number of group matches where the team id is playing or has played. 
+         * The -1 is because the arraylist is not starting on 1 but 0, so 1 lower.
          */
         int matches = matchmgr.showCountTeamGroup(id) -1;
         /*

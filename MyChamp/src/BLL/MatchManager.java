@@ -315,4 +315,8 @@ public class MatchManager
     {
         db.deleteFromTeamAndMatch(id);
     }
+    public int maxMatchRound() throws SQLException
+    {
+        return db.maxRound();
+    }
 }

@@ -83,7 +83,7 @@ class TeamUIMenu extends Menu
 
         try
         {
-            printshowHeader();
+            printShowHeader();
             ArrayList<Team> teams = teammgr.listAll();
 
             for (Team t : teams)
@@ -164,7 +164,7 @@ class TeamUIMenu extends Menu
             TeamManager tManager = new TeamManager();
             ArrayList<Team> teams = tManager.listAll();
 
-            printshowHeader();
+            printShowHeader();
             for (Team t : teams)
             {
                 System.out.println(t);
@@ -197,7 +197,7 @@ class TeamUIMenu extends Menu
             TeamManager tManager = new TeamManager();
             ArrayList<Team> teams = tManager.listAll();
 
-            printshowHeader();
+            printShowHeader();
             for (Team t : teams)
             {
                 System.out.println(t);

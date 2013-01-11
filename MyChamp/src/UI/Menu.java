@@ -49,11 +49,14 @@ public abstract class Menu
             }
         }
     }
-
+    /*
+     * START OF HEADERS.
+     */
+    
     /**
      * Prints the header for Team section.
      */
-    protected void printshowHeader()
+    protected void printShowHeader()
     {
         clear();
         System.out.printf("%3s %-6s %-25s %-25s %-30s %-12s %-10s \n", "", "Id", "School", "Team Captain", "Email", "Group Id", "Points");
@@ -62,7 +65,7 @@ public abstract class Menu
     /**
      * Prints the header for Match section.
      */
-    protected void printshowMatchHeader()
+    protected void printShowMatchHeader()
     {
         clear();
         System.out.printf("%3s %-6s %-15s %-15s %-15s %-10s %-15s %-15s\n", "", "Id", "MatchRound", "HomeTeamID", "GuestTeamID", "IsPlayed", "HomeGoals", "GuestGoals");
@@ -99,7 +102,43 @@ public abstract class Menu
         System.out.printf("%3s %-9s %-20s %-8s %-20s %-6s %-3s\n", "", "Id", "HomeTeam", "", "GuestTeam", "Home", "Guest");
         System.out.println("    _________________________________________________________________________");
     }
-
+    
+    /**
+     * Prints the header for Match section.
+     */
+    protected void printShowFinalHeader()
+    {
+        System.out.println();
+        System.out.printf("%28s %-13s\n","","Final!");
+        System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
+        System.out.println("    _________________________________________________________");
+    }
+    
+    /**
+     * Prints the header for Match section.
+     */
+    protected void printShowSemiFinalHeader()
+    {
+        System.out.println();
+        System.out.printf("%25s %-13s\n","","Semi Finals!");
+        System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
+        System.out.println("    _________________________________________________________");
+    }
+    
+    /**
+     * Prints the header for Match section.
+     */
+    protected void printShowQFinalHeader()
+    {
+        System.out.println();
+        System.out.printf("%25s %-13s\n","","Quarter Finals!");
+        System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
+        System.out.println("    _________________________________________________________");
+    }
+    /*
+     * END OF HEADERS.
+     */
+    
     /**
      *
      */

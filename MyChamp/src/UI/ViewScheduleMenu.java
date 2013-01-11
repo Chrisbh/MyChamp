@@ -5,11 +5,13 @@
 package UI;
 
 import BE.Group;
+import BE.Match;
 import BE.MatchScheduling;
 import BE.Team;
 import BLL.GroupManager;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -135,15 +137,14 @@ public class ViewScheduleMenu extends Menu
         clear();
         try
         {
-            TeamManager tManager = new TeamManager();
-            ArrayList<Team> teams = tManager.listAll();
+            ArrayList<Team> teams = teammgr.listAll();
 
-            printshowHeader();
+            printShowHeader();
             for (Team t : teams)
             {
                 System.out.println(t);
             }
-            
+
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
 
@@ -173,8 +174,83 @@ public class ViewScheduleMenu extends Menu
     private void finals()
     {
         clear();
+        try
+        {
+            ArrayList<Match> finals = matchmgr.listByMatchRound(9);
+            ArrayList<Match> sFinals = matchmgr.listByMatchRound(8);
+            ArrayList<Match> qFinals = matchmgr.listByMatchRound(7);
 
+            int maxRound = matchmgr.maxMatchRound();
+
+            printFinals(maxRound, finals, sFinals, qFinals);
+        }
+        catch (Exception e)
+        {
+            System.out.println("ERROR - " + e.getMessage());
+        }
         pause();
+    }
+
+    private void printFinals(int maxRound, ArrayList<Match> finals, ArrayList<Match> sFinals, ArrayList<Match> qFinals) throws SQLException
+    {
+        /*
+         * Quarter Finals
+         */
+        if (maxRound >= 7)
+        {
+            printShowQFinalHeader();
+            for (Match m : qFinals)
+            {
+
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getID(), ":", teammgr.getByID(m.getHomeTeamID()).getSchool(), " VS ",
+                        teammgr.getByID(m.getGuestTeamID()).getSchool());
+            }
+        }
+        else
+        {
+            printShowQFinalHeader();
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "Winner of Group A", " VS ", "Second of Group B");
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "Winner of Group B", " VS ", "Second of Group A");
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "Winner of Group C", " VS ", "Second of Group D");
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "Winner of Group D", " VS ", "Second of Group C");
+        }
+        /*
+         * Semi Finals
+         */
+        if (maxRound >= 8)
+        {
+            printShowSemiFinalHeader();
+            for (Match m : sFinals)
+            {
+
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getID(), ":", teammgr.getByID(m.getHomeTeamID()).getSchool(), " VS ",
+                        teammgr.getByID(m.getGuestTeamID()).getSchool());
+            }
+        }
+        else
+        {
+            printShowSemiFinalHeader();
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "QuarterFinalWinner 1", " VS ", "QuarterFinalWinner 2");
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "QuarterFinalWinner 3", " VS ", "QuarterFinalWinner 4");
+        }
+        /*
+         * Final
+         */
+        if (maxRound == 9)
+        {
+            printShowFinalHeader();
+            for (Match m : finals)
+            {
+
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getID(), ":", teammgr.getByID(m.getHomeTeamID()).getSchool(), " VS ",
+                        teammgr.getByID(m.getGuestTeamID()).getSchool());
+            }
+        }
+        else
+        {
+            printShowFinalHeader();
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", "SemiFinalWinner 1", " VS ", "SemiFinalWinner 2");
+        }
     }
 
     private void doActionExit()

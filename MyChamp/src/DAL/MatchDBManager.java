@@ -271,7 +271,7 @@ public class MatchDBManager extends MyChampDBManager
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT MAX(Match.id) as maxID FROM Match";
+            String query = "SELECT MAX(id) as maxID FROM Match";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -328,5 +328,24 @@ public class MatchDBManager extends MyChampDBManager
         ps1.setInt(1, id);
         int affectedRows = ps.executeUpdate();
         int affectedRows1 = ps1.executeUpdate();
+    }
+    
+    public int maxRound() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT MAX(MatchRound) as maxRound FROM Match";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int maxRound = rs.getInt("maxRound");
+
+                return maxRound;
+            }
+            return 0;
+        }
     }
 }

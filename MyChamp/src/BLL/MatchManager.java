@@ -311,8 +311,8 @@ public class MatchManager
     {
         return db.maxID();
     }
-    public void delete(int id) throws SQLException
+    public void deleteFromTeamAndMatch(int id) throws SQLException
     {
-        db.delete(id);
+        db.deleteFromTeamAndMatch(id);
     }
 }

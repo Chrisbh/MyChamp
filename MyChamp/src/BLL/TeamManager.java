@@ -54,11 +54,6 @@ public class TeamManager
         db.update(team);
     }
 
-    public void delete(int ID) throws SQLException
-    {
-        db.delete(ID);
-    }
-
     public void add(Team t) throws SQLException
     {
         db.addTeam(t);

@@ -94,19 +94,6 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
-    public void delete(int id) throws SQLException
-    {
-        String sql = "DELETE TEAM WHERE TEAM.ID = ?";
-        Connection con = ds.getConnection();
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, id);
-        int affectedRows = ps.executeUpdate();
-        if (affectedRows == 0)
-        {
-            throw new SQLException("Unable to delete Team");
-        }
-    }
-
     public void assign(Team t, int g) throws SQLException
     {
         String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";

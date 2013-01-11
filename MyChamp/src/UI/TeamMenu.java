@@ -193,6 +193,7 @@ class TeamUIMenu extends Menu
         System.out.println("");
         try
         {
+            int matchCount = matchmgr.showCount();
             TeamManager tManager = new TeamManager();
             ArrayList<Team> teams = tManager.listAll();
 
@@ -204,9 +205,7 @@ class TeamUIMenu extends Menu
 
             System.out.print("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
-            
-            matchmgr.delete(id);
-            teammgr.delete(id);
+            matchmgr.deleteFromTeamAndMatch(id);
         }
         catch (Exception e)
         {

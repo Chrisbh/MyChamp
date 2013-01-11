@@ -118,9 +118,9 @@ public class TeamManager
     {
         return db.getByGroupID(id);
     }
-    public ArrayList<Team> orderByPoints() throws SQLException
+    public ArrayList<Team> listGroupRanked() throws SQLException
     {
-        return db.orderedByPoints();
+        return db.listGroupRanked();
     }
     public void givePoints(int points, Team team) throws SQLException
     {

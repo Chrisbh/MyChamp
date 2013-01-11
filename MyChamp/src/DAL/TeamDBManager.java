@@ -186,11 +186,11 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
     
-    public ArrayList<Team> orderedByPoints() throws SQLException
+    public ArrayList<Team> listGroupRanked() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT team.* FROM Team ORDER BY GroupId, Points DESC";
+            String query = "SELECT * FROM Team, Match WHERE Team.ID = HomeTeamID ORDER BY Points DESC, (HomeGoals - GuestGoals) DESC, HomeGoals DESC";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);

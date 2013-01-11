@@ -141,7 +141,7 @@ class MatchMenu extends Menu
                     int isPlayed = matchmgr.isPlayed(maxMatchID);
                     if (matchCount == i && teamCount == teams && isPlayed == 1)
                     {
-                        matchmgr.scheduleQuarterFinals(teammgr.orderByPoints());
+                        matchmgr.scheduleQuarterFinals(teammgr.listGroupRanked());
                         System.out.println("Quarter Finals have been scheduled!");
 
                     }

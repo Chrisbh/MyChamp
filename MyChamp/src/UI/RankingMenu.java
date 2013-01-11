@@ -50,10 +50,10 @@ class RankingMenu extends Menu
         switch (option)
         {
             case 1:
-                GroupRanking();
+                groupRanking();
                 break;
             case 2:
-                FinalRanking();
+                finalRanking();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -61,11 +61,11 @@ class RankingMenu extends Menu
     }
 
     /**
-     * X
+     * 
      */
-    private void GroupRanking()
+    private void groupRanking()
     {
-        System.out.println("X");
+        System.out.println("");
         System.out.println();
         try
         {
@@ -79,7 +79,7 @@ class RankingMenu extends Menu
     /**
      * 
      */
-    private void FinalRanking()
+    private void finalRanking()
     {
         System.out.println("X");
         System.out.println();

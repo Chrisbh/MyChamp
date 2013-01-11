@@ -23,7 +23,7 @@ public class TeamDBManager extends MyChampDBManager
     {
         super();
     }
-
+  
     public ArrayList<Team> ListAll() throws SQLException
     {
         try (Connection con = ds.getConnection())

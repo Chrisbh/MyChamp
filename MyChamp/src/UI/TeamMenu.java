@@ -226,26 +226,30 @@ class TeamUIMenu extends Menu
             int tm = teammgr.getByID(1).getGroupId();
             if (tm == 0)
             {
-                if (counter >= 12 && counter <= 16)
-                {
-                    System.out.println("Assign Team To Group");
 
-                    try
-                    {
-                        teammgr.assignRandomGroups();
-                    }
-                    catch (Exception e)
-                    {
-                        System.out.println(" ERROR - " + e.getMessage());
-                    }
-                }
-                else if (counter < 12)
+                System.out.println("CAUTION!");
+                System.out.println("If continuing with assigning groups, it wont be "
+                        + "possible to add teams or assign groups again!");
+                System.out.println("Do you want to continue? Y/N");
+                Scanner sc = new Scanner(System.in, "iso-8859-1");
+                String further = sc.nextLine();
+                switch (further)
                 {
-                    System.out.println("Too few teams to organize.");
-                }
-                else
-                {
-                    System.out.println("Too many teams to organize.");
+                    case "Y":
+                        assignGroups(counter);
+                        break;
+                    case "y":
+                        assignGroups(counter);
+                        break;
+                    case "N":
+                        doActionExit();
+                        break;
+                    case "n":
+                        doActionExit();
+                        break;
+                    default:
+                        System.out.println("Y or N Required");
+                        break;
                 }
             }
             else
@@ -258,6 +262,32 @@ class TeamUIMenu extends Menu
             System.out.println("ERROR - " + e.getLocalizedMessage());
         }
         pause();
+    }
+
+    private void assignGroups(int counter)
+    {
+        if (counter >= 12 && counter <= 16)
+        {
+            System.out.println("Assigning Teams To Groups!....");
+
+            try
+            {
+                teammgr.assignRandomGroups();
+            }
+            catch (Exception e)
+            {
+                System.out.println(" ERROR - " + e.getMessage());
+            }
+        }
+        else if (counter < 12)
+        {
+            System.out.println("Too few teams to organize.");
+        }
+        else
+        {
+            System.out.println("Too many teams to organize.");
+        }
+
     }
 
     /**

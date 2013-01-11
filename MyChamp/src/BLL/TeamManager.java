@@ -98,9 +98,9 @@ public class TeamManager
     {
         return db.listGroupRanked();
     }
-    public void givePoints(int points, Team team) throws SQLException
+    public void setPoints(int points, Team team) throws SQLException
     {
-        db.givePoints(points, team);
+        db.setPoints(points, team);
     }
     public void deleteAll() throws SQLException
     {

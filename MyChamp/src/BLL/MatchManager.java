@@ -320,6 +320,16 @@ public class MatchManager
         return db.maxRound();
     }
     
+    public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
+    {
+        return db.getGroupMatchesByTeamID(id);
+    }
+    
+    public int showCountTeamGroup(int id) throws SQLException
+    {
+        return db.countTeamGroupMatchesByTeamID(id);
+    }
+    
 //    public ArrayList<Match> sortTeamsByRank(int m1, int m2) throws SQLException
 //    {
 //        return db.sortTeamsByRank(m1, m2);

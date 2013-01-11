@@ -4,9 +4,11 @@
  */
 package UI;
 
+import BE.Match;
 import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -195,6 +197,8 @@ class TeamUIMenu extends Menu
         try
         {
             int matchCount = matchmgr.showCount();
+            int teamCount = teammgr.showCount();
+            int maxMatchID = matchmgr.maxMatchID();
             TeamManager tManager = new TeamManager();
             ArrayList<Team> teams = tManager.listAll();
 
@@ -206,6 +210,7 @@ class TeamUIMenu extends Menu
 
             System.out.print("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
+            removePoints(id);
             matchmgr.deleteFromTeamAndMatch(id);
         }
         catch (Exception e)
@@ -289,6 +294,72 @@ class TeamUIMenu extends Menu
             System.out.println("Too many teams to assign.");
         }
 
+    }
+
+    private void removePoints(int id) throws SQLException
+    {
+        /*
+         * Gets the number of group matches where the team id is playing or has played.
+         */
+        int matches = matchmgr.showCountTeamGroup(id) -1;
+        /*
+         * The i in the for loop symbolises the place in the arraylist.
+         */
+        for (int i = 0; i <= matches; i++)
+        {
+            int guestTeamID = matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestTeamID();
+            int homeTeamID = matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeTeamID();
+            /*
+             * Checking whether the selected match is played, if 1 continue
+             */
+            if (matchmgr.getGroupMatchesByTeamID(id).get(i).getIsPlayed() == 1)
+            {
+                /*
+                 * Checks if the given team id is the same the hometeams id in the match.
+                 */
+                if (id == homeTeamID)
+                {
+                    /*
+                     * Checks if the chosen team has lost or were tied
+                     * if they lost, the winning team looses 3 points
+                     * if tied the other team looses 1 point.
+                     * if they wont we wont remove any points, since the team is getting deleted.
+                     */
+                    if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() < matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    {
+                        int currentPoints = teammgr.getByID(guestTeamID).getPoints();
+                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(guestTeamID));
+                    }
+                    else if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    {
+                        int currentPoints = teammgr.getByID(guestTeamID).getPoints();
+                        teammgr.setPoints(currentPoints - 1, teammgr.getByID(guestTeamID));
+                    }
+                }
+                /*
+                 * Checks if the given team id is the same the guestteams id in the match.
+                 */
+                else if (id == guestTeamID)
+                {
+                    /*
+                     * Checks if the chosen team has lost or were tied
+                     * if they lost, the winning team looses 3 points
+                     * if tied the other team looses 1 point.
+                     * if they wont we wont remove any points, since the team is getting deleted.
+                     */
+                    if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() > matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    {
+                        int currentPoints = teammgr.getByID(homeTeamID).getPoints();
+                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(homeTeamID));
+                    }
+                    else if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    {
+                        int currentPoints = teammgr.getByID(homeTeamID).getPoints();
+                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(homeTeamID));
+                    }
+                }
+            }
+        }
     }
 
     /**

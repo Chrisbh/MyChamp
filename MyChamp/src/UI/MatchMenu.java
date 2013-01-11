@@ -198,27 +198,33 @@ class MatchMenu extends Menu
      */
     private void givePoints(int homeGoals, int guestGoals, Match results) throws SQLException
     {
+        int homeTeamID = results.getHomeTeamID();
+        int guestTeamID = results.getGuestTeamID();
         /*
          * Point giving for HomeTeam.
          */
         if (homeGoals > guestGoals)
         {
-            teammgr.givePoints(3, teammgr.getByID(results.getHomeTeamID()));
+            int currentPoints = teammgr.getByID(homeTeamID).getPoints();
+            teammgr.setPoints(currentPoints + 3, teammgr.getByID(homeTeamID));
         }
         /*
          * Point giving for GuestTeam.
          */
         else if (homeGoals < guestGoals)
         {
-            teammgr.givePoints(3, teammgr.getByID(results.getGuestTeamID()));
+            int currentPoints = teammgr.getByID(guestTeamID).getPoints();
+            teammgr.setPoints(currentPoints + 3, teammgr.getByID(guestTeamID));
         }
         /*
          * If tied give both 1 point.
          */
         else
         {
-            teammgr.givePoints(1, teammgr.getByID(results.getHomeTeamID()));
-            teammgr.givePoints(1, teammgr.getByID(results.getGuestTeamID()));
+            int currentPointsHome = teammgr.getByID(homeTeamID).getPoints();
+            int currentPointsGuest = teammgr.getByID(guestTeamID).getPoints();
+            teammgr.setPoints(currentPointsHome +1, teammgr.getByID(homeTeamID));
+            teammgr.setPoints(currentPointsGuest + 1, teammgr.getByID(guestTeamID));
         }
     }
 

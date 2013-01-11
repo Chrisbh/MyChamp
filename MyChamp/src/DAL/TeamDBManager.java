@@ -212,7 +212,7 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
     
-    public void givePoints(int points, Team t) throws SQLException
+    public void setPoints(int points, Team t) throws SQLException
     {
         String sql = "UPDATE Team SET Points = ? WHERE ID = ?";
 

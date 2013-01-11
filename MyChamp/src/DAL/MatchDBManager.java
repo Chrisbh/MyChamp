@@ -7,6 +7,7 @@ package DAL;
 import BE.Match;
 import BE.MatchScheduling;
 import BE.Team;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -344,6 +345,57 @@ public class MatchDBManager extends MyChampDBManager
                 int maxRound = rs.getInt("maxRound");
 
                 return maxRound;
+            }
+            return 0;
+        }
+    }
+    
+    public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String sql = "SELECT * FROM Match WHERE HomeTeamID = ? OR GuestTeamID = ? AND MatchRound <7";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, id);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            ArrayList<Match> byTeamID = new ArrayList();
+            while(rs.next())
+            {
+                int matchID = rs.getInt("ID");
+                int matchRound = rs.getInt("MatchRound");
+                int homeTeamID = rs.getInt("HomeTeamID");
+                int guestTeamID = rs.getInt("GuestTeamID");
+                int isPlayed = rs.getInt("IsPlayed");
+                int homeGoals = rs.getInt("HomeGoals");
+                int guestGoals = rs.getInt("GuestGoals");
+
+
+                Match m = new Match(matchID, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals);
+                byTeamID.add(m);
+            }
+            return byTeamID;   
+        }
+    }
+    public int countTeamGroupMatchesByTeamID(int id) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String sql = "SELECT COUNT(*) as NumberOfMatches FROM Match WHERE MatchRound < 7 AND HomeTeamID = ? OR GuestTeamID = ? ";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next())
+            {
+                int count = rs.getInt("NumberOfMatches");
+
+                return count;
             }
             return 0;
         }

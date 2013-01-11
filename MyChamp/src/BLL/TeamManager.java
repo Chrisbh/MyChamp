@@ -102,4 +102,9 @@ public class TeamManager
     {
         db.givePoints(points, team);
     }
+    public void deleteAll() throws SQLException
+    {
+        db.deleteAll();
+        System.out.println("Deleted!");
+    }
 }

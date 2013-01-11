@@ -110,8 +110,9 @@ class TeamUIMenu extends Menu
         try
         {
             int counter = teammgr.showCount();
-            ArrayList tm = teammgr.getByGroupID(1);
-            if (tm == null)
+            Team tm = teammgr.getByID(1);
+            int tm1 = teammgr.getByID(1).getGroupId();
+            if (tm == null || tm1 == 0)
             {
                 if (counter <= 16)
                 {
@@ -245,7 +246,7 @@ class TeamUIMenu extends Menu
                         doActionExit();
                         break;
                     case "n":
-                        doActionExit();
+                        System.out.println("You have selected no.");
                         break;
                     default:
                         System.out.println("Y or N Required");
@@ -281,11 +282,11 @@ class TeamUIMenu extends Menu
         }
         else if (counter < 12)
         {
-            System.out.println("Too few teams to organize.");
+            System.out.println("Too few teams to assign.");
         }
         else
         {
-            System.out.println("Too many teams to organize.");
+            System.out.println("Too many teams to assign.");
         }
 
     }

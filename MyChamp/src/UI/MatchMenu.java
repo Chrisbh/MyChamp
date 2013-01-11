@@ -60,13 +60,13 @@ class MatchMenu extends Menu
         switch (option)
         {
             case 1:
-                ViewSchedule();
+                viewSchedule();
                 break;
             case 2:
-                MatchResults();
+                matchResults();
                 break;
             case 3:
-                ScheduleMatch();
+                scheduleMatch();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -76,7 +76,7 @@ class MatchMenu extends Menu
     /**
      *
      */
-    private void ViewSchedule()
+    private void viewSchedule()
     {
         new ViewScheduleMenu().run();
     }
@@ -84,7 +84,7 @@ class MatchMenu extends Menu
     /**
      *
      */
-    private void MatchResults()
+    private void matchResults()
     {
 
         clear();
@@ -164,15 +164,15 @@ class MatchMenu extends Menu
     /**
      *
      */
-    private void ScheduleMatch()
+    private void scheduleMatch()
     {
 
         clear();
         try
         {
             int matchCount = matchmgr.showCount();
-            ArrayList tm = teammgr.getByGroupID(1);
-            if (tm != null)
+            int tm = teammgr.getByID(1).getGroupId();
+            if (tm != 0)
             {
                 if (matchCount < 1)
                 {

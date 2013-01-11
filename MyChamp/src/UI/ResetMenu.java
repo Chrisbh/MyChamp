@@ -5,6 +5,7 @@
 package UI;
 
 import BLL.TeamManager;
+import java.util.Scanner;
 
 /**
  *
@@ -47,7 +48,29 @@ public class ResetMenu extends Menu
         clear();
         try
         {
-            teammgr.deleteAll();
+             System.out.println("CAUTION!");
+                System.out.println("If continuing with ressetting, all groups and matches will be deleted!");
+                System.out.println("Do you want to continue? Y/N");
+                Scanner sc = new Scanner(System.in, "iso-8859-1");
+                String further = sc.nextLine();
+                switch (further)
+                {
+                    case "Y":
+                        teammgr.deleteAll();
+                        break;
+                    case "y":
+                        teammgr.deleteAll();
+                        break;
+                    case "N":
+                        System.out.println("You have selected no.");
+                        break;
+                    case "n":
+                        System.out.println("You have selected no.");
+                        break;
+                    default:
+                        System.out.println("Y or N Required");
+                        break;
+                }
         }
         catch(Exception e)
         {

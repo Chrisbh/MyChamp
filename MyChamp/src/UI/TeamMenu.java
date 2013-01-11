@@ -243,7 +243,7 @@ class TeamUIMenu extends Menu
                         assignGroups(counter);
                         break;
                     case "N":
-                        doActionExit();
+                        System.out.println("You have selected no.");
                         break;
                     case "n":
                         System.out.println("You have selected no.");

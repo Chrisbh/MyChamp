@@ -15,7 +15,7 @@ public class MainMenu extends Menu
 
     public MainMenu()
     {
-        super("MyChamp Menu", "Team Menu", "Match Menu", "Ranking Menu");
+        super("MyChamp Menu", "Team Menu", "Match Menu", "Ranking Menu", "Reset Menu");
         EXIT_OPTION = EXIT_VALUE;
     }
 
@@ -25,13 +25,16 @@ public class MainMenu extends Menu
         switch (option)
         {
             case 1:
-                TeamUIMenu();
+                teamMenu();
                 break;
             case 2:
-                MatchUIMenu();
+                matchMenu();
                 break;
             case 3:
-                RankingUIMenu();
+                rankingMenu();
+                break;
+            case 4:
+                resetEverythingMenu();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -39,28 +42,35 @@ public class MainMenu extends Menu
     }
 
     /**
-     * Option for Opening the Team UI Menu
+     * Option for Opening the Team Menu
      */
-    private void TeamUIMenu()
+    private void teamMenu()
     {
         new TeamUIMenu().run();
     }
 
     /**
-     * Option for Opening the Match UI Menu.
+     * Option for Opening the Match Menu.
      */
-    private void MatchUIMenu()
+    private void matchMenu()
     {
         new MatchMenu().run();
     }
     /**
-     * Option for opening the Ranking UI Menu.
+     * Option for opening the Ranking Menu.
      */
-    private void RankingUIMenu()
+    private void rankingMenu()
     {
         new RankingMenu().run();
     }
-
+    
+    /**
+     * Option for opening the Reset Menu
+     */
+    private void resetEverythingMenu()
+    {
+        new ResetMenu().run();
+    }
     private void doActionExit()
     {
         System.out.println("YOU SELECTED EXIT !!");

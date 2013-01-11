@@ -228,4 +228,14 @@ public class TeamDBManager extends MyChampDBManager
             throw new SQLException("WARNING - POINTS NOT INSERTED FOR MATCH!");
         }
     }
+    
+    public void deleteAll() throws SQLException
+    {
+        String sql = "DELETE FROM Match; DELETE FROM Team; DBCC CHECKIDENT (Match, RESEED, 0); DBCC CHECKIDENT (Team, RESEED, 0)";
+        Connection con = ds.getConnection();
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.executeUpdate();
+    }
 }

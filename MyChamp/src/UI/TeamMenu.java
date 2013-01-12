@@ -356,7 +356,7 @@ class TeamUIMenu extends Menu
                     else if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
                     {
                         int currentPoints = teammgr.getByID(homeTeamID).getPoints();
-                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(homeTeamID));
+                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(homeTeamID)); // Skal der ikke trækkes et point fra i stedet for 3????
                     }
                 }
             }

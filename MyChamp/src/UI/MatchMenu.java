@@ -171,6 +171,9 @@ class MatchMenu extends Menu
         try
         {
             int matchCount = matchmgr.showCount();
+            int teamCount = teammgr.showCount();
+            if (teamCount > 0)
+            {
             int tm = teammgr.getByID(1).getGroupId();
             if (tm != 0)
             {
@@ -183,6 +186,11 @@ class MatchMenu extends Menu
             else
             {
                 System.out.println("You need to assign to groups before scheduling matches!");
+            }
+            }
+            else
+            {
+                System.out.println("You need teams to schedule matches!");
             }
         }
         catch (SQLException ex)

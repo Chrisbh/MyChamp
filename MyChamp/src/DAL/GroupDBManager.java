@@ -17,11 +17,21 @@ import java.sql.SQLException;
 public class GroupDBManager extends MyChampDBManager
 {
 
+    /**
+     *
+     * @throws Exception
+     */
     public GroupDBManager() throws Exception
     {
         super();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Group getById(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())

@@ -15,6 +15,12 @@ public class MatchScheduling
     private Team homeTeam;
     private Team guestTeam;
 
+    /**
+     *
+     * @param matchInt
+     * @param homeTeam
+     * @param guestTeam
+     */
     public MatchScheduling(int matchInt, Team homeTeam, Team guestTeam)
     {
         this.matchInt = matchInt;

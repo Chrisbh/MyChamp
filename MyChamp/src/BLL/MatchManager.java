@@ -22,12 +22,21 @@ public class MatchManager
     private static MatchManager instance = null;
     private TeamManager teammgr;
 
+    /**
+     *
+     * @throws Exception
+     */
     public MatchManager() throws Exception
     {
         db = new MatchDBManager();
         teammgr = new TeamManager();
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public static MatchManager getInstance() throws Exception
     {
         if (instance == null)
@@ -51,6 +60,12 @@ public class MatchManager
         return group.isEmpty() ? null : group;
     }
 
+    /**
+     *
+     * @param teams
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> schedule(ArrayList<Team> teams) throws SQLException
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
@@ -144,6 +159,12 @@ public class MatchManager
         return null;
     }
 
+    /**
+     *
+     * @param teams
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> scheduleQuarterFinals(ArrayList<Team> teams) throws SQLException
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
@@ -173,11 +194,22 @@ public class MatchManager
         return null;
     }
 
+    /**
+     *
+     * @param matchRound
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
     {
         return db.listByMatchRound(matchRound);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> scheduleSemiFinals() throws SQLException
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
@@ -231,6 +263,11 @@ public class MatchManager
         return null;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> scheduleFinal() throws SQLException
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
@@ -267,66 +304,137 @@ public class MatchManager
         return null;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> viewSchedule() throws SQLException
     {
         return db.viewSchedule();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> viewSchedulePlayed() throws SQLException
     {
         return db.viewSchedulePlayed();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Match getByID(int id) throws SQLException
     {
         return db.getByID(id);
     }
 
+    /**
+     *
+     * @param groupID
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> viewGroupSchedule(int groupID) throws SQLException
     {
         return db.viewGroupSchedule(groupID);
     }
 
+    /**
+     *
+     * @param teamID
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<MatchScheduling> viewTeamSchedule(int teamID) throws SQLException
     {
         return db.viewTeamSchedule(teamID);
     }
 
+    /**
+     *
+     * @param m
+     * @throws SQLException
+     */
     public void matchResults(Match m) throws SQLException
     {
         db.matchResults(m);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public int isPlayed(int id) throws SQLException
     {
         return db.isPlayed(id);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int showCount() throws SQLException
     {
         return db.countMatches();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int maxMatchID() throws SQLException
     {
         return db.maxID();
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     public void deleteFromTeamAndMatch(int id) throws SQLException
     {
         db.deleteFromTeamAndMatch(id);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int maxMatchRound() throws SQLException
     {
         return db.maxRound();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
     {
         return db.getGroupMatchesByTeamID(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public int showCountTeamGroup(int id) throws SQLException
     {
         return db.countTeamGroupMatchesByTeamID(id);

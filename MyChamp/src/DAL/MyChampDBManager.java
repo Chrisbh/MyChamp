@@ -15,10 +15,17 @@ import java.util.Properties;
 public class MyChampDBManager
 {
 
+    /**
+     *
+     */
     protected SQLServerDataSource ds;
 
     /*
      * Contains the settings for the SQL server.
+     */
+    /**
+     *
+     * @throws Exception
      */
     public MyChampDBManager() throws Exception
     {

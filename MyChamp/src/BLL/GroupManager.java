@@ -17,6 +17,10 @@ public class GroupManager
 
     private GroupDBManager db = null;
 
+    /**
+     *
+     * @throws Exception
+     */
     public GroupManager() throws Exception
     {
         db = new GroupDBManager();
@@ -24,6 +28,12 @@ public class GroupManager
 
     /*
      * Gets the group by id.
+     */
+    /**
+     *
+     * @param Id
+     * @return
+     * @throws SQLException
      */
     public Group getById(int Id) throws SQLException
     {

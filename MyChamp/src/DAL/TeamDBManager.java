@@ -19,11 +19,20 @@ import java.util.ArrayList;
 public class TeamDBManager extends MyChampDBManager
 {
 
+    /**
+     *
+     * @throws Exception
+     */
     public TeamDBManager() throws Exception
     {
         super();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Team> ListAll() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -50,6 +59,11 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param t
+     * @throws SQLException
+     */
     public void update(Team t) throws SQLException
     {
         String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
@@ -70,6 +84,12 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param t
+     * @return
+     * @throws SQLException
+     */
     public Team addTeam(Team t) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -94,6 +114,12 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param t
+     * @param g
+     * @throws SQLException
+     */
     public void assign(Team t, int g) throws SQLException
     {
         String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
@@ -114,6 +140,11 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int Count() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -133,6 +164,12 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Team getByID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -158,6 +195,12 @@ public class TeamDBManager extends MyChampDBManager
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Team> getByGroupID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -186,6 +229,11 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -212,6 +260,12 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param points
+     * @param t
+     * @throws SQLException
+     */
     public void setPoints(int points, Team t) throws SQLException
     {
         String sql = "UPDATE Team SET Points = ? WHERE ID = ?";
@@ -229,6 +283,10 @@ public class TeamDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void deleteAll() throws SQLException
     {
         String sql = "DELETE FROM Match; DELETE FROM Team; DBCC CHECKIDENT (Match, RESEED, 0); DBCC CHECKIDENT (Team, RESEED, 0)";

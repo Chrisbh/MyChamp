@@ -25,11 +25,20 @@ public class TeamManager
     private int i = 1;
     private int given = 1;
 
+    /**
+     *
+     * @throws Exception
+     */
     public TeamManager() throws Exception
     {
         db = new TeamDBManager();
     }
 
+    /**
+     *
+     * @return
+     * @throws Exception
+     */
     public static TeamManager getInstance() throws Exception
     {
         if (instance == null)
@@ -39,31 +48,61 @@ public class TeamManager
         return instance;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Team getByID(int id) throws SQLException
     {
         return db.getByID(id);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Team> listAll() throws SQLException
     {
         return db.ListAll();
     }
 
+    /**
+     *
+     * @param team
+     * @throws SQLException
+     */
     public void update(Team team) throws SQLException
     {
         db.update(team);
     }
 
+    /**
+     *
+     * @param t
+     * @throws SQLException
+     */
     public void add(Team t) throws SQLException
     {
         db.addTeam(t);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int showCount() throws SQLException
     {
         return db.Count();
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void assignRandomGroups() throws SQLException
     {
         int x = 4;
@@ -90,21 +129,42 @@ public class TeamManager
         System.out.println("Groups have been assigned !!");
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public ArrayList getByGroupID(int id) throws SQLException
     {
         return db.getByGroupID(id);
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
         return db.listGroupRanked();
     }
 
+    /**
+     *
+     * @param points
+     * @param team
+     * @throws SQLException
+     */
     public void setPoints(int points, Team team) throws SQLException
     {
         db.setPoints(points, team);
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     public void deleteAll() throws SQLException
     {
         db.deleteAll();

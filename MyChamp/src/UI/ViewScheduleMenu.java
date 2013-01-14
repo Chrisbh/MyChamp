@@ -27,6 +27,9 @@ public class ViewScheduleMenu extends Menu
     private MatchManager matchmgr;
     private GroupManager groupmgr;
 
+    /**
+     *
+     */
     public ViewScheduleMenu()
     {
         super("Tournament Schedule", "Total Schedule", "Group Matches", "Team Matches", "Finals");
@@ -44,6 +47,10 @@ public class ViewScheduleMenu extends Menu
         }
     }
 
+    /**
+     *
+     * @param option
+     */
     @Override
     protected void doAction(int option)
     {

@@ -19,6 +19,16 @@ public class Match
     private int homeGoals;
     private int guestGoals;
 
+    /**
+     *
+     * @param id
+     * @param matchRound
+     * @param homeTeamID
+     * @param guestTeamID
+     * @param isPlayed
+     * @param homeGoals
+     * @param guestGoals
+     */
     public Match(int id, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
     {
         this.id = id;

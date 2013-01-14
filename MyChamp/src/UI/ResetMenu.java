@@ -17,6 +17,9 @@ public class ResetMenu extends Menu
     private static final int EXIT_VALUE = 0;
     private TeamManager teammgr;
 
+    /**
+     *
+     */
     public ResetMenu()
     {
         super("Reset Menu", "Reset Everything");
@@ -31,6 +34,10 @@ public class ResetMenu extends Menu
         }
     }
 
+    /**
+     *
+     * @param option
+     */
     @Override
     protected void doAction(int option)
     {

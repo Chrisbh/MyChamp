@@ -13,12 +13,19 @@ public class MainMenu extends Menu
 
     private static final int EXIT_VALUE = 0;
 
+    /**
+     *
+     */
     public MainMenu()
     {
         super("MyChamp Menu", "Team Menu", "Match Menu", "Ranking Menu", "Reset Menu");
         EXIT_OPTION = EXIT_VALUE;
     }
 
+    /**
+     *
+     * @param option
+     */
     @Override
     protected void doAction(int option)
     {

@@ -18,6 +18,15 @@ public class Team
     private int groupId;
     private int points;
 
+    /**
+     *
+     * @param id
+     * @param school
+     * @param teamCaptain
+     * @param email
+     * @param groupId
+     * @param points
+     */
     public Team(int id, String school, String teamCaptain, String email, int groupId, int points)
     {
         this.id = id;
@@ -28,11 +37,24 @@ public class Team
         this.points = points;
     }
 
+    /**
+     *
+     * @param school
+     * @param teamCaptain
+     * @param email
+     * @param groupId
+     * @param points
+     */
     public Team(String school, String teamCaptain, String email, int groupId, int points)
     {
         this(-1, school, teamCaptain, email, groupId, points);
     }
 
+    /**
+     *
+     * @param id
+     * @param t
+     */
     public Team(int id, Team t)
     {
         this(id, t.school, t.teamCaptain, t.email, t.groupId, t.points);

@@ -14,6 +14,9 @@ import java.util.Scanner;
 public abstract class Menu
 {
 
+    /**
+     *
+     */
     protected int EXIT_OPTION = 0;
     private final String header;
     private final String[] menuItems;
@@ -33,7 +36,6 @@ public abstract class Menu
     /**
      * create the doaction options.
      *
-     * @param run
      */
     public void run()
     {
@@ -202,5 +204,9 @@ public abstract class Menu
         new Scanner(System.in).nextLine();
     }
 
+    /**
+     *
+     * @param option
+     */
     abstract protected void doAction(int option);
 }

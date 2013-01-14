@@ -14,6 +14,11 @@ public class Group
     private final int id;
     private String groupName;
 
+    /**
+     *
+     * @param ID
+     * @param groupName
+     */
     public Group(int ID, String groupName)
     {
         this.id = ID;
@@ -43,7 +48,7 @@ public class Group
     /**
      * Sets the name for an Group in the database.
      *
-     * @param name - Sets the name of the Group.
+     * @param GroupName 
      */
     public void setGroupName(String GroupName)
     {

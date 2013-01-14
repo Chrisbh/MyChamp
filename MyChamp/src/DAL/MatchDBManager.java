@@ -21,11 +21,21 @@ import java.util.ArrayList;
 public class MatchDBManager extends MyChampDBManager
 {
 
+    /**
+     *
+     * @throws Exception
+     */
     public MatchDBManager() throws Exception
     {
         super();
     }
 
+    /**
+     *
+     * @param m
+     * @return
+     * @throws SQLException
+     */
     public MatchScheduling addMatches(MatchScheduling m) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -49,6 +59,11 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList viewSchedule() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -82,6 +97,11 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList viewSchedulePlayed() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -115,6 +135,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public Match getByID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -141,6 +167,12 @@ public class MatchDBManager extends MyChampDBManager
         return null;
     }
 
+    /**
+     *
+     * @param groupID
+     * @return
+     * @throws SQLException
+     */
     public ArrayList viewGroupSchedule(int groupID) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -175,6 +207,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param teamID
+     * @return
+     * @throws SQLException
+     */
     public ArrayList viewTeamSchedule(int teamID) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -210,6 +248,11 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param m
+     * @throws SQLException
+     */
     public void matchResults(Match m) throws SQLException
     {
         String sql = "UPDATE Match SET HomeGoals = ?, GuestGoals = ?, IsPlayed = 1 WHERE Id = ?";
@@ -228,6 +271,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public int isPlayed(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -248,6 +297,11 @@ public class MatchDBManager extends MyChampDBManager
         return 0;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int countMatches() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -267,6 +321,11 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int maxID() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -286,6 +345,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param matchRound
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -314,6 +379,11 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
     public void deleteFromTeamAndMatch(int id) throws SQLException
     {
         String sql = "DELETE FROM Match WHERE HomeTeamID = ? OR GuestTeamID = ?";
@@ -330,6 +400,11 @@ public class MatchDBManager extends MyChampDBManager
         int affectedRows1 = ps1.executeUpdate();
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public int maxRound() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -349,6 +424,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -379,6 +460,12 @@ public class MatchDBManager extends MyChampDBManager
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public int countTeamGroupMatchesByTeamID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())

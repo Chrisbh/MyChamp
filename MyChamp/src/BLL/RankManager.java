@@ -30,8 +30,7 @@ public class RankManager {
                     ranked[index] = compareTeams( ranked[index], t, matches );
                 }
             }
-            teams.remove( ranked[index++ ] );
-            done = teams.isEmpty();
+
         }
         return ranked;
     }

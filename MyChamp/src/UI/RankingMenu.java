@@ -4,6 +4,7 @@
  */
 package UI;
 
+import BE.Team;
 import BLL.MatchManager;
 import BLL.RankManager;
 import BLL.TeamManager;
@@ -71,7 +72,12 @@ class RankingMenu extends Menu
         {
             printShowHeader();
             
-            rankmgr.rankTeams(teammgr.listAll(), matchmgr.listAll());
+            Team[] teams = rankmgr.rankTeams(teammgr.listAll(), matchmgr.listAll());
+            
+            for (Team t : teams)
+            {
+                System.out.println(t);
+            }
         }
         catch (Exception e)
         {

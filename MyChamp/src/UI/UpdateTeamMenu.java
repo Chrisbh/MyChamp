@@ -21,7 +21,7 @@ public class UpdateTeamMenu extends Menu
     /**
      * Lists the different Menu options in UpdateTeamMenu
      *
-     * @param team 
+     * @param team
      */
     public UpdateTeamMenu(Team team)
     {
@@ -40,7 +40,7 @@ public class UpdateTeamMenu extends Menu
     /**
      * Type a number for entering menu.
      *
-     * @param option 
+     * @param option
      */
     @Override
     protected void doAction(int option)

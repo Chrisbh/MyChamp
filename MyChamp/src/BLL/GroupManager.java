@@ -28,6 +28,7 @@ public class GroupManager
 
     /**
      * Gets the group by a given id.
+     *
      * @param Id the given id.
      * @return returns the Group from the DAL.
      * @throws SQLException

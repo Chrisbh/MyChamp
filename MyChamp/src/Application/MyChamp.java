@@ -15,6 +15,7 @@ public class MyChamp
 
     /**
      * Runs the program, with start at the Main Menu.
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args)

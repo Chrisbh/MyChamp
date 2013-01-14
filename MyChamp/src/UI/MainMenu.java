@@ -49,7 +49,6 @@ public class MainMenu extends Menu
         }
     }
 
-
     private void teamMenu()
     {
         new TeamMenu().run();

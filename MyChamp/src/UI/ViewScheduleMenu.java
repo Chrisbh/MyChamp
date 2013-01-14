@@ -48,7 +48,8 @@ public class ViewScheduleMenu extends Menu
     }
 
     /**
-     *Type a number for entering menu.
+     * Type a number for entering menu.
+     *
      * @param option
      */
     @Override
@@ -83,7 +84,7 @@ public class ViewScheduleMenu extends Menu
             ArrayList<MatchScheduling> matches = matchmgr.viewSchedule();
             ArrayList<MatchScheduling> matchesPlayed = matchmgr.viewSchedulePlayed();
             printShowIsPlayedHeader();
-            
+
             for (MatchScheduling m : matchesPlayed)
             {
                 System.out.printf("%3s %-2d %-6s %-20s %-8s %-21s %-3d %-3s %-3d\n", "", m.getMatchInt(), ":",
@@ -97,7 +98,7 @@ public class ViewScheduleMenu extends Menu
             for (MatchScheduling m : matches)
             {
 
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getMatchInt(), ":", 
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getMatchInt(), ":",
                         teammgr.getById(m.getHomeTeam().getId()).getSchool(), " VS ",
                         teammgr.getById(m.getGuestTeam().getId()).getSchool());
             }
@@ -123,10 +124,10 @@ public class ViewScheduleMenu extends Menu
             {
                 ArrayList<MatchScheduling> groupPlay = matchmgr.viewGroupSchedule(id);
                 printShowGroupScheduleHeader();
-                
+
                 for (MatchScheduling g : groupPlay)
                 {
-                    System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", g.getMatchInt(), ":", 
+                    System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", g.getMatchInt(), ":",
                             teammgr.getById(g.getHomeTeam().getId()).getSchool(), " VS ",
                             teammgr.getById(g.getGuestTeam().getId()).getSchool());
                 }
@@ -166,7 +167,7 @@ public class ViewScheduleMenu extends Menu
                 printShowGroupScheduleHeader();
                 for (MatchScheduling t : teamPlay)
                 {
-                    System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", t.getMatchInt(), ":", 
+                    System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", t.getMatchInt(), ":",
                             teammgr.getById(t.getHomeTeam().getId()).getSchool(), " VS ",
                             teammgr.getById(t.getGuestTeam().getId()).getSchool());
                 }
@@ -214,7 +215,7 @@ public class ViewScheduleMenu extends Menu
             for (Match m : qFinals)
             {
 
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getId(), ":", 
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getId(), ":",
                         teammgr.getById(m.getHomeTeamId()).getSchool(), " VS ",
                         teammgr.getById(m.getGuestTeamId()).getSchool());
             }
@@ -222,13 +223,13 @@ public class ViewScheduleMenu extends Menu
         else
         {
             printShowQFinalHeader();
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "Winner of Group A", " VS ", "Second of Group B");
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "Winner of Group B", " VS ", "Second of Group A");
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "Winner of Group C", " VS ", "Second of Group D");
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "Winner of Group D", " VS ", "Second of Group C");
         }
         /*
@@ -240,7 +241,7 @@ public class ViewScheduleMenu extends Menu
             for (Match m : sFinals)
             {
 
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getId(), ":", 
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getId(), ":",
                         teammgr.getById(m.getHomeTeamId()).getSchool(), " VS ",
                         teammgr.getById(m.getGuestTeamId()).getSchool());
             }
@@ -248,9 +249,9 @@ public class ViewScheduleMenu extends Menu
         else
         {
             printShowSemiFinalHeader();
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "QuarterFinalWinner 1", " VS ", "QuarterFinalWinner 2");
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "QuarterFinalWinner 3", " VS ", "QuarterFinalWinner 4");
         }
         /*
@@ -262,7 +263,7 @@ public class ViewScheduleMenu extends Menu
             for (Match m : finals)
             {
 
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getId(), ":", 
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getId(), ":",
                         teammgr.getById(m.getHomeTeamId()).getSchool(), " VS ",
                         teammgr.getById(m.getGuestTeamId()).getSchool());
             }
@@ -270,7 +271,7 @@ public class ViewScheduleMenu extends Menu
         else
         {
             printShowFinalHeader();
-            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":", 
+            System.out.printf("%3s %-2s %-6s %-20s %-8s %-20s\n", "", "-", ":",
                     "SemiFinalWinner 1", " VS ", "SemiFinalWinner 2");
         }
     }

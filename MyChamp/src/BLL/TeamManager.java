@@ -147,7 +147,19 @@ public class TeamManager
     }
 
     /**
+     * Shows the highest Team Id.
+     *
+     * @return returns the highest Team Id.
+     * @throws SQLException
+     */
+    public int maxTeamId() throws SQLException
+    {
+        return db.maxId();
+    }
+
+    /**
      * Gives points to a team.
+     *
      * @param points the amount of points to update to.
      * @param team the team to give points.
      * @throws SQLException
@@ -159,6 +171,7 @@ public class TeamManager
 
     /**
      * Shuffles the list of teams, and assigns them groups like 1,2,3,4,1,2,3,4.
+     *
      * @throws SQLException
      */
     public void assignRandomGroups() throws SQLException

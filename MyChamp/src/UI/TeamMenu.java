@@ -105,7 +105,8 @@ class TeamMenu extends Menu
         try
         {
             int counter = teammgr.showCount();
-            Team tm = teammgr.getById(1);
+            int maxId = teammgr.maxTeamId();
+            Team tm = teammgr.getById(maxId);
 
             if (tm == null || tm.getGroupId() == 0)
             {
@@ -229,10 +230,11 @@ class TeamMenu extends Menu
         try
         {
             int counter = teammgr.showCount();
+            int maxId = teammgr.maxTeamId();
 
             if (counter > 0)
             {
-                int tm = teammgr.getById(1).getGroupId();
+                int tm = teammgr.getById(maxId).getGroupId();
                 if (tm == 0)
                 {
 

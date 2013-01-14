@@ -277,6 +277,31 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Gets the max team id.
+     *
+     * @return max team id or 0.
+     * @throws SQLException
+     */
+    public int maxId() throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String query = "SELECT MAX(id) as maxId FROM Team";
+
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            while (rs.next())
+            {
+                int maxId = rs.getInt("maxId");
+
+                return maxId;
+            }
+            return 0;
+        }
+    }
+
+    /**
      * List teams ranked in specific requirements.
      *
      * @return - all the teams.

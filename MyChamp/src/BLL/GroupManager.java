@@ -29,5 +29,4 @@ public class GroupManager
     {
         return db.getById(Id);
     }
-
 }

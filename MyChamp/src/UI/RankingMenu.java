@@ -61,7 +61,7 @@ class RankingMenu extends Menu
     }
 
     /**
-     * 
+     *
      */
     private void groupRanking()
     {
@@ -81,8 +81,9 @@ class RankingMenu extends Menu
         }
         pause();
     }
+
     /**
-     * 
+     *
      */
     private void finalRanking()
     {

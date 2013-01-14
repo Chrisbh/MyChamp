@@ -56,6 +56,7 @@ public class MainMenu extends Menu
     {
         new MatchMenu().run();
     }
+
     /**
      * Option for opening the Ranking Menu.
      */
@@ -63,7 +64,7 @@ public class MainMenu extends Menu
     {
         new RankingMenu().run();
     }
-    
+
     /**
      * Option for opening the Reset Menu
      */
@@ -71,6 +72,7 @@ public class MainMenu extends Menu
     {
         new ResetMenu().run();
     }
+
     private void doActionExit()
     {
         System.out.println("YOU SELECTED EXIT !!");

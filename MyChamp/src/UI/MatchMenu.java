@@ -174,19 +174,19 @@ class MatchMenu extends Menu
             int teamCount = teammgr.showCount();
             if (teamCount > 0)
             {
-            int tm = teammgr.getByID(1).getGroupId();
-            if (tm != 0)
-            {
-                if (matchCount < 1)
+                int tm = teammgr.getByID(1).getGroupId();
+                if (tm != 0)
                 {
-                    matchmgr.schedule(teammgr.listAll());
-                    System.out.println("Group Plays have been scheduled!");
+                    if (matchCount < 1)
+                    {
+                        matchmgr.schedule(teammgr.listAll());
+                        System.out.println("Group Plays have been scheduled!");
+                    }
                 }
-            }
-            else
-            {
-                System.out.println("You need to assign to groups before scheduling matches!");
-            }
+                else
+                {
+                    System.out.println("You need to assign to groups before scheduling matches!");
+                }
             }
             else
             {
@@ -231,7 +231,7 @@ class MatchMenu extends Menu
         {
             int currentPointsHome = teammgr.getByID(homeTeamID).getPoints();
             int currentPointsGuest = teammgr.getByID(guestTeamID).getPoints();
-            teammgr.setPoints(currentPointsHome +1, teammgr.getByID(homeTeamID));
+            teammgr.setPoints(currentPointsHome + 1, teammgr.getByID(homeTeamID));
             teammgr.setPoints(currentPointsGuest + 1, teammgr.getByID(guestTeamID));
         }
     }

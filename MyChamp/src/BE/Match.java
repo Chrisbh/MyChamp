@@ -10,6 +10,7 @@ package BE;
  */
 public class Match
 {
+
     private int id;
     private int matchRound;
     private int homeTeamID;
@@ -17,7 +18,7 @@ public class Match
     private int isPlayed;
     private int homeGoals;
     private int guestGoals;
-    
+
     public Match(int id, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
     {
         this.id = id;
@@ -28,7 +29,7 @@ public class Match
         this.homeGoals = homeGoals;
         this.guestGoals = guestGoals;
     }
-    
+
     /**
      * @return the ID
      */
@@ -116,10 +117,10 @@ public class Match
     {
         this.guestGoals = guestGoals;
     }
-    
+
     @Override
     public String toString()
     {
-        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", id, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals );
+        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", id, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals);
     }
 }

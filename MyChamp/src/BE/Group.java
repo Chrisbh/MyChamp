@@ -49,8 +49,8 @@ public class Group
     {
         this.groupName = groupName;
     }
-    
-        /**
+
+    /**
      * Return Id and GroupName from Group.
      *
      * @return
@@ -58,6 +58,6 @@ public class Group
     @Override
     public String toString()
     {
-        return String.format("%3s %-6d %-30s","", id, groupName);
+        return String.format("%3s %-6d %-30s", "", id, groupName);
     }
 }

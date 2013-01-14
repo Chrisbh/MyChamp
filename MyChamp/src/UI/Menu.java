@@ -17,7 +17,7 @@ public abstract class Menu
     protected int EXIT_OPTION = 0;
     private final String header;
     private final String[] menuItems;
-    
+
     /**
      * Creater Menu, Header and Menu items.
      *
@@ -52,7 +52,7 @@ public abstract class Menu
     /*
      * START OF HEADERS.
      */
-    
+
     /**
      * Prints the header for Team section.
      */
@@ -62,6 +62,7 @@ public abstract class Menu
         System.out.printf("%3s %-6s %-25s %-25s %-30s %-12s %-10s \n", "", "Id", "School", "Team Captain", "Email", "Group Id", "Points");
         System.out.println("");
     }
+
     /**
      * Prints the header for Match section.
      */
@@ -71,20 +72,20 @@ public abstract class Menu
         System.out.printf("%3s %-6s %-15s %-15s %-15s %-10s %-15s %-15s\n", "", "Id", "MatchRound", "HomeTeamID", "GuestTeamID", "IsPlayed", "HomeGoals", "GuestGoals");
         System.out.println("");
     }
-    
+
     /**
-     * 
+     *
      */
     protected void printShowScheduleHeader()
     {
         System.out.println();
-        System.out.printf("%25s %-13s\n","","UPCOMING MATCHES!");
+        System.out.printf("%25s %-13s\n", "", "UPCOMING MATCHES!");
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
         System.out.println("    _________________________________________________________");
     }
-    
+
     /**
-     * 
+     *
      */
     protected void printShowGroupScheduleHeader()
     {
@@ -92,53 +93,53 @@ public abstract class Menu
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
         System.out.println("    _________________________________________________________");
     }
-    
+
     /**
-     * 
+     *
      */
     protected void printShowIsPlayedHeader()
     {
-        System.out.printf("%30s %-13s\n","","MATCHES ALREADY PLAYED!");
+        System.out.printf("%30s %-13s\n", "", "MATCHES ALREADY PLAYED!");
         System.out.printf("%3s %-9s %-20s %-8s %-20s %-6s %-3s\n", "", "Id", "HomeTeam", "", "GuestTeam", "Home", "Guest");
         System.out.println("    _________________________________________________________________________");
     }
-    
+
     /**
      * Prints the header for Match section.
      */
     protected void printShowFinalHeader()
     {
         System.out.println();
-        System.out.printf("%28s %-13s\n","","Final!");
+        System.out.printf("%28s %-13s\n", "", "Final!");
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
         System.out.println("    _________________________________________________________");
     }
-    
+
     /**
      * Prints the header for Match section.
      */
     protected void printShowSemiFinalHeader()
     {
         System.out.println();
-        System.out.printf("%25s %-13s\n","","Semi Finals!");
+        System.out.printf("%25s %-13s\n", "", "Semi Finals!");
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
         System.out.println("    _________________________________________________________");
     }
-    
+
     /**
      * Prints the header for Match section.
      */
     protected void printShowQFinalHeader()
     {
         System.out.println();
-        System.out.printf("%25s %-13s\n","","Quarter Finals!");
+        System.out.printf("%25s %-13s\n", "", "Quarter Finals!");
         System.out.printf("%3s %-9s %-20s %-8s %-20s\n", "", "Id", "HomeTeam", "", "GuestTeam");
         System.out.println("    _________________________________________________________");
     }
     /*
      * END OF HEADERS.
      */
-    
+
     /**
      *
      */

@@ -69,7 +69,7 @@ public class MatchScheduling
     {
         this.matchInt = matchInt;
     }
-    
+
     @Override
     public String toString()
     {

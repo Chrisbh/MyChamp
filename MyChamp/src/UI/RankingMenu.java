@@ -4,8 +4,10 @@
  */
 package UI;
 
+import BE.Team;
 import BLL.MatchManager;
 import BLL.TeamManager;
+import java.util.ArrayList;
 
 /**
  *
@@ -69,11 +71,6 @@ class RankingMenu extends Menu
         System.out.println();
         try
         {
-//            ArrayList<Match> m1 = matchmgr.viewTeamSchedule(m1);
-//            int m2 = 1;
-//            
-//            ArrayList<Match> match1 = matchmgr.sortTeamsByRank(m1, m2);
-//            ArrayList<Match> match2 = matchmgr.sortTeamsByRank(m2, m1);
         }
         catch (Exception e)
         {

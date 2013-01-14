@@ -33,8 +33,10 @@ public class MatchManager
     }
 
     /**
+     * Gets an instance of the MatchManager.
      *
-     * @return @throws Exception
+     * @return returns the instance.
+     * @throws Exception
      */
     public static MatchManager getInstance() throws Exception
     {
@@ -46,9 +48,10 @@ public class MatchManager
     }
 
     /**
+     * Gets a match by a given id.
      *
-     * @param id
-     * @return
+     * @param id the given id.
+     * @return returns the Match from the DAL.
      * @throws SQLException
      */
     public Match getById(int id) throws SQLException
@@ -57,9 +60,10 @@ public class MatchManager
     }
 
     /**
+     * Creates an ArrayList of matches with a given MatchRound.
      *
-     * @param matchRound
-     * @return
+     * @param matchRound the given MatchRound.
+     * @return returns the ArrayList of matches.
      * @throws SQLException
      */
     public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
@@ -68,8 +72,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the total schedule.
      *
-     * @return @throws SQLException
+     * @return
+     * @throws SQLException
      */
     public ArrayList<MatchScheduling> viewSchedule() throws SQLException
     {
@@ -77,8 +83,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the matches played.
      *
-     * @return @throws SQLException
+     * @return
+     * @throws SQLException
      */
     public ArrayList<MatchScheduling> viewSchedulePlayed() throws SQLException
     {
@@ -86,9 +94,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the schedule for a given group.
      *
-     * @param groupID
-     * @return
+     * @param groupID the given Group Id.
+     * @return returns the schedule for a given group.
      * @throws SQLException
      */
     public ArrayList<MatchScheduling> viewGroupSchedule(int groupID) throws SQLException
@@ -97,9 +106,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the schedule for a given team.
      *
-     * @param teamID
-     * @return
+     * @param teamID the given Team Id.
+     * @return returns the schedule for a given team.
      * @throws SQLException
      */
     public ArrayList<MatchScheduling> viewTeamSchedule(int teamID) throws SQLException
@@ -108,8 +118,9 @@ public class MatchManager
     }
 
     /**
+     * Shows the Match results of a given Match.
      *
-     * @param m
+     * @param m the given Match.
      * @throws SQLException
      */
     public void matchResults(Match m) throws SQLException
@@ -118,9 +129,10 @@ public class MatchManager
     }
 
     /**
+     * Shows whether a given Match has been played.
      *
-     * @param id
-     * @return
+     * @param id the given Match id.
+     * @return returns 1 if the match has been played, 0 if not.
      * @throws SQLException
      */
     public int isPlayed(int id) throws SQLException
@@ -129,8 +141,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the total number of matches.
      *
-     * @return @throws SQLException
+     * @return the number of matches.
+     * @throws SQLException
      */
     public int showCount() throws SQLException
     {
@@ -138,9 +152,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the number of Matches in Group plays with a given team id.
      *
-     * @param id
-     * @return
+     * @param id the given team id.
+     * @return returns the number of matches.
      * @throws SQLException
      */
     public int showCountTeamGroup(int id) throws SQLException
@@ -149,8 +164,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the highest Match Round.
      *
-     * @return @throws SQLException
+     * @return returns the highest Match Round.
+     * @throws SQLException
      */
     public int maxMatchRound() throws SQLException
     {
@@ -158,8 +175,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the highest Match Id.
      *
-     * @return @throws SQLException
+     * @return returns the highest Match Id.
+     * @throws SQLException
      */
     public int maxMatchId() throws SQLException
     {
@@ -167,9 +186,10 @@ public class MatchManager
     }
 
     /**
+     * Shows the Group matches for a team with a given team id.
      *
-     * @param id
-     * @return
+     * @param id the given team id.
+     * @return returns the group matches for a team.
      * @throws SQLException
      */
     public ArrayList<Match> getGroupMatchesByTeamId(int id) throws SQLException
@@ -192,8 +212,9 @@ public class MatchManager
     }
 
     /**
+     * Schedules the group matches.
      *
-     * @param teams
+     * @param teams an ArrayList of teams, scheduled to group matches.
      * @return
      * @throws SQLException
      */
@@ -291,8 +312,9 @@ public class MatchManager
     }
 
     /**
+     * Schedules the quarter finals.
      *
-     * @param teams
+     * @param teams an ArrayList of teams, already ranked.
      * @return
      * @throws SQLException
      */
@@ -326,8 +348,11 @@ public class MatchManager
     }
 
     /**
+     * First creates an ArrayList of winners of the quarter finals. Schedules
+     * the semi finals
      *
-     * @return @throws SQLException
+     * @return
+     * @throws SQLException
      */
     public ArrayList<MatchScheduling> scheduleSemiFinals() throws SQLException
     {
@@ -391,8 +416,11 @@ public class MatchManager
     }
 
     /**
+     * First creates an ArrayList with winning teams of semi finals Schedules
+     * the final.
      *
-     * @return @throws SQLException
+     * @return
+     * @throws SQLException
      */
     public ArrayList<MatchScheduling> scheduleFinal() throws SQLException
     {

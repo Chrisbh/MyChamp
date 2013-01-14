@@ -26,13 +26,10 @@ public class GroupManager
         db = new GroupDBManager();
     }
 
-    /*
-     * Gets the group by id.
-     */
     /**
-     *
-     * @param Id
-     * @return
+     * Gets the group by a given id.
+     * @param Id the given id.
+     * @return returns the Group from the DAL.
      * @throws SQLException
      */
     public Group getById(int Id) throws SQLException

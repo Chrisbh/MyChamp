@@ -30,8 +30,10 @@ public class TeamManager
     }
 
     /**
+     * Gets an instance of TeamManager.
      *
-     * @return @throws Exception
+     * @return returns the instance.
+     * @throws Exception
      */
     public static TeamManager getInstance() throws Exception
     {
@@ -43,8 +45,10 @@ public class TeamManager
     }
 
     /**
+     * Lists all the teams.
      *
-     * @return @throws SQLException
+     * @return returns an ArrayList of teams.
+     * @throws SQLException
      */
     public ArrayList<Team> listAll() throws SQLException
     {
@@ -52,8 +56,10 @@ public class TeamManager
     }
 
     /**
+     * Lists all the teams, ranked after criterias.
      *
-     * @return @throws SQLException
+     * @return returns an ArrayList of teams.
+     * @throws SQLException
      */
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
@@ -61,9 +67,9 @@ public class TeamManager
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Gets a team by a given id.
+     * @param id the given id.
+     * @return returns the team with the given id.
      * @throws SQLException
      */
     public Team getById(int id) throws SQLException

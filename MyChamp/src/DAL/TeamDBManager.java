@@ -20,6 +20,8 @@ public class TeamDBManager extends MyChampDBManager
 {
 
     /**
+     * Extends the logininformation from the MyChampDBManager, so we won't need
+     * to correct the logininformation in more than one place.
      *
      * @throws Exception
      */
@@ -29,8 +31,10 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * List all teams.
      *
-     * @return @throws SQLException
+     * @return returns the teams in a ArrayList.
+     * @throws SQLException
      */
     public ArrayList<Team> listAll() throws SQLException
     {
@@ -59,6 +63,7 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * shows a specific team with an choosen id.
      *
      * @param id
      * @return

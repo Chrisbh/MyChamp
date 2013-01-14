@@ -177,8 +177,15 @@ class TeamUIMenu extends Menu
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
             Team team = teammgr.getByID(id);
-
+            if(team != null)
+            {
             new UpdateTeamMenu(team).run();
+            }
+            else
+            {
+                System.out.println("Team does not exist!");
+            }
+            
         }
         catch (Exception e)
         {
@@ -230,6 +237,8 @@ class TeamUIMenu extends Menu
         try
         {
             int counter = teammgr.showCount();
+            if (counter > 0)
+            {
             int tm = teammgr.getByID(1).getGroupId();
             if (tm == 0)
             {
@@ -262,6 +271,11 @@ class TeamUIMenu extends Menu
             else
             {
                 System.out.println("Groups have already been assigned!");
+            }
+            }
+            else
+            {
+                System.out.println("You need teams to assign groups");
             }
         }
         catch (Exception e)

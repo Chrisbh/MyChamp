@@ -113,8 +113,8 @@ class TeamUIMenu extends Menu
         {
             int counter = teammgr.showCount();
             Team tm = teammgr.getByID(1);
-            int tm1 = teammgr.getByID(1).getGroupId();
-            if (tm == null || tm1 == 0)
+            
+            if (tm == null || tm.getGroupId() == 0)
             {
                 if (counter <= 16)
                 {
@@ -149,6 +149,7 @@ class TeamUIMenu extends Menu
         catch (Exception e)
         {
             System.out.println("ERROR - " + e.getMessage());
+            e.printStackTrace();
         }
         pause();
     }

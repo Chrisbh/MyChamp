@@ -65,8 +65,8 @@ public class TeamDBManager extends MyChampDBManager
     /**
      * shows a specific team with an choosen id.
      *
-     * @param id
-     * @return
+     * @param id - the given id
+     * @return returns the specific group with the id
      * @throws SQLException
      */
     public Team getById(int id) throws SQLException
@@ -95,9 +95,10 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Gets a team with a given groupid.
      *
-     * @param id
-     * @return
+     * @param id the given id.
+     * @return returns the team with the given groupid.
      * @throws SQLException
      */
     public ArrayList<Team> getByGroupId(int id) throws SQLException
@@ -129,9 +130,11 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Adds a team into the database.
      *
-     * @param t
-     * @return
+     * @param t - Contains the data that is getting inserted into the database
+     * fields.
+     * @return return new team
      * @throws SQLException
      */
     public Team addTeam(Team t) throws SQLException
@@ -159,8 +162,9 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Updates a specific team
      *
-     * @param t
+     * @param t - the chosen team.
      * @throws SQLException
      */
     public void update(Team t) throws SQLException
@@ -184,8 +188,9 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Delete team and matches with the given team.
      *
-     * @param id
+     * @param id - the team id.
      * @throws SQLException
      */
     public void deleteFromTeamAndMatch(int id) throws SQLException
@@ -205,6 +210,7 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Reset all table columns.
      *
      * @throws SQLException
      */
@@ -219,9 +225,10 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Assign teams to the four groups
      *
-     * @param t
-     * @param g
+     * @param t - the chosen team
+     * @param g - the chosen group
      * @throws SQLException
      */
     public void assign(Team t, int groupId) throws SQLException
@@ -245,8 +252,10 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Count the number of teams.
      *
-     * @return @throws SQLException
+     * @return - The number of teams.
+     * @throws SQLException
      */
     public int count() throws SQLException
     {
@@ -268,8 +277,10 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * List teams ranked in specific requirements.
      *
-     * @return @throws SQLException
+     * @return - all the teams.
+     * @throws SQLException
      */
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
@@ -298,9 +309,10 @@ public class TeamDBManager extends MyChampDBManager
     }
 
     /**
+     * Set points for the team, when winning or having draw match.
      *
-     * @param points
-     * @param t
+     * @param points - the point for the chosen team.
+     * @param t - the chosen team.
      * @throws SQLException
      */
     public void setPoints(int points, Team t) throws SQLException

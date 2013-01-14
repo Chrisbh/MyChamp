@@ -16,12 +16,12 @@ public class Group
 
     /**
      *
-     * @param ID
+     * @param id
      * @param groupName
      */
-    public Group(int ID, String groupName)
+    public Group(int id, String groupName)
     {
-        this.id = ID;
+        this.id = id;
         this.groupName = groupName;
     }
 
@@ -30,7 +30,7 @@ public class Group
      *
      * @return the id
      */
-    public int getID()
+    public int getId()
     {
         return id;
     }
@@ -48,9 +48,9 @@ public class Group
     /**
      * Sets the name for an Group in the database.
      *
-     * @param GroupName 
+     * @param GroupName
      */
-    public void setGroupName(String GroupName)
+    public void setGroupName(String groupName)
     {
         this.groupName = groupName;
     }

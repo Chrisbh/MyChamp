@@ -41,7 +41,7 @@ public class MainMenu extends Menu
                 rankingMenu();
                 break;
             case 4:
-                resetEverythingMenu();
+                resetMenu();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -53,7 +53,7 @@ public class MainMenu extends Menu
      */
     private void teamMenu()
     {
-        new TeamUIMenu().run();
+        new TeamMenu().run();
     }
 
     /**
@@ -75,13 +75,13 @@ public class MainMenu extends Menu
     /**
      * Option for opening the Reset Menu
      */
-    private void resetEverythingMenu()
+    private void resetMenu()
     {
         new ResetMenu().run();
     }
 
     private void doActionExit()
     {
-        System.out.println("YOU SELECTED EXIT !!");
+        System.out.println("You have chosen to exit!");
     }
 }

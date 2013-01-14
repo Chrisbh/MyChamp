@@ -37,9 +37,9 @@ public class MatchScheduling
     }
 
     /**
-     * @param HomeTeam the HomeTeam to set
+     * @param homeTeam the HomeTeam to set
      */
-    public void setHomeTeam(Team HomeTeam)
+    public void setHomeTeam(Team homeTeam)
     {
         this.homeTeam = homeTeam;
     }
@@ -53,9 +53,9 @@ public class MatchScheduling
     }
 
     /**
-     * @param GuestTeam the GuestTeam to set
+     * @param guestTeam the GuestTeam to set
      */
-    public void setGuestTeam(Team GuestTeam)
+    public void setGuestTeam(Team guestTeam)
     {
         this.guestTeam = guestTeam;
     }

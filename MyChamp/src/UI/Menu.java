@@ -71,7 +71,7 @@ public abstract class Menu
     protected void printShowMatchHeader()
     {
         clear();
-        System.out.printf("%3s %-6s %-15s %-15s %-15s %-10s %-15s %-15s\n", "", "Id", "MatchRound", "HomeTeamID", "GuestTeamID", "IsPlayed", "HomeGoals", "GuestGoals");
+        System.out.printf("%3s %-6s %-15s %-15s %-15s %-10s %-15s %-15s\n", "", "Id", "MatchRound", "HomeTeamId", "GuestTeamId", "IsPlayed", "HomeGoals", "GuestGoals");
         System.out.println("");
     }
 

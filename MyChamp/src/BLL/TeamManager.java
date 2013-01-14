@@ -6,7 +6,6 @@ package BLL;
 
 import BE.Team;
 import DAL.TeamDBManager;
-import java.security.acl.Group;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,10 +19,6 @@ public class TeamManager
 
     private TeamDBManager db = null;
     private static TeamManager instance = null;
-    private Team team;
-    private Group group;
-    private int i = 1;
-    private int given = 1;
 
     /**
      *
@@ -36,8 +31,7 @@ public class TeamManager
 
     /**
      *
-     * @return
-     * @throws Exception
+     * @return @throws Exception
      */
     public static TeamManager getInstance() throws Exception
     {
@@ -50,33 +44,42 @@ public class TeamManager
 
     /**
      *
+     * @return @throws SQLException
+     */
+    public ArrayList<Team> listAll() throws SQLException
+    {
+        return db.listAll();
+    }
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public ArrayList<Team> listGroupRanked() throws SQLException
+    {
+        return db.listGroupRanked();
+    }
+
+    /**
+     *
      * @param id
      * @return
      * @throws SQLException
      */
-    public Team getByID(int id) throws SQLException
+    public Team getById(int id) throws SQLException
     {
-        return db.getByID(id);
+        return db.getById(id);
     }
 
     /**
      *
+     * @param id
      * @return
      * @throws SQLException
      */
-    public ArrayList<Team> listAll() throws SQLException
+    public ArrayList getByGroupId(int id) throws SQLException
     {
-        return db.ListAll();
-    }
-
-    /**
-     *
-     * @param team
-     * @throws SQLException
-     */
-    public void update(Team team) throws SQLException
-    {
-        db.update(team);
+        return db.getByGroupId(id);
     }
 
     /**
@@ -91,12 +94,52 @@ public class TeamManager
 
     /**
      *
-     * @return
+     * @param team
      * @throws SQLException
+     */
+    public void update(Team team) throws SQLException
+    {
+        db.update(team);
+    }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    public void resetAll() throws SQLException
+    {
+        db.resetAll();
+        System.out.println("Cleared!");
+    }
+
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
+    public void deleteFromTeamAndMatch(int id) throws SQLException
+    {
+        db.deleteFromTeamAndMatch(id);
+    }
+
+    /**
+     *
+     * @return @throws SQLException
      */
     public int showCount() throws SQLException
     {
-        return db.Count();
+        return db.count();
+    }
+
+    /**
+     *
+     * @param points
+     * @param team
+     * @throws SQLException
+     */
+    public void setPoints(int points, Team team) throws SQLException
+    {
+        db.setPoints(points, team);
     }
 
     /**
@@ -127,47 +170,5 @@ public class TeamManager
             }
         }
         System.out.println("Groups have been assigned !!");
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList getByGroupID(int id) throws SQLException
-    {
-        return db.getByGroupID(id);
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<Team> listGroupRanked() throws SQLException
-    {
-        return db.listGroupRanked();
-    }
-
-    /**
-     *
-     * @param points
-     * @param team
-     * @throws SQLException
-     */
-    public void setPoints(int points, Team team) throws SQLException
-    {
-        db.setPoints(points, team);
-    }
-
-    /**
-     *
-     * @throws SQLException
-     */
-    public void deleteAll() throws SQLException
-    {
-        db.deleteAll();
-        System.out.println("Deleted!");
     }
 }

@@ -57,17 +57,19 @@ public class ResetMenu extends Menu
         try
         {
             System.out.println("CAUTION!");
-            System.out.println("If continuing with ressetting, all groups and matches will be deleted!");
+            System.out.println("If continuing with resetting, all groups and matches will be deleted!");
             System.out.println("Do you want to continue? Y/N");
+
             Scanner sc = new Scanner(System.in, "iso-8859-1");
             String further = sc.nextLine();
+
             switch (further)
             {
                 case "Y":
-                    teammgr.deleteAll();
+                    teammgr.resetAll();
                     break;
                 case "y":
-                    teammgr.deleteAll();
+                    teammgr.resetAll();
                     break;
                 case "N":
                     System.out.println("You have selected no.");
@@ -89,6 +91,6 @@ public class ResetMenu extends Menu
 
     private void doActionExit()
     {
-        System.out.println("YOU SELECTED EXIT !!");
+        System.out.println("You have chosen to exit!");
     }
 }

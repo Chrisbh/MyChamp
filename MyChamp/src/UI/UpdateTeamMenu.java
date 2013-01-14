@@ -49,13 +49,13 @@ public class UpdateTeamMenu extends Menu
         switch (option)
         {
             case 1:
-                UpdateSchool();
+                updateSchool();
                 break;
             case 2:
-                UpdateTeamCaptain();
+                updateTeamCaptain();
                 break;
             case 3:
-                UpdateEmail();
+                updateEmail();
                 break;
             case 0:
                 saveChanges();
@@ -69,36 +69,36 @@ public class UpdateTeamMenu extends Menu
      * Update School Name.
      *
      */
-    private void UpdateSchool()
+    private void updateSchool()
     {
         System.out.println();
-        System.out.println("Update School");
-        String School = new Scanner(System.in, "iso-8859-1").nextLine();
+        System.out.println("Update school:");
+        String school = new Scanner(System.in, "iso-8859-1").nextLine();
 
-        team.setSchool(School);
+        team.setSchool(school);
     }
 
     /**
      * Update Team Captain Name.
      *
      */
-    private void UpdateTeamCaptain()
+    private void updateTeamCaptain()
     {
         System.out.println();
-        System.out.println("Update Team Captain");
-        String teamcaptain = new Scanner(System.in, "iso-8859-1").nextLine();
+        System.out.println("Update team captain:");
+        String teamCaptain = new Scanner(System.in, "iso-8859-1").nextLine();
 
-        team.setTeamCaptain(teamcaptain);
+        team.setTeamCaptain(teamCaptain);
     }
 
     /**
      * Update Email.
      *
      */
-    private void UpdateEmail()
+    private void updateEmail()
     {
         System.out.println();
-        System.out.println("Update Email");
+        System.out.println("Update email:");
         String email = new Scanner(System.in, "iso-8859-1").nextLine();
 
         team.setEmail(email);
@@ -110,20 +110,20 @@ public class UpdateTeamMenu extends Menu
      */
     private void saveChanges()
     {
-        System.out.println("");
-        System.out.println("SAVING CHANGES");
+        System.out.println();
+        System.out.println("Saving changes......");
         try
         {
             TeamManager.getInstance().update(team);
         }
         catch (Exception e)
         {
-            System.out.println("SAVE COULD NOT BE COMPLETED");
+            System.out.println("Save could not be completed!");
             System.out.println("ERROR - " + e.getMessage());
             pause();
         }
-        System.out.println("");
-        System.out.println("YOU SELECTED EXIT !!");
-        System.out.println("YOU WILL RETURN TO TEAM MENU");
+        System.out.println();
+        System.out.println("You have chosen to exit!");
+        System.out.println("You will return to the Team Menu");
     }
 }

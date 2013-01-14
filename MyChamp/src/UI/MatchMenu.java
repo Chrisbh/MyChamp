@@ -40,7 +40,6 @@ class MatchMenu extends Menu
             teammgr = new TeamManager();
             matchmgr = new MatchManager();
             groupmgr = new GroupManager();
-
         }
         catch (Exception e)
         {
@@ -88,42 +87,46 @@ class MatchMenu extends Menu
     {
 
         clear();
-        System.out.println("Insert match results.");
+        System.out.println("Insert match results:");
         System.out.println();
 
         try
         {
             int matchCount = matchmgr.showCount();
             int teamCount = teammgr.showCount();
-            int maxMatchID = matchmgr.maxMatchID();
+            int maxMatchId = matchmgr.maxMatchId();
             int teams = 12;
             ArrayList<MatchScheduling> matches = matchmgr.viewSchedule();
             printShowScheduleHeader();
+
             for (MatchScheduling m : matches)
             {
-
-                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getMatchInt(), ":", teammgr.getByID(m.getHomeTeam().getId()).getSchool(), " VS ",
-                        teammgr.getByID(m.getGuestTeam().getId()).getSchool());
+                System.out.printf("%3s %-2d %-6s %-20s %-8s %-20s\n", "", m.getMatchInt(),
+                        ":", teammgr.getById(m.getHomeTeam().getId()).getSchool(), " VS ",
+                        teammgr.getById(m.getGuestTeam().getId()).getSchool());
             }
 
             System.out.println("Select Match id: ");
             int id = new Scanner(System.in).nextInt();
-            Match results = matchmgr.getByID(id);
+
+            Match results = matchmgr.getById(id);
             if (results != null)
             {
                 if (matchmgr.isPlayed(id) == 0)
                 {
                     /*
-                     * HomeTeam Goals
+                     * Set HomeTeam Goals
                      */
-                    System.out.println("Enter Goals scored for: " + teammgr.getByID(results.getHomeTeamID()).getSchool());
+                    System.out.println("Enter goals scored for: "
+                            + teammgr.getById(results.getHomeTeamId()).getSchool());
                     int homeGoals = new Scanner(System.in).nextInt();
                     results.setHomeGoals(homeGoals);
 
                     /*
-                     * GuestTeam Goals
+                     * Set GuestTeam Goals
                      */
-                    System.out.println("Enter Goals scored for: " + teammgr.getByID(results.getGuestTeamID()).getSchool());
+                    System.out.println("Enter goals scored for: "
+                            + teammgr.getById(results.getGuestTeamId()).getSchool());
                     int guestGoals = new Scanner(System.in).nextInt();
                     results.setGuestGoals(guestGoals);
 
@@ -136,8 +139,10 @@ class MatchMenu extends Menu
                     {
                         givePoints(homeGoals, guestGoals, results);
                     }
-
-                    createSchedule(maxMatchID, matchCount, teamCount, teams);
+                    /*
+                     * Checks for the next possiblity to schedule finals.
+                     */
+                    createSchedule(maxMatchId, matchCount, teamCount, teams);
 
                 }
                 /*
@@ -147,6 +152,9 @@ class MatchMenu extends Menu
                 {
                     System.out.println("Match has already been played!");
                 }
+                /*
+                 * If the match already exist.
+                 */
             }
             else
             {
@@ -174,20 +182,33 @@ class MatchMenu extends Menu
             int teamCount = teammgr.showCount();
             if (teamCount > 0)
             {
-                int tm = teammgr.getByID(1).getGroupId();
+                int tm = teammgr.getById(1).getGroupId();
                 if (tm != 0)
                 {
+                    /*
+                     * If no matches, schedules group plays.
+                     */
                     if (matchCount < 1)
                     {
                         matchmgr.schedule(teammgr.listAll());
-                        System.out.println("Group Plays have been scheduled!");
+                        System.out.println("Group plays have been scheduled!");
+                    }
+                    else
+                    {
+                        System.out.println("Matches has already been scheduled!");
                     }
                 }
+                /*
+                 * If groups is not assigned, returns an error.
+                 */
                 else
                 {
                     System.out.println("You need to assign to groups before scheduling matches!");
                 }
             }
+            /*
+             * If no teams, returns an error.
+             */
             else
             {
                 System.out.println("You need teams to schedule matches!");
@@ -206,41 +227,44 @@ class MatchMenu extends Menu
      */
     private void givePoints(int homeGoals, int guestGoals, Match results) throws SQLException
     {
-        int homeTeamID = results.getHomeTeamID();
-        int guestTeamID = results.getGuestTeamID();
+        int homeTeamID = results.getHomeTeamId();
+        int guestTeamID = results.getGuestTeamId();
         /*
          * Point giving for HomeTeam.
          */
         if (homeGoals > guestGoals)
         {
-            int currentPoints = teammgr.getByID(homeTeamID).getPoints();
-            teammgr.setPoints(currentPoints + 3, teammgr.getByID(homeTeamID));
+            int currentPoints = teammgr.getById(homeTeamID).getPoints();
+            teammgr.setPoints(currentPoints + 3, teammgr.getById(homeTeamID));
         }
         /*
          * Point giving for GuestTeam.
          */
         else if (homeGoals < guestGoals)
         {
-            int currentPoints = teammgr.getByID(guestTeamID).getPoints();
-            teammgr.setPoints(currentPoints + 3, teammgr.getByID(guestTeamID));
+            int currentPoints = teammgr.getById(guestTeamID).getPoints();
+            teammgr.setPoints(currentPoints + 3, teammgr.getById(guestTeamID));
         }
         /*
          * If tied give both 1 point.
          */
         else
         {
-            int currentPointsHome = teammgr.getByID(homeTeamID).getPoints();
-            int currentPointsGuest = teammgr.getByID(guestTeamID).getPoints();
-            teammgr.setPoints(currentPointsHome + 1, teammgr.getByID(homeTeamID));
-            teammgr.setPoints(currentPointsGuest + 1, teammgr.getByID(guestTeamID));
+            int currentPointsHome = teammgr.getById(homeTeamID).getPoints();
+            int currentPointsGuest = teammgr.getById(guestTeamID).getPoints();
+            teammgr.setPoints(currentPointsHome + 1, teammgr.getById(homeTeamID));
+            teammgr.setPoints(currentPointsGuest + 1, teammgr.getById(guestTeamID));
         }
     }
 
-    private void createSchedule(int maxMatchID, int matchCount, int teamCount, int teams) throws SQLException
+    private void createSchedule(int maxMatchId, int matchCount, int teamCount, int teams) throws SQLException
     {
+        /*
+         * Int i equals the matches required for the number of teams.
+         */
         for (int i = 24; i <= 48; i += 6)
         {
-            int isPlayed = matchmgr.isPlayed(maxMatchID);
+            int isPlayed = matchmgr.isPlayed(maxMatchId);
             if (matchCount == i && teamCount == teams && isPlayed == 1)
             {
                 matchmgr.scheduleQuarterFinals(teammgr.listGroupRanked());
@@ -266,6 +290,6 @@ class MatchMenu extends Menu
      */
     private void doActionExit()
     {
-        System.out.println("YOU SELECTED EXIT !!");
+        System.out.println("You have chosen to exit!");
     }
 }

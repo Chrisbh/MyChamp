@@ -34,8 +34,7 @@ public class MatchManager
 
     /**
      *
-     * @return
-     * @throws Exception
+     * @return @throws Exception
      */
     public static MatchManager getInstance() throws Exception
     {
@@ -46,13 +45,145 @@ public class MatchManager
         return instance;
     }
 
-    private ArrayList<Team> getGroup(int groupID, ArrayList<Team> teams)
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public Match getById(int id) throws SQLException
+    {
+        return db.getById(id);
+    }
+
+    /**
+     *
+     * @param matchRound
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
+    {
+        return db.listByMatchRound(matchRound);
+    }
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public ArrayList<MatchScheduling> viewSchedule() throws SQLException
+    {
+        return db.viewSchedule();
+    }
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public ArrayList<MatchScheduling> viewSchedulePlayed() throws SQLException
+    {
+        return db.viewSchedulePlayed();
+    }
+
+    /**
+     *
+     * @param groupID
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<MatchScheduling> viewGroupSchedule(int groupID) throws SQLException
+    {
+        return db.viewGroupSchedule(groupID);
+    }
+
+    /**
+     *
+     * @param teamID
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<MatchScheduling> viewTeamSchedule(int teamID) throws SQLException
+    {
+        return db.viewTeamSchedule(teamID);
+    }
+
+    /**
+     *
+     * @param m
+     * @throws SQLException
+     */
+    public void matchResults(Match m) throws SQLException
+    {
+        db.matchResults(m);
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public int isPlayed(int id) throws SQLException
+    {
+        return db.isPlayed(id);
+    }
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public int showCount() throws SQLException
+    {
+        return db.countMatches();
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public int showCountTeamGroup(int id) throws SQLException
+    {
+        return db.countTeamGroupMatchesByTeamId(id);
+    }
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public int maxMatchRound() throws SQLException
+    {
+        return db.maxRound();
+    }
+
+    /**
+     *
+     * @return @throws SQLException
+     */
+    public int maxMatchId() throws SQLException
+    {
+        return db.maxId();
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<Match> getGroupMatchesByTeamId(int id) throws SQLException
+    {
+        return db.getGroupMatchesByTeamId(id);
+    }
+
+    private ArrayList<Team> getGroup(int groupId, ArrayList<Team> teams)
     {
         ArrayList<Team> group = new ArrayList();
 
         for (Team t : teams)
         {
-            if (t.getGroupId() == groupID)
+            if (t.getGroupId() == groupId)
             {
                 group.add(t);
             }
@@ -196,19 +327,7 @@ public class MatchManager
 
     /**
      *
-     * @param matchRound
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
-    {
-        return db.listByMatchRound(matchRound);
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
     public ArrayList<MatchScheduling> scheduleSemiFinals() throws SQLException
     {
@@ -218,30 +337,38 @@ public class MatchManager
         ArrayList<Team> s2Teams = new ArrayList();
 
 
+
+
         for (int k = 0; k <= 1; k++)
         {
-            if (getByID(listByMatchRound(7).get(k).getID()).getHomeGoals() > getByID(listByMatchRound(7).get(k).getID()).getGuestGoals())
+            int homeTeamId = getById(listByMatchRound(7).get(k).getId()).getHomeTeamId();
+            int guestTeamId = getById(listByMatchRound(7).get(k).getId()).getGuestTeamId();
+
+            if (getById(listByMatchRound(7).get(k).getId()).getHomeGoals() > getById(listByMatchRound(7).get(k).getId()).getGuestGoals())
             {
-                Team hw = teammgr.getByID(getByID(listByMatchRound(7).get(k).getID()).getHomeTeamID());
+                Team hw = teammgr.getById(homeTeamId);
                 s1Teams.add(hw);
             }
             else
             {
-                Team gw = teammgr.getByID(getByID(listByMatchRound(7).get(k).getID()).getGuestTeamID());
+                Team gw = teammgr.getById(guestTeamId);
                 s1Teams.add(gw);
             }
         }
 
         for (int k = 2; k <= 3; k++)
         {
-            if (getByID(listByMatchRound(7).get(k).getID()).getHomeGoals() > getByID(listByMatchRound(7).get(k).getID()).getGuestGoals())
+            int homeTeamId = getById(listByMatchRound(7).get(k).getId()).getHomeTeamId();
+            int guestTeamId = getById(listByMatchRound(7).get(k).getId()).getGuestTeamId();
+
+            if (getById(listByMatchRound(7).get(k).getId()).getHomeGoals() > getById(listByMatchRound(7).get(k).getId()).getGuestGoals())
             {
-                Team hw = teammgr.getByID(getByID(listByMatchRound(7).get(k).getID()).getHomeTeamID());
+                Team hw = teammgr.getById(homeTeamId);
                 s2Teams.add(hw);
             }
             else
             {
-                Team gw = teammgr.getByID(getByID(listByMatchRound(7).get(k).getID()).getGuestTeamID());
+                Team gw = teammgr.getById(guestTeamId);
                 s2Teams.add(gw);
             }
         }
@@ -265,8 +392,7 @@ public class MatchManager
 
     /**
      *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
     public ArrayList<MatchScheduling> scheduleFinal() throws SQLException
     {
@@ -276,14 +402,17 @@ public class MatchManager
 
         for (int k = 0; k <= 1; k++)
         {
-            if (getByID(listByMatchRound(8).get(k).getID()).getHomeGoals() > getByID(listByMatchRound(8).get(k).getID()).getGuestGoals())
+            int homeTeamId = getById(listByMatchRound(8).get(k).getId()).getHomeTeamId();
+            int guestTeamId = getById(listByMatchRound(8).get(k).getId()).getGuestTeamId();
+
+            if (getById(listByMatchRound(8).get(k).getId()).getHomeGoals() > getById(listByMatchRound(8).get(k).getId()).getGuestGoals())
             {
-                Team hw = teammgr.getByID(getByID(listByMatchRound(8).get(k).getID()).getHomeTeamID());
+                Team hw = teammgr.getById(homeTeamId);
                 f1Teams.add(hw);
             }
             else
             {
-                Team gw = teammgr.getByID(getByID(listByMatchRound(8).get(k).getID()).getGuestTeamID());
+                Team gw = teammgr.getById(guestTeamId);
                 f1Teams.add(gw);
             }
         }
@@ -303,144 +432,4 @@ public class MatchManager
         }
         return null;
     }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<MatchScheduling> viewSchedule() throws SQLException
-    {
-        return db.viewSchedule();
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<MatchScheduling> viewSchedulePlayed() throws SQLException
-    {
-        return db.viewSchedulePlayed();
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public Match getByID(int id) throws SQLException
-    {
-        return db.getByID(id);
-    }
-
-    /**
-     *
-     * @param groupID
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<MatchScheduling> viewGroupSchedule(int groupID) throws SQLException
-    {
-        return db.viewGroupSchedule(groupID);
-    }
-
-    /**
-     *
-     * @param teamID
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<MatchScheduling> viewTeamSchedule(int teamID) throws SQLException
-    {
-        return db.viewTeamSchedule(teamID);
-    }
-
-    /**
-     *
-     * @param m
-     * @throws SQLException
-     */
-    public void matchResults(Match m) throws SQLException
-    {
-        db.matchResults(m);
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public int isPlayed(int id) throws SQLException
-    {
-        return db.isPlayed(id);
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public int showCount() throws SQLException
-    {
-        return db.countMatches();
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public int maxMatchID() throws SQLException
-    {
-        return db.maxID();
-    }
-
-    /**
-     *
-     * @param id
-     * @throws SQLException
-     */
-    public void deleteFromTeamAndMatch(int id) throws SQLException
-    {
-        db.deleteFromTeamAndMatch(id);
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-    public int maxMatchRound() throws SQLException
-    {
-        return db.maxRound();
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
-    {
-        return db.getGroupMatchesByTeamID(id);
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public int showCountTeamGroup(int id) throws SQLException
-    {
-        return db.countTeamGroupMatchesByTeamID(id);
-    }
-//    public ArrayList<Match> sortTeamsByRank(int m1, int m2) throws SQLException
-//    {
-//        return db.sortTeamsByRank(m1, m2);
-//    }
 }

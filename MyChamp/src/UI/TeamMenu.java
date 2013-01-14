@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author Rasmus, Chris, Lasse, Dennis
  */
-class TeamUIMenu extends Menu
+class TeamMenu extends Menu
 {
 
     private static final int EXIT_VALUE = 0;
@@ -27,9 +27,9 @@ class TeamUIMenu extends Menu
      *
      * @param Team UI menu
      */
-    public TeamUIMenu()
+    public TeamMenu()
     {
-        super("Team UI Menu", "List All Teams", "Add A Team", "Update A Team", "Delete A Team", "Assign Teams To A Group");
+        super("Team Menu", "List All Teams", "Add A Team", "Update A Team", "Delete A Team", "Assign Teams To Groups");
         try
         {
             teammgr = new TeamManager();
@@ -54,19 +54,19 @@ class TeamUIMenu extends Menu
         switch (option)
         {
             case 1:
-                ListAllTeams();
+                listAllTeams();
                 break;
             case 2:
-                AddTeam();
+                addTeam();
                 break;
             case 3:
-                UpdateTeam();
+                updateTeam();
                 break;
             case 4:
-                DeleteTeam();
+                deleteTeam();
                 break;
             case 5:
-                AssignToGroups();
+                assignToGroups();
                 break;
             case EXIT_VALUE:
                 doActionExit();
@@ -76,10 +76,10 @@ class TeamUIMenu extends Menu
     /**
      *
      */
-    private void ListAllTeams()
+    private void listAllTeams()
     {
         clear();
-        System.out.println("SHOW ALL TEAMS");
+        System.out.println("Show all teams:");
         System.out.println();
 
         try
@@ -102,17 +102,17 @@ class TeamUIMenu extends Menu
     /**
      *
      */
-    private void AddTeam()
+    private void addTeam()
     {
         clear();
-        System.out.println("ADD NEW TEAM");
+        System.out.println("Add a new team:");
         System.out.println();
 
         try
         {
             int counter = teammgr.showCount();
-            Team tm = teammgr.getByID(1);
-            
+            Team tm = teammgr.getById(1);
+
             if (tm == null || tm.getGroupId() == 0)
             {
                 if (counter <= 16)
@@ -123,21 +123,21 @@ class TeamUIMenu extends Menu
                     String school = sc.nextLine();
 
                     System.out.println("Team Captain: ");
-                    String teamcaptain = sc.nextLine();
+                    String teamCaptain = sc.nextLine();
 
                     System.out.println("Email: ");
                     String email = sc.nextLine();
 
-                    Team team = new Team(-1, school, teamcaptain, email, -1, -1);
+                    Team team = new Team(-1, school, teamCaptain, email, -1, -1);
 
                     teammgr.add(team);
 
                     System.out.println();
-                    System.out.println("Team succesfully added");
+                    System.out.println("Team succesfully added!");
                 }
                 else
                 {
-                    System.out.println("Teams are limited to a total of 16 teams! Limit Reached!");
+                    System.out.println("Teams are limited to a total of 16 teams! Limit reached!");
                 }
             }
             else
@@ -148,7 +148,6 @@ class TeamUIMenu extends Menu
         catch (Exception e)
         {
             System.out.println("ERROR - " + e.getMessage());
-            e.printStackTrace();
         }
         pause();
     }
@@ -156,16 +155,15 @@ class TeamUIMenu extends Menu
     /**
      *
      */
-    private void UpdateTeam()
+    private void updateTeam()
     {
         clear();
-        System.out.println("UPDATE TEAM INFORMATION:");
+        System.out.println("Update team information:");
         System.out.println();
 
         try
         {
-            TeamManager tManager = new TeamManager();
-            ArrayList<Team> teams = tManager.listAll();
+            ArrayList<Team> teams = teammgr.listAll();
 
             printShowHeader();
             for (Team t : teams)
@@ -175,16 +173,17 @@ class TeamUIMenu extends Menu
 
             System.out.println("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
-            Team team = teammgr.getByID(id);
-            if(team != null)
+
+            Team team = teammgr.getById(id);
+            if (team != null)
             {
-            new UpdateTeamMenu(team).run();
+                new UpdateTeamMenu(team).run();
             }
             else
             {
                 System.out.println("Team does not exist!");
             }
-            
+
         }
         catch (Exception e)
         {
@@ -196,18 +195,18 @@ class TeamUIMenu extends Menu
     /**
      *
      */
-    private void DeleteTeam()
+    private void deleteTeam()
     {
         clear();
-        System.out.println("DELETE TEAM:");
-        System.out.println("");
+        System.out.println("Delete Team:");
+        System.out.println();
         try
         {
             int matchCount = matchmgr.showCount();
             int teamCount = teammgr.showCount();
-            int maxMatchID = matchmgr.maxMatchID();
-            TeamManager tManager = new TeamManager();
-            ArrayList<Team> teams = tManager.listAll();
+            int maxMatchID = matchmgr.maxMatchId();
+
+            ArrayList<Team> teams = teammgr.listAll();
 
             printShowHeader();
             for (Team t : teams)
@@ -217,11 +216,12 @@ class TeamUIMenu extends Menu
 
             System.out.print("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
-            Team team = teammgr.getByID(id);
+
+            Team team = teammgr.getById(id);
             if (team != null)
             {
-            removePoints(id);
-            matchmgr.deleteFromTeamAndMatch(id);
+                removePoints(id);
+                teammgr.deleteFromTeamAndMatch(id);
             }
             else
             {
@@ -238,47 +238,50 @@ class TeamUIMenu extends Menu
     /**
      *
      */
-    private void AssignToGroups()
+    private void assignToGroups()
     {
         clear();
         try
         {
             int counter = teammgr.showCount();
+
             if (counter > 0)
             {
-            int tm = teammgr.getByID(1).getGroupId();
-            if (tm == 0)
-            {
-
-                System.out.println("CAUTION!");
-                System.out.println("If continuing with assigning groups, it wont be "
-                        + "possible to add teams or assign groups again!");
-                System.out.println("Do you want to continue? Y/N");
-                Scanner sc = new Scanner(System.in, "iso-8859-1");
-                String further = sc.nextLine();
-                switch (further)
+                int tm = teammgr.getById(1).getGroupId();
+                if (tm == 0)
                 {
-                    case "Y":
-                        assignGroups(counter);
-                        break;
-                    case "y":
-                        assignGroups(counter);
-                        break;
-                    case "N":
-                        System.out.println("You have selected no.");
-                        break;
-                    case "n":
-                        System.out.println("You have selected no.");
-                        break;
-                    default:
-                        System.out.println("Y or N Required");
-                        break;
+
+                    System.out.println("CAUTION!");
+                    System.out.println("If continuing with assigning groups, it wont be "
+                            + "possible to add teams or assign groups again!");
+                    System.out.println("Do you want to continue? Y/N");
+
+                    Scanner sc = new Scanner(System.in, "iso-8859-1");
+                    String further = sc.nextLine();
+
+                    switch (further)
+                    {
+                        case "Y":
+                            assignGroups(counter);
+                            break;
+                        case "y":
+                            assignGroups(counter);
+                            break;
+                        case "N":
+                            System.out.println("You have selected no.");
+                            break;
+                        case "n":
+                            System.out.println("You have selected no.");
+                            break;
+                        default:
+                            System.out.println("Y or N Required");
+                            break;
+                    }
                 }
-            }
-            else
-            {
-                System.out.println("Groups have already been assigned!");
-            }
+                else
+                {
+                    System.out.println("Groups have already been assigned!");
+                }
             }
             else
             {
@@ -296,7 +299,7 @@ class TeamUIMenu extends Menu
     {
         if (counter >= 12 && counter <= 16)
         {
-            System.out.println("Assigning Teams To Groups!....");
+            System.out.println("Assigning teams to groups!....");
 
             try
             {
@@ -324,23 +327,23 @@ class TeamUIMenu extends Menu
          * Gets the number of group matches where the team id is playing or has played. 
          * The -1 is because the arraylist is not starting on 1 but 0, so 1 lower.
          */
-        int matches = matchmgr.showCountTeamGroup(id) -1;
+        int matches = matchmgr.showCountTeamGroup(id) - 1;
         /*
          * The i in the for loop symbolises the place in the arraylist.
          */
         for (int i = 0; i <= matches; i++)
         {
-            int guestTeamID = matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestTeamID();
-            int homeTeamID = matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeTeamID();
+            int guestTeamId = matchmgr.getGroupMatchesByTeamId(id).get(i).getGuestTeamId();
+            int homeTeamId = matchmgr.getGroupMatchesByTeamId(id).get(i).getHomeTeamId();
             /*
              * Checking whether the selected match is played, if 1 continue
              */
-            if (matchmgr.getGroupMatchesByTeamID(id).get(i).getIsPlayed() == 1)
+            if (matchmgr.getGroupMatchesByTeamId(id).get(i).getIsPlayed() == 1)
             {
                 /*
                  * Checks if the given team id is the same the hometeams id in the match.
                  */
-                if (id == homeTeamID)
+                if (id == homeTeamId)
                 {
                     /*
                      * Checks if the chosen team has lost or were tied
@@ -348,21 +351,21 @@ class TeamUIMenu extends Menu
                      * if tied the other team looses 1 point.
                      * if they wont we wont remove any points, since the team is getting deleted.
                      */
-                    if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() < matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    if (matchmgr.getGroupMatchesByTeamId(id).get(i).getHomeGoals() < matchmgr.getGroupMatchesByTeamId(id).get(i).getGuestGoals())
                     {
-                        int currentPoints = teammgr.getByID(guestTeamID).getPoints();
-                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(guestTeamID));
+                        int currentPoints = teammgr.getById(guestTeamId).getPoints();
+                        teammgr.setPoints(currentPoints - 3, teammgr.getById(guestTeamId));
                     }
-                    else if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    else if (matchmgr.getGroupMatchesByTeamId(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamId(id).get(i).getGuestGoals())
                     {
-                        int currentPoints = teammgr.getByID(guestTeamID).getPoints();
-                        teammgr.setPoints(currentPoints - 1, teammgr.getByID(guestTeamID));
+                        int currentPoints = teammgr.getById(guestTeamId).getPoints();
+                        teammgr.setPoints(currentPoints - 1, teammgr.getById(guestTeamId));
                     }
                 }
                 /*
                  * Checks if the given team id is the same the guestteams id in the match.
                  */
-                else if (id == guestTeamID)
+                else if (id == guestTeamId)
                 {
                     /*
                      * Checks if the chosen team has lost or were tied
@@ -370,15 +373,15 @@ class TeamUIMenu extends Menu
                      * if tied the other team looses 1 point.
                      * if they wont we wont remove any points, since the team is getting deleted.
                      */
-                    if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() > matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    if (matchmgr.getGroupMatchesByTeamId(id).get(i).getHomeGoals() > matchmgr.getGroupMatchesByTeamId(id).get(i).getGuestGoals())
                     {
-                        int currentPoints = teammgr.getByID(homeTeamID).getPoints();
-                        teammgr.setPoints(currentPoints - 3, teammgr.getByID(homeTeamID));
+                        int currentPoints = teammgr.getById(homeTeamId).getPoints();
+                        teammgr.setPoints(currentPoints - 3, teammgr.getById(homeTeamId));
                     }
-                    else if (matchmgr.getGroupMatchesByTeamID(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamID(id).get(i).getGuestGoals())
+                    else if (matchmgr.getGroupMatchesByTeamId(id).get(i).getHomeGoals() == matchmgr.getGroupMatchesByTeamId(id).get(i).getGuestGoals())
                     {
-                        int currentPoints = teammgr.getByID(homeTeamID).getPoints();
-                        teammgr.setPoints(currentPoints - 1, teammgr.getByID(homeTeamID)); 
+                        int currentPoints = teammgr.getById(homeTeamId).getPoints();
+                        teammgr.setPoints(currentPoints - 1, teammgr.getById(homeTeamId));
                     }
                 }
             }
@@ -390,6 +393,6 @@ class TeamUIMenu extends Menu
      */
     private void doActionExit()
     {
-        System.out.println("YOU SELECTED EXIT !!");
+        System.out.println("You have chosen to exit!");
     }
 }

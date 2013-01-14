@@ -65,7 +65,7 @@ class RankingMenu extends Menu
      */
     private void groupRanking()
     {
-        System.out.println("");
+        System.out.println("Not yet implemented...");
         System.out.println();
         try
         {
@@ -82,7 +82,7 @@ class RankingMenu extends Menu
      */
     private void finalRanking()
     {
-        System.out.println("X");
+        System.out.println("Not yet implemented...");
         System.out.println();
         try
         {
@@ -99,6 +99,6 @@ class RankingMenu extends Menu
      */
     private void doActionExit()
     {
-        System.out.println("YOU SELECTED EXIT !!");
+        System.out.println("You have chosen to exit!");
     }
 }

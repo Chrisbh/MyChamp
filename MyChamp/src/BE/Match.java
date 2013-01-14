@@ -13,8 +13,8 @@ public class Match
 
     private int id;
     private int matchRound;
-    private int homeTeamID;
-    private int guestTeamID;
+    private int homeTeamId;
+    private int guestTeamId;
     private int isPlayed;
     private int homeGoals;
     private int guestGoals;
@@ -23,18 +23,18 @@ public class Match
      *
      * @param id
      * @param matchRound
-     * @param homeTeamID
-     * @param guestTeamID
+     * @param homeTeamId
+     * @param guestTeamId
      * @param isPlayed
      * @param homeGoals
      * @param guestGoals
      */
-    public Match(int id, int matchRound, int homeTeamID, int guestTeamID, int isPlayed, int homeGoals, int guestGoals)
+    public Match(int id, int matchRound, int homeTeamId, int guestTeamId, int isPlayed, int homeGoals, int guestGoals)
     {
         this.id = id;
         this.matchRound = matchRound;
-        this.homeTeamID = homeTeamID;
-        this.guestTeamID = guestTeamID;
+        this.homeTeamId = homeTeamId;
+        this.guestTeamId = guestTeamId;
         this.isPlayed = isPlayed;
         this.homeGoals = homeGoals;
         this.guestGoals = guestGoals;
@@ -43,7 +43,7 @@ public class Match
     /**
      * @return the ID
      */
-    public int getID()
+    public int getId()
     {
         return id;
     }
@@ -65,19 +65,19 @@ public class Match
     }
 
     /**
-     * @return the homeTeamID
+     * @return the homeTeamId
      */
-    public int getHomeTeamID()
+    public int getHomeTeamId()
     {
-        return homeTeamID;
+        return homeTeamId;
     }
 
     /**
-     * @return the guestTeamID
+     * @return the guestTeamId
      */
-    public int getGuestTeamID()
+    public int getGuestTeamId()
     {
-        return guestTeamID;
+        return guestTeamId;
     }
 
     /**
@@ -131,6 +131,6 @@ public class Match
     @Override
     public String toString()
     {
-        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", id, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals);
+        return String.format("%3s %-6d %-15d %-15d %-15d %-10d %-15d %-15d", "", id, matchRound, homeTeamId, guestTeamId, isPlayed, homeGoals, guestGoals);
     }
 }

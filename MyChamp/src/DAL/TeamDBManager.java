@@ -30,10 +30,9 @@ public class TeamDBManager extends MyChampDBManager
 
     /**
      *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
-    public ArrayList<Team> ListAll() throws SQLException
+    public ArrayList<Team> listAll() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
@@ -45,14 +44,14 @@ public class TeamDBManager extends MyChampDBManager
             ArrayList<Team> allTeams = new ArrayList<>();
             while (rs.next())
             {
-                int ID = rs.getInt("ID");
-                String School = rs.getString("School");
-                String TeamCaptain = rs.getString("TeamCaptain");
-                String Email = rs.getString("Email");
-                int GroupID = rs.getInt("GroupID");
-                int points = rs.getInt("points");
+                int id = rs.getInt("Id");
+                String school = rs.getString("School");
+                String teamCaptain = rs.getString("TeamCaptain");
+                String email = rs.getString("Email");
+                int groupId = rs.getInt("GroupId");
+                int points = rs.getInt("Points");
 
-                Team team = new Team(ID, School, TeamCaptain, Email, GroupID, points);
+                Team team = new Team(id, school, teamCaptain, email, groupId, points);
                 allTeams.add(team);
             }
             return allTeams;
@@ -61,26 +60,66 @@ public class TeamDBManager extends MyChampDBManager
 
     /**
      *
-     * @param t
+     * @param id
+     * @return
      * @throws SQLException
      */
-    public void update(Team t) throws SQLException
+    public Team getById(int id) throws SQLException
     {
-        String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
-
-        Connection con = ds.getConnection();
-
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setString(1, t.getSchool());
-        ps.setString(2, t.getTeamCaptain());
-        ps.setString(3, t.getEmail());
-        ps.setInt(4, t.getGroupId());
-        ps.setInt(5, t.getId());
-
-        int affectedRows = ps.executeUpdate();
-        if (affectedRows == 0)
+        try (Connection con = ds.getConnection())
         {
-            throw new SQLException("Unable to update Team");
+            String sql = "SELECT * FROM Team WHERE Id = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+            {
+                String school = rs.getString("School");
+                String teamCaptain = rs.getString("TeamCaptain");
+                String email = rs.getString("Email");
+                int groupId = rs.getInt("GroupId");
+                int points = rs.getInt("Points");
+
+
+                Team team = new Team(id, school, teamCaptain, email, groupId, points);
+                return team;
+            }
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<Team> getByGroupId(int id) throws SQLException
+    {
+        try (Connection con = ds.getConnection())
+        {
+            String sql = "SELECT * FROM Team WHERE GroupId = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ArrayList<Team> teams = new ArrayList();
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                int teamId = rs.getInt("Id");
+                String school = rs.getString("School");
+                String teamCaptain = rs.getString("TeamCaptain");
+                String email = rs.getString("Email");
+                id = rs.getInt("GroupId");
+                int points = rs.getInt("Points");
+
+
+                Team team = new Team(teamId, school, teamCaptain, email, id, points);
+                teams.add(team);
+
+            }
+            return teams;
         }
     }
 
@@ -117,10 +156,9 @@ public class TeamDBManager extends MyChampDBManager
     /**
      *
      * @param t
-     * @param g
      * @throws SQLException
      */
-    public void assign(Team t, int g) throws SQLException
+    public void update(Team t) throws SQLException
     {
         String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
 
@@ -130,7 +168,68 @@ public class TeamDBManager extends MyChampDBManager
         ps.setString(1, t.getSchool());
         ps.setString(2, t.getTeamCaptain());
         ps.setString(3, t.getEmail());
-        ps.setInt(4, g);
+        ps.setInt(4, t.getGroupId());
+        ps.setInt(5, t.getId());
+
+        int affectedRows = ps.executeUpdate();
+        if (affectedRows == 0)
+        {
+            throw new SQLException("Unable to update Team");
+        }
+    }
+
+    /**
+     *
+     * @param id
+     * @throws SQLException
+     */
+    public void deleteFromTeamAndMatch(int id) throws SQLException
+    {
+        String sql = "DELETE FROM Match WHERE HomeTeamId = ? OR GuestTeamId = ?";
+        String sql1 = "DELETE FROM Team WHERE Id = ?";
+        Connection con = ds.getConnection();
+        PreparedStatement ps = con.prepareStatement(sql);
+        PreparedStatement ps1 = con.prepareStatement(sql1);
+        ps.setInt(1, id);
+        ps.setInt(2, id);
+
+
+        ps1.setInt(1, id);
+        int affectedRows = ps.executeUpdate();
+        int affectedRows1 = ps1.executeUpdate();
+    }
+
+    /**
+     *
+     * @throws SQLException
+     */
+    public void resetAll() throws SQLException
+    {
+        String sql = "DELETE FROM Match; DELETE FROM Team; DBCC CHECKIDENT (Match, RESEED, 0); DBCC CHECKIDENT (Team, RESEED, 0)";
+        Connection con = ds.getConnection();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.executeUpdate();
+    }
+
+    /**
+     *
+     * @param t
+     * @param g
+     * @throws SQLException
+     */
+    public void assign(Team t, int groupId) throws SQLException
+    {
+        String sql = "UPDATE Team SET School = ?, TeamCaptain = ?, Email = ?, GroupId = ? WHERE Id = ?";
+
+        Connection con = ds.getConnection();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, t.getSchool());
+        ps.setString(2, t.getTeamCaptain());
+        ps.setString(3, t.getEmail());
+        ps.setInt(4, groupId);
         ps.setInt(5, t.getId());
 
         int affectedRows = ps.executeUpdate();
@@ -142,10 +241,9 @@ public class TeamDBManager extends MyChampDBManager
 
     /**
      *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
-    public int Count() throws SQLException
+    public int count() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
@@ -166,79 +264,13 @@ public class TeamDBManager extends MyChampDBManager
 
     /**
      *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public Team getByID(int id) throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String sql = "SELECT * FROM Team WHERE id = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                String School = rs.getString("School");
-                String TeamCaptain = rs.getString("TeamCaptain");
-                String Email = rs.getString("Email");
-                int GroupId = rs.getInt("GroupId");
-                int points = rs.getInt("points");
-
-
-                Team gid = new Team(id, School, TeamCaptain, Email, GroupId, points);
-                return gid;
-            }
-        }
-        return null;
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     * @throws SQLException
-     */
-    public ArrayList<Team> getByGroupID(int id) throws SQLException
-    {
-        try (Connection con = ds.getConnection())
-        {
-            String sql = "SELECT * FROM Team WHERE groupID = ?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-
-            ArrayList<Team> teams = new ArrayList();
-            ResultSet rs = ps.executeQuery();
-            while (rs.next())
-            {
-                int tId = rs.getInt("Id");
-                String School = rs.getString("School");
-                String TeamCaptain = rs.getString("TeamCaptain");
-                String Email = rs.getString("Email");
-                int GroupId = rs.getInt("GroupId");
-                int points = rs.getInt("points");
-
-
-                Team gid = new Team(tId, School, TeamCaptain, Email, GroupId, points);
-                teams.add(gid);
-
-            }
-            return teams;
-        }
-    }
-
-    /**
-     *
-     * @return
-     * @throws SQLException
+     * @return @throws SQLException
      */
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
         try (Connection con = ds.getConnection())
         {
-            String query = "SELECT * FROM Team, Match WHERE Team.ID = HomeTeamID ORDER BY Points DESC, (HomeGoals - GuestGoals) DESC, HomeGoals DESC";
+            String query = "SELECT * FROM Team, Match WHERE Team.Id = HomeTeamId ORDER BY Points DESC, (HomeGoals - GuestGoals) DESC, HomeGoals DESC";
 
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
@@ -246,14 +278,14 @@ public class TeamDBManager extends MyChampDBManager
             ArrayList<Team> allTeams = new ArrayList<>();
             while (rs.next())
             {
-                int ID = rs.getInt("ID");
-                String School = rs.getString("School");
-                String TeamCaptain = rs.getString("TeamCaptain");
-                String Email = rs.getString("Email");
-                int GroupID = rs.getInt("GroupID");
-                int points = rs.getInt("points");
+                int id = rs.getInt("Id");
+                String school = rs.getString("School");
+                String teamCaptain = rs.getString("TeamCaptain");
+                String email = rs.getString("Email");
+                int groupId = rs.getInt("GroupId");
+                int points = rs.getInt("Points");
 
-                Team team = new Team(ID, School, TeamCaptain, Email, GroupID, points);
+                Team team = new Team(id, school, teamCaptain, email, groupId, points);
                 allTeams.add(team);
             }
             return allTeams;
@@ -268,7 +300,7 @@ public class TeamDBManager extends MyChampDBManager
      */
     public void setPoints(int points, Team t) throws SQLException
     {
-        String sql = "UPDATE Team SET Points = ? WHERE ID = ?";
+        String sql = "UPDATE Team SET Points = ? WHERE Id = ?";
 
         Connection con = ds.getConnection();
 
@@ -279,21 +311,7 @@ public class TeamDBManager extends MyChampDBManager
         int affectedRows = ps.executeUpdate();
         if (affectedRows == 0)
         {
-            throw new SQLException("WARNING - POINTS NOT INSERTED FOR MATCH!");
+            throw new SQLException("Points not inserted for Match!");
         }
-    }
-
-    /**
-     *
-     * @throws SQLException
-     */
-    public void deleteAll() throws SQLException
-    {
-        String sql = "DELETE FROM Match; DELETE FROM Team; DBCC CHECKIDENT (Match, RESEED, 0); DBCC CHECKIDENT (Team, RESEED, 0)";
-        Connection con = ds.getConnection();
-
-        PreparedStatement ps = con.prepareStatement(sql);
-
-        ps.executeUpdate();
     }
 }

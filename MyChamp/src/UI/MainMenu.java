@@ -49,33 +49,22 @@ public class MainMenu extends Menu
         }
     }
 
-    /**
-     * Option for Opening the Team Menu
-     */
+
     private void teamMenu()
     {
         new TeamMenu().run();
     }
 
-    /**
-     * Option for Opening the Match Menu.
-     */
     private void matchMenu()
     {
         new MatchMenu().run();
     }
 
-    /**
-     * Option for opening the Ranking Menu.
-     */
     private void rankingMenu()
     {
         new RankingMenu().run();
     }
 
-    /**
-     * Option for opening the Reset Menu
-     */
     private void resetMenu()
     {
         new ResetMenu().run();

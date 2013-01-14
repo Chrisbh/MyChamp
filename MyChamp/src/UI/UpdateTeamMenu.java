@@ -65,10 +65,6 @@ public class UpdateTeamMenu extends Menu
 
     }
 
-    /**
-     * Update School Name.
-     *
-     */
     private void updateSchool()
     {
         System.out.println();
@@ -78,10 +74,6 @@ public class UpdateTeamMenu extends Menu
         team.setSchool(school);
     }
 
-    /**
-     * Update Team Captain Name.
-     *
-     */
     private void updateTeamCaptain()
     {
         System.out.println();
@@ -91,10 +83,6 @@ public class UpdateTeamMenu extends Menu
         team.setTeamCaptain(teamCaptain);
     }
 
-    /**
-     * Update Email.
-     *
-     */
     private void updateEmail()
     {
         System.out.println();
@@ -104,10 +92,6 @@ public class UpdateTeamMenu extends Menu
         team.setEmail(email);
     }
 
-    /**
-     * Exits the UpdateTeamMenu and save changes.
-     *
-     */
     private void saveChanges()
     {
         System.out.println();

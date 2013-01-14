@@ -73,9 +73,6 @@ class TeamMenu extends Menu
         }
     }
 
-    /**
-     *
-     */
     private void listAllTeams()
     {
         clear();
@@ -99,9 +96,6 @@ class TeamMenu extends Menu
         pause();
     }
 
-    /**
-     *
-     */
     private void addTeam()
     {
         clear();
@@ -152,9 +146,6 @@ class TeamMenu extends Menu
         pause();
     }
 
-    /**
-     *
-     */
     private void updateTeam()
     {
         clear();
@@ -192,9 +183,6 @@ class TeamMenu extends Menu
         pause();
     }
 
-    /**
-     *
-     */
     private void deleteTeam()
     {
         clear();
@@ -235,9 +223,6 @@ class TeamMenu extends Menu
         pause();
     }
 
-    /**
-     *
-     */
     private void assignToGroups()
     {
         clear();
@@ -388,9 +373,6 @@ class TeamMenu extends Menu
         }
     }
 
-    /**
-     *
-     */
     private void doActionExit()
     {
         System.out.println("You have chosen to exit!");

@@ -72,17 +72,11 @@ class MatchMenu extends Menu
         }
     }
 
-    /**
-     *
-     */
     private void viewSchedule()
     {
         new ViewScheduleMenu().run();
     }
 
-    /**
-     *
-     */
     private void matchResults()
     {
 
@@ -169,9 +163,6 @@ class MatchMenu extends Menu
 
     }
 
-    /**
-     *
-     */
     private void scheduleMatch()
     {
 
@@ -222,9 +213,6 @@ class MatchMenu extends Menu
 
     }
 
-    /**
-     *
-     */
     private void givePoints(int homeGoals, int guestGoals, Match results) throws SQLException
     {
         int homeTeamID = results.getHomeTeamId();
@@ -285,9 +273,6 @@ class MatchMenu extends Menu
         }
     }
 
-    /**
-     *
-     */
     private void doActionExit()
     {
         System.out.println("You have chosen to exit!");

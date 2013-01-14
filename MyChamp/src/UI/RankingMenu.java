@@ -19,9 +19,9 @@ class RankingMenu extends Menu
     private MatchManager matchmgr;
 
     /**
-     * Lists the different Menu options in Ranking UI Menu
+     * Lists the different Menu options in Ranking Menu
      *
-     * @param Team UI menu
+     * @param Ranking menu
      */
     public RankingMenu()
     {
@@ -40,7 +40,7 @@ class RankingMenu extends Menu
     }
 
     /**
-     * Enter A Number, to move to submenu on...
+     * Type a number for entering menu.
      *
      * @param option
      */

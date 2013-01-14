@@ -23,9 +23,9 @@ class TeamMenu extends Menu
     private MatchManager matchmgr;
 
     /**
-     * Lists the different Menu options in Team UI Menu
+     * Lists the different Menu options in Team Menu
      *
-     * @param Team UI menu
+     * @param Team menu
      */
     public TeamMenu()
     {
@@ -44,7 +44,7 @@ class TeamMenu extends Menu
     }
 
     /**
-     * Enter A Number, to move to submenu on...
+     * Type a number for entering menu.
      *
      * @param option
      */

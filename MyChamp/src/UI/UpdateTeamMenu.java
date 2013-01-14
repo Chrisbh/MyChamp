@@ -38,7 +38,7 @@ public class UpdateTeamMenu extends Menu
     }
 
     /**
-     * Enter A Number, to move to submenu on...
+     * Type a number for entering menu.
      *
      * @param option 
      */

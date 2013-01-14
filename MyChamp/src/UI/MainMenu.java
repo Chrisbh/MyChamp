@@ -23,6 +23,7 @@ public class MainMenu extends Menu
     }
 
     /**
+     * Type number for entering menu.
      *
      * @param option
      */

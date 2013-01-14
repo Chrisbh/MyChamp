@@ -18,7 +18,9 @@ public class ResetMenu extends Menu
     private TeamManager teammgr;
 
     /**
+     * Lists the different Menu options in ResetMenu
      *
+     * @param ResetMenu
      */
     public ResetMenu()
     {
@@ -35,6 +37,7 @@ public class ResetMenu extends Menu
     }
 
     /**
+     * Type number for entering menu
      *
      * @param option
      */

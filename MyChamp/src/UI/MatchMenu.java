@@ -28,13 +28,13 @@ class MatchMenu extends Menu
     private MatchScheduling m;
 
     /**
-     * Lists the different Menu options in MatchUI Menu
+     * Lists the different Menu options in Match Menu
      *
      * @param Match menu
      */
     public MatchMenu()
     {
-        super("Match UI Menu", "View Schedule", "Set Match Results", "Schedule Matches");
+        super("Match Menu", "View Schedule", "Set Match Results", "Schedule Matches");
         try
         {
             teammgr = new TeamManager();
@@ -49,7 +49,7 @@ class MatchMenu extends Menu
     }
 
     /**
-     * Enter A Number, to move to submenu on...
+     * Type number for entering menu
      *
      * @param option
      */
@@ -72,17 +72,11 @@ class MatchMenu extends Menu
         }
     }
 
-    /**
-     *
-     */
     private void viewSchedule()
     {
         new ViewScheduleMenu().run();
     }
 
-    /**
-     *
-     */
     private void matchResults()
     {
 
@@ -169,9 +163,6 @@ class MatchMenu extends Menu
 
     }
 
-    /**
-     *
-     */
     private void scheduleMatch()
     {
 
@@ -222,9 +213,6 @@ class MatchMenu extends Menu
 
     }
 
-    /**
-     *
-     */
     private void givePoints(int homeGoals, int guestGoals, Match results) throws SQLException
     {
         int homeTeamID = results.getHomeTeamId();
@@ -285,9 +273,6 @@ class MatchMenu extends Menu
         }
     }
 
-    /**
-     *
-     */
     private void doActionExit()
     {
         System.out.println("You have chosen to exit!");

@@ -48,7 +48,7 @@ public class ViewScheduleMenu extends Menu
     }
 
     /**
-     *
+     *Type a number for entering menu.
      * @param option
      */
     @Override

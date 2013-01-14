@@ -76,7 +76,7 @@ public abstract class Menu
     }
 
     /**
-     *
+     * Prints the header for schedule header - Upcoming matches.
      */
     protected void printShowScheduleHeader()
     {
@@ -87,7 +87,7 @@ public abstract class Menu
     }
 
     /**
-     *
+     * Prints the header for groupschedule header.
      */
     protected void printShowGroupScheduleHeader()
     {
@@ -97,7 +97,7 @@ public abstract class Menu
     }
 
     /**
-     *
+     * Prints the header for IsPlayed header.
      */
     protected void printShowIsPlayedHeader()
     {

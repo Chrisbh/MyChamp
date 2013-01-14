@@ -68,6 +68,7 @@ public class TeamManager
 
     /**
      * Gets a team by a given id.
+     *
      * @param id the given id.
      * @return returns the team with the given id.
      * @throws SQLException
@@ -78,9 +79,10 @@ public class TeamManager
     }
 
     /**
+     * Gets a team with a given group id.
      *
-     * @param id
-     * @return
+     * @param id the given group id.
+     * @return returns the team.
      * @throws SQLException
      */
     public ArrayList getByGroupId(int id) throws SQLException
@@ -89,8 +91,9 @@ public class TeamManager
     }
 
     /**
+     * Adds a team.
      *
-     * @param t
+     * @param t the team to add.
      * @throws SQLException
      */
     public void add(Team t) throws SQLException
@@ -99,8 +102,9 @@ public class TeamManager
     }
 
     /**
+     * Updates a team.
      *
-     * @param team
+     * @param team the team to update.
      * @throws SQLException
      */
     public void update(Team team) throws SQLException
@@ -109,6 +113,7 @@ public class TeamManager
     }
 
     /**
+     * clears the database.
      *
      * @throws SQLException
      */
@@ -119,8 +124,10 @@ public class TeamManager
     }
 
     /**
+     * Deletes an row in both team and the matches they are scheduled in. With a
+     * given team id.
      *
-     * @param id
+     * @param id the given team id.
      * @throws SQLException
      */
     public void deleteFromTeamAndMatch(int id) throws SQLException
@@ -129,8 +136,10 @@ public class TeamManager
     }
 
     /**
+     * Shows the number of teams added.
      *
-     * @return @throws SQLException
+     * @return returns the number of teams.
+     * @throws SQLException
      */
     public int showCount() throws SQLException
     {
@@ -138,9 +147,9 @@ public class TeamManager
     }
 
     /**
-     *
-     * @param points
-     * @param team
+     * Gives points to a team.
+     * @param points the amount of points to update to.
+     * @param team the team to give points.
      * @throws SQLException
      */
     public void setPoints(int points, Team team) throws SQLException
@@ -149,7 +158,7 @@ public class TeamManager
     }
 
     /**
-     *
+     * Shuffles the list of teams, and assigns them groups like 1,2,3,4,1,2,3,4.
      * @throws SQLException
      */
     public void assignRandomGroups() throws SQLException

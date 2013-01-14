@@ -5,14 +5,10 @@
 package DAL;
 
 import BE.Group;
-import BE.Team;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-
 
 /**
  *
@@ -20,13 +16,14 @@ import java.util.ArrayList;
  */
 public class GroupDBManager extends MyChampDBManager
 {
-    public GroupDBManager()throws Exception
+
+    public GroupDBManager() throws Exception
     {
         super();
     }
-     
-     public Group getById(int id) throws SQLException
-     {
+
+    public Group getById(int id) throws SQLException
+    {
         try (Connection con = ds.getConnection())
         {
             String sql = "SELECT * FROM [Group] WHERE id = ?";
@@ -38,11 +35,11 @@ public class GroupDBManager extends MyChampDBManager
             {
                 id = rs.getInt("Id");
                 String name = rs.getString("GroupName");
-               
+
                 Group grp = new Group(id, name);
                 return grp;
             }
         }
         return null;
-     }
+    }
 }

@@ -348,7 +348,7 @@ public class MatchDBManager extends MyChampDBManager
             return 0;
         }
     }
-    
+
     public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -357,11 +357,11 @@ public class MatchDBManager extends MyChampDBManager
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.setInt(2, id);
-            
+
             ResultSet rs = ps.executeQuery();
-            
+
             ArrayList<Match> byTeamID = new ArrayList();
-            while(rs.next())
+            while (rs.next())
             {
                 int matchID = rs.getInt("ID");
                 int matchRound = rs.getInt("MatchRound");
@@ -375,9 +375,10 @@ public class MatchDBManager extends MyChampDBManager
                 Match m = new Match(matchID, matchRound, homeTeamID, guestTeamID, isPlayed, homeGoals, guestGoals);
                 byTeamID.add(m);
             }
-            return byTeamID;   
+            return byTeamID;
         }
     }
+
     public int countTeamGroupMatchesByTeamID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -387,7 +388,7 @@ public class MatchDBManager extends MyChampDBManager
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ps.setInt(2, id);
-            
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next())
@@ -399,7 +400,6 @@ public class MatchDBManager extends MyChampDBManager
             return 0;
         }
     }
-
 //    public ArrayList<Match> sortTeamsByRank(int m1, int m2) throws SQLException
 //    {
 //        try (Connection con = ds.getConnection())

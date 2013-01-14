@@ -104,7 +104,6 @@ public class UpdateTeamMenu extends Menu
         team.setEmail(email);
     }
 
-
     /**
      * Exits the UpdateTeamMenu and save changes.
      *

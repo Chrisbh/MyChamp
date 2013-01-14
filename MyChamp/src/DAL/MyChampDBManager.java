@@ -24,8 +24,8 @@ public class MyChampDBManager
     {
         Properties props = new Properties();
         props.load(new FileReader("MyChamp.cfg"));
-   
-        
+
+
         ds = new SQLServerDataSource();
 
         ds.setServerName(props.getProperty("SERVER"));

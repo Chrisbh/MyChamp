@@ -215,7 +215,7 @@ public class MatchManager
         }
 
         ArrayList<MatchScheduling> semiFinalMatches = new ArrayList();
-        
+
         /*
          * Round 8 (Semi finals)
          */
@@ -223,14 +223,14 @@ public class MatchManager
         semiFinalMatches.add(new MatchScheduling(8, s2Teams.get(0), s2Teams.get(1)));
 
         matches.addAll(semiFinalMatches);
-        
-        for(MatchScheduling m : semiFinalMatches)
+
+        for (MatchScheduling m : semiFinalMatches)
         {
             db.addMatches(m);
         }
         return null;
     }
-    
+
     public ArrayList<MatchScheduling> scheduleFinal() throws SQLException
     {
         ArrayList<MatchScheduling> matches = new ArrayList();
@@ -252,14 +252,14 @@ public class MatchManager
         }
 
         ArrayList<MatchScheduling> finalMatch = new ArrayList();
-        
+
         /*
          * Round 9 (Final)
          */
         finalMatch.add(new MatchScheduling(9, f1Teams.get(0), f1Teams.get(1)));
 
         matches.addAll(finalMatch);
-        
+
         for (MatchScheduling m : finalMatch)
         {
             db.addMatches(m);
@@ -311,25 +311,26 @@ public class MatchManager
     {
         return db.maxID();
     }
+
     public void deleteFromTeamAndMatch(int id) throws SQLException
     {
         db.deleteFromTeamAndMatch(id);
     }
+
     public int maxMatchRound() throws SQLException
     {
         return db.maxRound();
     }
-    
+
     public ArrayList<Match> getGroupMatchesByTeamID(int id) throws SQLException
     {
         return db.getGroupMatchesByTeamID(id);
     }
-    
+
     public int showCountTeamGroup(int id) throws SQLException
     {
         return db.countTeamGroupMatchesByTeamID(id);
     }
-    
 //    public ArrayList<Match> sortTeamsByRank(int m1, int m2) throws SQLException
 //    {
 //        return db.sortTeamsByRank(m1, m2);

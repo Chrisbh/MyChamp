@@ -89,19 +89,22 @@ public class TeamManager
         }
         System.out.println("Groups have been assigned !!");
     }
-    
+
     public ArrayList getByGroupID(int id) throws SQLException
     {
         return db.getByGroupID(id);
     }
+
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
         return db.listGroupRanked();
     }
+
     public void setPoints(int points, Team team) throws SQLException
     {
         db.setPoints(points, team);
     }
+
     public void deleteAll() throws SQLException
     {
         db.deleteAll();

@@ -23,7 +23,7 @@ public class TeamDBManager extends MyChampDBManager
     {
         super();
     }
-  
+
     public ArrayList<Team> ListAll() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -157,7 +157,7 @@ public class TeamDBManager extends MyChampDBManager
         }
         return null;
     }
-    
+
     public ArrayList<Team> getByGroupID(int id) throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -165,7 +165,7 @@ public class TeamDBManager extends MyChampDBManager
             String sql = "SELECT * FROM Team WHERE groupID = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-             
+
             ArrayList<Team> teams = new ArrayList();
             ResultSet rs = ps.executeQuery();
             while (rs.next())
@@ -180,12 +180,12 @@ public class TeamDBManager extends MyChampDBManager
 
                 Team gid = new Team(tId, School, TeamCaptain, Email, GroupId, points);
                 teams.add(gid);
-                
+
             }
             return teams;
         }
     }
-    
+
     public ArrayList<Team> listGroupRanked() throws SQLException
     {
         try (Connection con = ds.getConnection())
@@ -211,7 +211,7 @@ public class TeamDBManager extends MyChampDBManager
             return allTeams;
         }
     }
-    
+
     public void setPoints(int points, Team t) throws SQLException
     {
         String sql = "UPDATE Team SET Points = ? WHERE ID = ?";
@@ -228,14 +228,14 @@ public class TeamDBManager extends MyChampDBManager
             throw new SQLException("WARNING - POINTS NOT INSERTED FOR MATCH!");
         }
     }
-    
+
     public void deleteAll() throws SQLException
     {
         String sql = "DELETE FROM Match; DELETE FROM Team; DBCC CHECKIDENT (Match, RESEED, 0); DBCC CHECKIDENT (Team, RESEED, 0)";
         Connection con = ds.getConnection();
-        
+
         PreparedStatement ps = con.prepareStatement(sql);
-        
+
         ps.executeUpdate();
     }
 }

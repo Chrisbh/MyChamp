@@ -31,9 +31,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Gets a Match with a given id.
      *
-     * @param id
-     * @return
+     * @param id the id of a Match.
+     * @return returns the Match with the given id.
      * @throws SQLException
      */
     public Match getById(int id) throws SQLException
@@ -63,9 +64,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Adds matches to the database.
      *
-     * @param m
-     * @return
+     * @param m the match.
+     * @return returns a new match.
      * @throws SQLException
      */
     public MatchScheduling addMatches(MatchScheduling m) throws SQLException
@@ -92,8 +94,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Shows schedule for matches not played yet.
      *
-     * @return @throws SQLException
+     * @return returns an ArrayList of matches not played.
+     * @throws SQLException
      */
     public ArrayList viewSchedule() throws SQLException
     {
@@ -129,8 +133,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Shows a schedule for matches already played.
      *
-     * @return @throws SQLException
+     * @return an ArrayList of matches already played.
+     * @throws SQLException
      */
     public ArrayList viewSchedulePlayed() throws SQLException
     {
@@ -166,9 +172,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Shows a schedule for a given group.
      *
-     * @param groupId
-     * @return
+     * @param groupId the group id.
+     * @return an ArrayList of group matches.
      * @throws SQLException
      */
     public ArrayList viewGroupSchedule(int groupId) throws SQLException
@@ -206,9 +213,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Show the schedule for a given team.
      *
-     * @param teamId
-     * @return
+     * @param teamId the team id.
+     * @return an ArrayList of team matches.
      * @throws SQLException
      */
     public ArrayList viewTeamSchedule(int teamId) throws SQLException
@@ -247,8 +255,9 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Updates match results for a given match.
      *
-     * @param m
+     * @param m a match.
      * @throws SQLException
      */
     public void matchResults(Match m) throws SQLException
@@ -270,9 +279,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Checks whether a given match has been played.
      *
-     * @param id
-     * @return
+     * @param id a match id.
+     * @return whether the match has been played.
      * @throws SQLException
      */
     public int isPlayed(int id) throws SQLException
@@ -296,8 +306,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Counts matches.
      *
-     * @return @throws SQLException
+     * @return the count of matches.
+     * @throws SQLException
      */
     public int countMatches() throws SQLException
     {
@@ -319,9 +331,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Counts team matches in a group by team id.
      *
-     * @param id
-     * @return
+     * @param id a team id.
+     * @return the match count or 0.
      * @throws SQLException
      */
     public int countTeamGroupMatchesByTeamId(int id) throws SQLException
@@ -347,8 +360,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Gets the max match id.
      *
-     * @return @throws SQLException
+     * @return max match id or 0.
+     * @throws SQLException
      */
     public int maxId() throws SQLException
     {
@@ -370,8 +385,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Gets the max match round.
      *
-     * @return @throws SQLException
+     * @return the max round or 0.
+     * @throws SQLException
      */
     public int maxRound() throws SQLException
     {
@@ -393,9 +410,10 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Shows an ArrayList of matches.
      *
-     * @param matchRound
-     * @return
+     * @param matchRound a matchround.
+     * @return an ArrayList of matches in a given match round.
      * @throws SQLException
      */
     public ArrayList<Match> listByMatchRound(int matchRound) throws SQLException
@@ -427,9 +445,11 @@ public class MatchDBManager extends MyChampDBManager
     }
 
     /**
+     * Shows an ArrayList of team matches, where the team plays as either home
+     * team or guest team, in a group with a given team id.
      *
-     * @param id
-     * @return
+     * @param id a team id.
+     * @return an ArrayList of matches with a given team id.
      * @throws SQLException
      */
     public ArrayList<Match> getGroupMatchesByTeamId(int id) throws SQLException

@@ -27,9 +27,10 @@ public class GroupDBManager extends MyChampDBManager
     }
 
     /**
+     * Gets a group with a given id.
      *
-     * @param id
-     * @return
+     * @param id the given id.
+     * @return returns the group with the given id.
      * @throws SQLException
      */
     public Group getById(int id) throws SQLException

@@ -218,8 +218,16 @@ class TeamUIMenu extends Menu
 
             System.out.print("Select Team id: ");
             int id = new Scanner(System.in).nextInt();
+            Team team = teammgr.getByID(id);
+            if (team != null)
+            {
             removePoints(id);
             matchmgr.deleteFromTeamAndMatch(id);
+            }
+            else
+            {
+                System.out.println("Team does not exist!");
+            }
         }
         catch (Exception e)
         {

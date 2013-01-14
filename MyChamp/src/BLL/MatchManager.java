@@ -460,4 +460,9 @@ public class MatchManager
         }
         return null;
     }
+     
+    public ArrayList<Match> listAll() throws SQLException
+    {
+        return db.listAll();
+    }
 }

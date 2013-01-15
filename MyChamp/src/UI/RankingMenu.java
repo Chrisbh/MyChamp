@@ -4,9 +4,7 @@
  */
 package UI;
 
-import BE.Team;
 import BLL.MatchManager;
-import BLL.RankManager;
 import BLL.TeamManager;
 
 /**
@@ -19,7 +17,6 @@ class RankingMenu extends Menu
     private static final int EXIT_VALUE = 0;
     private TeamManager teammgr;
     private MatchManager matchmgr;
-    private RankManager rankmgr;
 
     /**
      * Lists the different Menu options in Ranking Menu
@@ -33,7 +30,6 @@ class RankingMenu extends Menu
         {
             teammgr = new TeamManager();
             matchmgr = new MatchManager();
-            rankmgr = new RankManager();
 
         }
         catch (Exception e)
@@ -70,14 +66,6 @@ class RankingMenu extends Menu
         System.out.println();
         try
         {
-            printShowHeader();
-            
-            Team[] teams = rankmgr.rankTeams(teammgr.listAll(), matchmgr.listAll());
-            
-            for (Team t : teams)
-            {
-                System.out.println(t);
-            }
         }
         catch (Exception e)
         {
